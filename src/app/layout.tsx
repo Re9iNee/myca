@@ -16,9 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body
-        className={`${portada.className} antialiased grid place-items-center w-screen h-screen`}
-      >
+      <body className={`${portada.className} antialiased w-screen h-screen`}>
         {children}
       </body>
     </html>

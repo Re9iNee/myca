@@ -4,7 +4,7 @@ import React from "react";
 
 export default function CarInfoPage() {
   return (
-    <div className="h-ful">
+    <div className="h-full p-6">
       <div className="space-y-2 text-center">
         <h1 className="font-bold text-[56px] text-blue-500">مایکا</h1>
         <h3 className="text-sm text-slate-400">مدیریت سرویس دوره ای اتومبیل</h3>
