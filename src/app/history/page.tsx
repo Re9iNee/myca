@@ -1,3 +1,4 @@
+import EmptyServicesState from "@/components/EmptyServicesState";
 import SearchInput from "@/components/SearchInput";
 import { Button } from "@/components/ui/button";
 import { dateToShamsi, mileageToFarsi } from "@/lib/utils";
@@ -38,12 +39,18 @@ export default function CarHistoryPage() {
         <LuScrollText className="mt-0.5 h-7 w-7 stroke-2 text-slate-700" />
         تاریخچه سرویس ها
       </h1>
-      <SearchInput className="mt-3.5" />
-      <div className="scrollbar-hide mt-3.5 grow overflow-y-auto">
-        {services.map((service) => (
-          <Row key={service.id} {...service} />
-        ))}
-      </div>
+      {services.length > 0 ? (
+        <>
+          <SearchInput className="mt-3.5" />
+          <div className="scrollbar-hide mt-3.5 grow overflow-y-auto">
+            {services.map((service) => (
+              <Row key={service.id} {...service} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <EmptyServicesState />
+      )}
       <div className="pt-3 pb-3">
         <Button className="flex w-full gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 p-8 text-base font-semibold [&_svg:not([class*='size-'])]:size-6">
           <Wrench className="mt-1" />
