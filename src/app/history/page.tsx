@@ -52,9 +52,14 @@ export default function CarHistoryPage() {
         <EmptyServicesState />
       )}
       <div className="pt-3 pb-3">
-        <Button className="flex w-full gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 p-8 text-base font-semibold [&_svg:not([class*='size-'])]:size-6">
-          <Wrench className="mt-1" />
-          سرویس جدید
+        <Button
+          className="flex w-full cursor-pointer gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 p-8 text-base font-semibold [&_svg:not([class*='size-'])]:size-6"
+          asChild
+        >
+          <Link href={"/new-service"}>
+            <Wrench className="mt-1" />
+            سرویس جدید
+          </Link>
         </Button>
       </div>
     </main>
