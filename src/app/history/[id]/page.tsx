@@ -1,6 +1,7 @@
+import RemoveServiceBtn from "@/components/RemoveServiceBtn";
 import { Button } from "@/components/ui/button";
 import { dateToShamsi, mileageToFarsi } from "@/lib/utils";
-import { ChevronRight, PencilLine, Trash, Wrench } from "lucide-react";
+import { ChevronRight, PencilLine } from "lucide-react";
 import Link from "next/link";
 
 type Props = {
@@ -59,13 +60,7 @@ async function ServiceDetailsPage({ params }: Props) {
           </p>
         </div>
 
-        <Button
-          variant={"outline"}
-          className="mt-2 flex h-[52px] w-full cursor-pointer gap-2 rounded-lg border-[1px] border-slate-300 p-4 py-4 text-sm font-medium text-slate-500"
-        >
-          <Trash />
-          حذف سرویس
-        </Button>
+        <RemoveServiceBtn />
       </div>
 
       <div className="py-3">
