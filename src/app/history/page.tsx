@@ -31,8 +31,10 @@ export default function CarHistoryPage() {
     <main className="flex h-full w-full flex-col px-6">
       {/* navigation header */}
       <header className="flex items-center gap-2 py-2.5 text-sm font-medium text-slate-500">
-        <ChevronRight className="mt-0.5 h-5 w-5 stroke-2" />
-        بازگشت
+        <Link href={"/"} className="flex items-center gap-2">
+          <ChevronRight className="mt-0.5 h-5 w-5 stroke-2" />
+          بازگشت
+        </Link>
       </header>
 
       <h1 className="flex gap-3 py-2.5 text-lg font-bold text-slate-700">

@@ -3,16 +3,10 @@ import { Button } from "@/components/ui/button";
 import { dateToShamsi, mileageToFarsi } from "@/lib/utils";
 import { ChevronRight, PencilLine } from "lucide-react";
 import Link from "next/link";
+import { serviceDetail } from "../mock";
 
 type Props = {
   params: { id: string };
-};
-const serviceDetail = {
-  id: "1",
-  title: "تعویض سنسور استارت موتور",
-  date: new Date(),
-  mileage: 153120,
-  description: "سنسور استارت ماشین به دلیل فرسودگی در گاراژ مسلمی تعویض شد",
 };
 
 async function ServiceDetailsPage({ params }: Props) {
@@ -29,7 +23,7 @@ async function ServiceDetailsPage({ params }: Props) {
             بازگشت
           </Link>
           <Link
-            href={`/edit/${serviceDetail.id}`}
+            href={`edit/${serviceDetail.id}`}
             className="inline-flex items-center gap-2"
           >
             ویرایش

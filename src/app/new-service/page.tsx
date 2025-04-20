@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 export type serviceType = "normal" | "interval";
@@ -15,6 +17,10 @@ function NewServicePage() {
 
   return (
     <div className="flex h-full flex-col p-4">
+      <Link href={"../"} className="flex items-center gap-2">
+        <ChevronRight className="mt-0.5 h-5 w-5 stroke-2" />
+        بازگشت
+      </Link>
       <div className="grow">
         <div className="space-y-1.5 pt-2 pb-3">
           <h3 className="text-base font-bold text-slate-800">سرویس جدید</h3>
