@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/popover";
 
 import { CiSquarePlus } from "react-icons/ci";
+import Link from "next/link";
 
 export default function CarPicker() {
   const [open, setOpen] = React.useState(false);
@@ -73,11 +74,14 @@ export default function CarPicker() {
         </Popover>
 
         <Button
-          variant={"outline"}
           size={"icon"}
+          variant={"outline"}
           className="h-[50px] w-[50px] rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3"
+          asChild
         >
-          <CiSquarePlus className="text-slate-500" />
+          <Link href={"/car-info"}>
+            <CiSquarePlus className="text-slate-500" />
+          </Link>
         </Button>
       </div>
     </section>
