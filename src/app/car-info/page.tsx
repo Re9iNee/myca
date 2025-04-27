@@ -1,11 +1,17 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import React from "react";
 
 export default function CarInfoPage() {
+  function createCar(formData: FormData) {
+    const carModel = formData.get("car-model");
+    const mileage = formData.get("mileage");
+  }
+
   return (
     <div className="h-full px-6 pt-9">
-      <form action="" className="flex h-full flex-col justify-between">
+      <form action={createCar} className="flex h-full flex-col justify-between">
         <div>
           <div className="space-y-2 text-center">
             <h1 className="text-[56px] font-bold text-blue-500">مایکا</h1>
@@ -18,9 +24,15 @@ export default function CarInfoPage() {
               مدل ماشین و کیلومتر رو وارد کنید
             </h4>
             <div className="space-y-3 pt-6">
-              <Input type="text" placeholder="پژو پارس" className="h-[52px]" />
               <Input
-                step={1000}
+                type="text"
+                name="car-model"
+                className="h-[52px]"
+                placeholder="پژو پارس"
+              />
+              <Input
+                min={0}
+                name="mileage"
                 type="number"
                 className="h-[52px]"
                 placeholder="کیلومتر کارکرد"
@@ -31,7 +43,7 @@ export default function CarInfoPage() {
 
         <div>
           <Button
-            disabled
+            type="submit"
             className="mt-20 h-[56px] w-full rounded-2xl px-3.5 py-2.5 text-lg font-semibold disabled:bg-slate-100 disabled:text-slate-300"
           >
             ورود

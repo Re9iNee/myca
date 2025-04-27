@@ -20,8 +20,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-import { CiSquarePlus } from "react-icons/ci";
 import Link from "next/link";
+import { CiSquarePlus } from "react-icons/ci";
 
 export default function CarPicker() {
   const [open, setOpen] = React.useState(false);
