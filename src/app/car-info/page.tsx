@@ -2,16 +2,47 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-export default function CarInfoPage() {
-  function createCar(formData: FormData) {
-    const carModel = formData.get("car-model");
-    const mileage = formData.get("mileage");
-  }
+type Inputs = {
+  model: string;
+  mileage: string;
+};
+
+export default function AddNewCarForm() {
+  const { save, value: ownerId } = useLocalStorage("ownerId", null);
+  const [pending, setPending] = useState<boolean>(false);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setPending(true);
+
+    const result = await fetch("/api/cars/", {
+      method: "POST",
+      body: JSON.stringify({ ...data, ownerId }),
+    });
+    const car = await result.json();
+    save(car.ownerId);
+
+    setPending(false);
+  };
+
+  console.log(watch("mileage")); // watch input value by passing the name of it
 
   return (
     <div className="h-full px-6 pt-9">
-      <form action={createCar} className="flex h-full flex-col justify-between">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex h-full flex-col justify-between"
+      >
         <div>
           <div className="space-y-2 text-center">
             <h1 className="text-[56px] font-bold text-blue-500">مایکا</h1>
@@ -26,16 +57,16 @@ export default function CarInfoPage() {
             <div className="space-y-3 pt-6">
               <Input
                 type="text"
-                name="car-model"
                 className="h-[52px]"
                 placeholder="پژو پارس"
+                {...register("model")}
               />
               <Input
                 min={0}
-                name="mileage"
                 type="number"
                 className="h-[52px]"
                 placeholder="کیلومتر کارکرد"
+                {...register("mileage")}
               />
             </div>
           </div>
@@ -44,6 +75,7 @@ export default function CarInfoPage() {
         <div>
           <Button
             type="submit"
+            disabled={pending}
             className="mt-20 h-[56px] w-full rounded-2xl px-3.5 py-2.5 text-lg font-semibold disabled:bg-slate-100 disabled:text-slate-300"
           >
             ورود
