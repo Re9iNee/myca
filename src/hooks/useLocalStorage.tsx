@@ -1,25 +1,30 @@
-import { useEffect, useRef } from "react";
+import { isJSON } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
-export default function useLocalStorage(name: string, initialValue: any) {
-  const value = useRef(null);
+export default function useLocalStorage(name: string, initialValue?: any) {
+  const [value, setValue] = useState<any>(initialValue);
 
-  function load() {
-    const data = window.localStorage.getItem(name);
-    if (typeof data !== null) {
-      return save(data);
-    } else {
-      return save(initialValue);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const data = window.localStorage.getItem(name);
+      if (data !== null) {
+        if (isJSON(data)) {
+          setValue(JSON.parse(data));
+        } else {
+          setValue(data);
+        }
+      }
     }
-  }
+  }, [name]);
 
   function save(v: any) {
-    value.current = v;
+    if (typeof v === "object") {
+      v = JSON.stringify(v);
+    }
+
+    setValue(v);
     window.localStorage.setItem(name, v);
   }
 
-  useEffect(() => {
-    load();
-  }, []);
-
-  return { save, value: value.current };
+  return { save, value };
 }

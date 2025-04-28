@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Check, ChevronsUpDown } from "lucide-react";
-import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -20,12 +19,32 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
+import useLocalStorage from "@/hooks/useLocalStorage";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { CiSquarePlus } from "react-icons/ci";
+import { Cars } from "../../generated/prisma";
 
 export default function CarPicker() {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("مزدا");
+  const [cars, setCars] = useState<Cars[]>();
+  const { value: ownerId } = useLocalStorage("ownerId");
+  const { value: selectedCar, save: setDefaultCar } =
+    useLocalStorage("defaultCar");
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!ownerId) {
+      return;
+    }
+
+    fetch(`/api/cars?ownerId=${ownerId}`)
+      .then(async (res) => {
+        setCars(await res.json());
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [ownerId]);
 
   return (
     <section className="space-y-2.5 pt-3">
@@ -39,7 +58,7 @@ export default function CarPicker() {
               aria-expanded={open}
               className="h-[52px] grow justify-between rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3 text-right text-lg font-semibold text-slate-600"
             >
-              {value}
+              {selectedCar}
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
@@ -49,22 +68,24 @@ export default function CarPicker() {
               <CommandList>
                 <CommandEmpty>ماشینی پیدا نشد</CommandEmpty>
                 <CommandGroup>
-                  {cars.map((car) => (
+                  {cars?.map((car) => (
                     <CommandItem
-                      key={car}
-                      value={car}
+                      key={car.id}
+                      value={car.name}
                       onSelect={(currentValue) => {
-                        setValue(currentValue);
+                        setDefaultCar(currentValue);
                         setOpen(false);
                       }}
                     >
                       <Check
                         className={cn(
                           "mr-2 h-4 w-4",
-                          value === car ? "opacity-100" : "opacity-0",
+                          selectedCar === car.name
+                            ? "opacity-100"
+                            : "opacity-0",
                         )}
                       />
-                      {car}
+                      {car.name}
                     </CommandItem>
                   ))}
                 </CommandGroup>
@@ -87,5 +108,3 @@ export default function CarPicker() {
     </section>
   );
 }
-
-const cars = ["مزدا", "النترا", "پژو ۲۰۷"];

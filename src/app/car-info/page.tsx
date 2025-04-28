@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Cars } from "../../../generated/prisma";
 
 type Inputs = {
   model: string;
@@ -13,6 +14,7 @@ type Inputs = {
 
 export default function AddNewCarForm() {
   const { save, value: ownerId } = useLocalStorage("ownerId", null);
+  const { save: setDefaultCar } = useLocalStorage("defaultCar");
   const [pending, setPending] = useState<boolean>(false);
 
   const {
@@ -29,8 +31,9 @@ export default function AddNewCarForm() {
       method: "POST",
       body: JSON.stringify({ ...data, ownerId }),
     });
-    const car = await result.json();
+    const car: Cars = await result.json();
     save(car.ownerId);
+    setDefaultCar(car.name);
 
     setPending(false);
   };

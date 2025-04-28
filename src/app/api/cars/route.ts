@@ -1,4 +1,5 @@
 import prisma from "@prisma";
+import { request } from "http";
 import { unstable_noStore as noStore } from "next/cache";
 
 export const POST = async (request: Request) => {
@@ -24,5 +25,28 @@ export const POST = async (request: Request) => {
   } catch (error) {
     console.error(error);
     return new Response("Error updating mileage", { status: 500 });
+  }
+};
+
+export const GET = async (request: Request) => {
+  noStore();
+  const { searchParams } = new URL(request.url);
+  const ownerId = searchParams.get("ownerId");
+
+  if (!ownerId) {
+    return new Response("Missing ownerId", { status: 400 });
+  }
+
+  try {
+    const cars = await prisma.cars.findMany({
+      where: {
+        ownerId,
+      },
+    });
+
+    return new Response(JSON.stringify(cars), { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return new Response("Error fetching cars", { status: 500 });
   }
 };

@@ -16,3 +16,12 @@ export function dateToShamsi(date: Date) {
 export function mileageToFarsi(mileage: number) {
   return mileage.toLocaleString("fa-IR");
 }
+
+export function isJSON(str: string) {
+  try {
+    JSON.stringify(JSON.parse(str));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
