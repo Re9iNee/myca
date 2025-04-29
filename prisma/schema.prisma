@@ -8,49 +8,57 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
+model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  cars     Cars[]
-  Services Services[]
+  cars     Car[]
+  Services Service[]
 
   joinedAt  DateTime @default(now()) @map("joined_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("Users")
 }
 
-model Cars {
+model Car {
   id      String @id @default(auto()) @map("_id") @db.ObjectId
   name    String
   mileage Int
 
-  owner    Users      @relation(fields: [ownerId], references: [id])
-  ownerId  String     @map("owner_id") @db.ObjectId
-  Services Services[]
+  owner    User      @relation(fields: [ownerId], references: [id])
+  ownerId  String    @map("owner_id") @db.ObjectId
+  Services Service[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("Cars")
 }
 
-enum ServicesType {
+enum ServiceType {
   Recurrent
   NonRecurrent
+
+  @@map("ServicesType")
 }
 
-model Services {
-  id              String       @id @default(auto()) @map("_id") @db.ObjectId
+model Service {
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
   title           String
   date            DateTime
   details         String
   cost            Float
-  type            ServicesType
+  type            ServiceType
   mileage         Int
   mileageInterval Int
 
-  owner   Users  @relation(fields: [ownerId], references: [id])
+  owner   User   @relation(fields: [ownerId], references: [id])
   ownerId String @map("owner_id") @db.ObjectId
-  car     Cars   @relation(fields: [carId], references: [id])
+  car     Car    @relation(fields: [carId], references: [id])
   carId   String @map("car_id") @db.ObjectId
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("Services")
 }

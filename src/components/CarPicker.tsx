@@ -19,17 +19,21 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
+import { useCarStore } from "@/hooks/useCarStore";
 import useLocalStorage from "@/hooks/useLocalStorage";
+import useStore from "@/hooks/useStore";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { CiSquarePlus } from "react-icons/ci";
-import { Cars } from "../../generated/prisma";
 
 export default function CarPicker() {
-  const [cars, setCars] = useState<Cars[]>();
+  const cars = useStore(useCarStore, (state) => state.cars);
+  const setCars = useCarStore((state) => state.setCars);
+
+  const selectedCar = useStore(useCarStore, (state) => state.selectedCar);
+  const setSelectedCar = useCarStore((state) => state.setSelectedCar);
+
   const { value: ownerId } = useLocalStorage("ownerId");
-  const { value: selectedCar, save: setDefaultCar } =
-    useLocalStorage("defaultCar");
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -39,7 +43,9 @@ export default function CarPicker() {
 
     fetch(`/api/cars?ownerId=${ownerId}`)
       .then(async (res) => {
-        setCars(await res.json());
+        const fetchedCars = await res.json();
+
+        setCars(fetchedCars);
       })
       .catch((err) => {
         console.error(err);
@@ -58,7 +64,7 @@ export default function CarPicker() {
               aria-expanded={open}
               className="h-[52px] grow justify-between rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3 text-right text-lg font-semibold text-slate-600"
             >
-              {selectedCar}
+              {selectedCar?.name}
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
@@ -73,14 +79,14 @@ export default function CarPicker() {
                       key={car.id}
                       value={car.name}
                       onSelect={(currentValue) => {
-                        setDefaultCar(currentValue);
+                        setSelectedCar(car.id);
                         setOpen(false);
                       }}
                     >
                       <Check
                         className={cn(
                           "mr-2 h-4 w-4",
-                          selectedCar === car.name
+                          selectedCar?.id === car.id
                             ? "opacity-100"
                             : "opacity-0",
                         )}
@@ -100,7 +106,7 @@ export default function CarPicker() {
           className="h-[50px] w-[50px] rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3"
           asChild
         >
-          <Link href={"/car-info"}>
+          <Link href={"/add-car"}>
             <CiSquarePlus className="text-slate-500" />
           </Link>
         </Button>

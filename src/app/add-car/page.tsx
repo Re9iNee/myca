@@ -2,10 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useCarStore } from "@/hooks/useCarStore";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Cars } from "../../../generated/prisma";
+import useStore from "@/hooks/useStore";
+import Link from "next/link";
 
 type Inputs = {
   model: string;
@@ -13,16 +16,16 @@ type Inputs = {
 };
 
 export default function AddNewCarForm() {
-  const { save, value: ownerId } = useLocalStorage("ownerId", null);
-  const { save: setDefaultCar } = useLocalStorage("defaultCar");
+  const { save: saveOwnerId, value: ownerId } = useLocalStorage(
+    "ownerId",
+    null,
+  );
+
+  const addAndSelectCar = useCarStore((state) => state.addAndSelectCar);
+
   const [pending, setPending] = useState<boolean>(false);
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Inputs>();
+  const { register, handleSubmit } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setPending(true);
@@ -32,13 +35,11 @@ export default function AddNewCarForm() {
       body: JSON.stringify({ ...data, ownerId }),
     });
     const car: Cars = await result.json();
-    save(car.ownerId);
-    setDefaultCar(car.name);
+    saveOwnerId(car.ownerId);
+    addAndSelectCar(car);
 
     setPending(false);
   };
-
-  console.log(watch("mileage")); // watch input value by passing the name of it
 
   return (
     <div className="h-full px-6 pt-9">
