@@ -12,7 +12,6 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Wrench } from "lucide-react";
-import { Suspense } from "react";
 import Mileage from "./Mileage";
 import MileageInput from "./MileageInput";
 
@@ -22,9 +21,7 @@ export default async function MileageSection() {
       {/* Mileage section */}
       <div className="space-y-2.5 text-center">
         <h2 className="text-lg font-medium text-slate-500">کیلومتر کارکرد</h2>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Mileage />
-        </Suspense>
+        <Mileage />
       </div>
       {/* Actions */}
       <div className="flex gap-2.5">
