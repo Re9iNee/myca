@@ -1,13 +1,19 @@
+"use client";
+
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
 import { LuScrollText } from "react-icons/lu";
 import { Button } from "./ui/button";
+import useStore from "@/hooks/useStore";
+import { useCarStore } from "@/hooks/useCarStore";
 
 export default function ServiceHistoryBtn() {
+  const selectedCar = useStore(useCarStore, (state) => state.selectedCar);
+
   return (
     <Link
-      href={"/history"}
+      href={`/history?carId=${selectedCar?.id}`}
       className="mb-5 flex cursor-pointer items-center justify-between gap-4 rounded-2xl border-2 border-slate-100 bg-white p-4 drop-shadow-xs"
     >
       <div className="flex gap-2">

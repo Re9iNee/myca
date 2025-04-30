@@ -2,31 +2,25 @@ import EmptyServicesState from "@/components/EmptyServicesState";
 import SearchInput from "@/components/SearchInput";
 import { Button } from "@/components/ui/button";
 import { dateToShamsi, mileageToFarsi } from "@/lib/utils";
+import prisma from "@prisma";
 import { ChevronLeft, ChevronRight, Wrench } from "lucide-react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { LuScrollText } from "react-icons/lu";
+import { Services } from "../../../generated/prisma";
 
-const services: ServiceDetail[] = [
-  {
-    id: "1",
-    date: new Date(),
-    kilometer: 15120,
-    type: "تعویض سنسور استارت موتور",
-  },
-  { id: "2", date: new Date(), kilometer: 16000, type: "تعمیر اساسی گیربکس" },
-  { id: "3", date: new Date(), kilometer: 17000, type: "تعویض روغن موتور" },
-  { id: "4", date: new Date(), kilometer: 18000, type: "تعمیر سیستم ترمز" },
-  { id: "5", date: new Date(), kilometer: 18000, type: "تعمیر سیستم ترمز" },
-  { id: "6", date: new Date(), kilometer: 18000, type: "تعمیر سیستم ترمز" },
-  { id: "7", date: new Date(), kilometer: 18000, type: "تعمیر سیستم ترمز" },
-  { id: "8", date: new Date(), kilometer: 18000, type: "تعمیر سیستم ترمز" },
-  { id: "9", date: new Date(), kilometer: 18000, type: "تعمیر سیستم ترمز" },
-  { id: "10", date: new Date(), kilometer: 18000, type: "تعمیر سیستم ترمز" },
-  { id: "11", date: new Date(), kilometer: 18000, type: "تعمیر سیستم ترمز" },
-  { id: "12", date: new Date(), kilometer: 18000, type: "تعمیر سیستم ترمز" },
-];
+type Props = {
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
+export default async function CarHistoryPage({ searchParams }: Props) {
+  const carId = await searchParams?.carId;
 
-export default function CarHistoryPage() {
+  if (!carId || Array.isArray(carId)) notFound();
+
+  const services = await prisma.services.findMany({
+    where: { carId },
+  });
+
   return (
     <main className="flex h-full w-full flex-col px-6">
       {/* navigation header */}
@@ -68,20 +62,14 @@ export default function CarHistoryPage() {
   );
 }
 
-type ServiceDetail = {
-  id: string;
-  type: string;
-  kilometer: number;
-  date: Date;
-};
-function Row({ id, type, kilometer, date }: ServiceDetail) {
+function Row({ id, title, mileage, date }: Partial<Services>) {
   return (
     <Link
       href={`/history/${id}`}
       className="flex items-center justify-between border-b-slate-200 px-0.5 py-4 not-last:border-b-2"
     >
       <div>
-        <span className="text-sm font-semibold text-slate-600">{type}</span>
+        <span className="text-sm font-semibold text-slate-600">{title}</span>
         <div className="flex items-center gap-2">
           <span className="text-xs font-medium text-slate-400">
             {dateToShamsi(new Date())}
@@ -90,7 +78,7 @@ function Row({ id, type, kilometer, date }: ServiceDetail) {
           <span className="text-xs font-medium text-slate-400">
             کیلومتر:{" "}
             <span className="font-semibold text-blue-500">
-              {mileageToFarsi(kilometer)}
+              {mileageToFarsi(mileage ?? 0)}
             </span>
           </span>
         </div>
