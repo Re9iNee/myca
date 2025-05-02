@@ -13,7 +13,9 @@ type Props = {
   searchParams?: { [key: string]: string | string[] | undefined };
 };
 export default async function CarHistoryPage({ searchParams }: Props) {
-  const carId = await searchParams?.carId;
+  const params = await searchParams;
+
+  const carId = params?.carId;
 
   if (!carId || Array.isArray(carId)) notFound();
 

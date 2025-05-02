@@ -6,17 +6,56 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useCarStore } from "@/hooks/useCarStore";
+import useStore from "@/hooks/useStore";
+import { farsiToMileage } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { ServicesType } from "../../../generated/prisma";
 
-export type serviceType = "normal" | "interval";
+type Inputs = {
+  title: string;
+  details: string;
+  mileage: string;
+  mileageInterval?: string;
+};
 
 function NewServicePage() {
-  const [serviceType, setServiceType] = useState<serviceType>("normal");
+  const [serviceType, setServiceType] = useState<ServicesType>("NonRecurrent");
+  const selectedCar = useStore(useCarStore, (state) => state.selectedCar);
+  const [pending, setPending] = useState<boolean>(false);
+  const { register, handleSubmit } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setPending(true);
+
+    fetch("/api/services", {
+      method: "POST",
+      body: JSON.stringify({
+        ...data,
+        serviceType,
+        ownerId: selectedCar?.ownerId,
+        carId: selectedCar?.id,
+        mileage: farsiToMileage(data.mileage),
+        mileageInterval: farsiToMileage(data?.mileageInterval ?? "0"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("service created", data);
+      })
+      .catch((err) => console.error(`Error while creating new service`, err));
+
+    setPending(false);
+  };
 
   return (
-    <div className="flex h-full flex-col p-4">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex h-full flex-col p-4"
+    >
       <Link href={"../"} className="flex items-center gap-2">
         <ChevronRight className="mt-0.5 h-5 w-5 stroke-2" />
         بازگشت
@@ -36,7 +75,7 @@ function NewServicePage() {
 
         <div className="mt-5 space-y-5">
           <p className="text-sm text-slate-600">
-            {serviceType === "interval"
+            {serviceType === "Recurrent"
               ? `سرویس هایی که به طور مکرر انجام میشود مثل تعویض روغن`
               : `سرویس ها و تعمیراتی که تنها یک بار دریافت میشوند`}
           </p>
@@ -47,39 +86,47 @@ function NewServicePage() {
               id="title"
               placeholder="مثال تنظیم گاز کولر"
               className="h-12 rounded-lg bg-slate-50 px-3 py-3.5 text-sm font-medium text-slate-800 placeholder:text-sm placeholder:text-slate-400"
+              {...register("title")}
             />
           </div>
 
-          {serviceType === "interval" && (
+          {serviceType === "Recurrent" && (
             <div className="space-y-2">
               <Label htmlFor="mileage-interval">کیلومتر تکرار</Label>
-              <MileageInput id="mileage-interval" />
+              <MileageInput
+                id="mileage-interval"
+                {...register("mileageInterval")}
+              />
             </div>
           )}
 
           <div className="space-y-2">
             <Label htmlFor="detail">جزئیات سرویس</Label>
             <Textarea
-              placeholder="مثال: گاز کولر ماشین بررسی و تعویض شد"
               id="detail"
+              placeholder="مثال: گاز کولر ماشین بررسی و تعویض شد"
+              {...register("details")}
             />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="mileage">
-              {serviceType === "interval"
+              {serviceType === "Recurrent"
                 ? "کیلومتر اولین سرویس"
                 : "کیلومتر سرویس"}
             </Label>
-            <MileageInput id="mileage" />
+            <MileageInput id="mileage" {...register("mileage")} />
           </div>
         </div>
       </div>
 
-      <Button className="h-[52px] rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-bold">
+      <Button
+        disabled={pending}
+        className="h-[52px] cursor-pointer rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-bold"
+      >
         ثبت سرویس
       </Button>
-    </div>
+    </form>
   );
 }
 

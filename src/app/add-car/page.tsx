@@ -7,8 +7,6 @@ import useLocalStorage from "@/hooks/useLocalStorage";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Cars } from "../../../generated/prisma";
-import useStore from "@/hooks/useStore";
-import Link from "next/link";
 
 type Inputs = {
   model: string;
