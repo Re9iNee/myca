@@ -1,5 +1,4 @@
 import prisma from "@prisma";
-import { request } from "http";
 import { unstable_noStore as noStore } from "next/cache";
 
 export const POST = async (request: Request) => {

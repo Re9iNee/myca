@@ -6,11 +6,12 @@ import Link from "next/link";
 import { serviceDetail } from "../mock";
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 async function ServiceDetailsPage({ params }: Props) {
-  const id = (await params).id;
+  const { id } = await params;
+
   console.log(id);
 
   return (
@@ -18,7 +19,7 @@ async function ServiceDetailsPage({ params }: Props) {
       {/* navigation header */}
       <div>
         <header className="flex items-center justify-between py-2.5 text-sm font-medium text-slate-500">
-          <Link href={"/history"} className="inline-flex items-center gap-2">
+          <Link href={"../"} className="inline-flex items-center gap-2">
             <ChevronRight className="mt-0.5 h-5 w-5 stroke-2" />
             بازگشت
           </Link>

@@ -36,6 +36,7 @@ export function isJSON(str: string) {
     JSON.stringify(JSON.parse(str));
     return true;
   } catch (e) {
+    console.error(e);
     return false;
   }
 }

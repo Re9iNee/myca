@@ -1,6 +1,4 @@
-import { farsiToMileage } from "@/lib/utils";
 import prisma from "@prisma";
-import { redirect } from "next/navigation";
 
 export const POST = async (request: Request) => {
   const {

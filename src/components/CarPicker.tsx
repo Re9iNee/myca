@@ -50,7 +50,7 @@ export default function CarPicker() {
       .catch((err) => {
         console.error(err);
       });
-  }, [ownerId]);
+  }, [ownerId, setCars]);
 
   return (
     <section className="space-y-2.5 pt-3">
@@ -78,7 +78,7 @@ export default function CarPicker() {
                     <CommandItem
                       key={car.id}
                       value={car.name}
-                      onSelect={(currentValue) => {
+                      onSelect={() => {
                         setSelectedCar(car.id);
                         setOpen(false);
                       }}

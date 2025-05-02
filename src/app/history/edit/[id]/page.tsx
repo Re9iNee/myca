@@ -7,11 +7,11 @@ import { ChevronRight, CircleCheck } from "lucide-react";
 import Link from "next/link";
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 async function ServiceHistoryEditPage({ params }: Props) {
-  const id = (await params).id;
+  const { id } = await params;
   console.log(id);
 
   return (

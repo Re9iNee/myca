@@ -1,8 +1,8 @@
 import { isJSON } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
-export default function useLocalStorage(name: string, initialValue?: any) {
-  const [value, setValue] = useState<any>(initialValue);
+export default function useLocalStorage(name: string, initialValue?: unknown) {
+  const [value, setValue] = useState<unknown>(initialValue);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -17,13 +17,13 @@ export default function useLocalStorage(name: string, initialValue?: any) {
     }
   }, [name]);
 
-  function save(v: any) {
+  function save(v: unknown) {
     if (typeof v === "object") {
       v = JSON.stringify(v);
     }
 
     setValue(v);
-    window.localStorage.setItem(name, v);
+    window.localStorage.setItem(name, JSON.stringify(v));
   }
 
   return { save, value };
