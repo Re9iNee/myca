@@ -21,7 +21,7 @@ export const POST = async (request: Request) => {
   }
 
   try {
-    const res = await prisma.services.create({
+    const res = await prisma.service.create({
       data: {
         title,
         details,

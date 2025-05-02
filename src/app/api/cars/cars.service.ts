@@ -5,7 +5,7 @@ export async function getSelectedCarMileage(
   ownerId: string,
 ): Promise<number> {
   try {
-    const car = await prisma.cars.findFirstOrThrow({
+    const car = await prisma.car.findFirstOrThrow({
       where: {
         ownerId,
         name: carName,

@@ -13,7 +13,7 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { ServicesType } from "../../../generated/prisma";
+import { ServiceType } from "../../../generated/prisma";
 
 type Inputs = {
   title: string;
@@ -23,7 +23,7 @@ type Inputs = {
 };
 
 function NewServicePage() {
-  const [serviceType, setServiceType] = useState<ServicesType>("NonRecurrent");
+  const [serviceType, setServiceType] = useState<ServiceType>("NonRecurrent");
   const selectedCar = useStore(useCarStore, (state) => state.selectedCar);
   const [pending, setPending] = useState<boolean>(false);
   const { register, handleSubmit } = useForm<Inputs>();

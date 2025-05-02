@@ -1,16 +1,16 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { Cars } from "../../generated/prisma";
+import { Car } from "../../generated/prisma";
 
 interface State {
-  cars: Cars[];
-  selectedCar: Cars | null;
+  cars: Car[];
+  selectedCar: Car | null;
 }
 
 type Action = {
-  addCar: (car: Cars) => void;
-  setCars: (cars: Cars[]) => void;
-  addAndSelectCar: (car: Cars) => void;
+  addCar: (car: Car) => void;
+  setCars: (cars: Car[]) => void;
+  addAndSelectCar: (car: Car) => void;
   setSelectedCar: (carId: string) => void;
   // removeCar: (carId: string) => void;
   // updateCar: (carId: string, updatedCar: Cars) => void;
@@ -22,7 +22,7 @@ export const useCarStore = create<State & Action>()(
     (set, get) => ({
       cars: [],
       selectedCar: null,
-      setCars: (cars: Cars[]) => set({ cars }),
+      setCars: (cars: Car[]) => set({ cars }),
       setSelectedCar: (carId: string) => {
         const car = get().cars.find((car) => car.id === carId);
         if (car) {
@@ -33,7 +33,7 @@ export const useCarStore = create<State & Action>()(
         set((state) => ({
           cars: [...state.cars, car],
         })),
-      addAndSelectCar: (car: Cars) => {
+      addAndSelectCar: (car: Car) => {
         set((state) => ({
           cars: [...state.cars, car],
           selectedCar: car,

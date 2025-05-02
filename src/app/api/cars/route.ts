@@ -12,7 +12,7 @@ export const POST = async (request: Request) => {
   try {
     // TODO: check for existing car with the same model and mileage
 
-    const res = await prisma.cars.create({
+    const res = await prisma.car.create({
       data: {
         name: model,
         mileage: Number(mileage),
@@ -37,7 +37,7 @@ export const GET = async (request: Request) => {
   }
 
   try {
-    const cars = await prisma.cars.findMany({
+    const cars = await prisma.car.findMany({
       where: {
         ownerId,
       },

@@ -6,7 +6,7 @@ import { useCarStore } from "@/hooks/useCarStore";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Cars } from "../../../generated/prisma";
+import { Car } from "../../../generated/prisma";
 
 type Inputs = {
   model: string;
@@ -32,7 +32,7 @@ export default function AddNewCarForm() {
       method: "POST",
       body: JSON.stringify({ ...data, ownerId }),
     });
-    const car: Cars = await result.json();
+    const car: Car = await result.json();
     saveOwnerId(car.ownerId);
     addAndSelectCar(car);
 

@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight, Wrench } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LuScrollText } from "react-icons/lu";
-import { Services } from "../../../generated/prisma";
+import { Service } from "../../../generated/prisma";
 
 type Props = {
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -19,7 +19,7 @@ export default async function CarHistoryPage({ searchParams }: Props) {
 
   if (!carId || Array.isArray(carId)) notFound();
 
-  const services = await prisma.services.findMany({
+  const services = await prisma.service.findMany({
     where: { carId },
   });
 
@@ -64,7 +64,7 @@ export default async function CarHistoryPage({ searchParams }: Props) {
   );
 }
 
-function Row({ id, title, mileage, date }: Partial<Services>) {
+function Row({ id, title, mileage, date }: Partial<Service>) {
   return (
     <Link
       href={`/history/${id}`}

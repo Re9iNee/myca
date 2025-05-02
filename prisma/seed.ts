@@ -7,11 +7,11 @@ async function main() {
 }
 
 async function clearDatabase() {
-  await prisma.services.deleteMany();
+  await prisma.service.deleteMany();
   console.log(`🌱 Deleted all services`);
-  await prisma.cars.deleteMany();
+  await prisma.car.deleteMany();
   console.log(`🌱 Deleted all cars`);
-  await prisma.users.deleteMany();
+  await prisma.user.deleteMany();
   console.log(`🌱 Deleted all users`);
 }
 
