@@ -1,21 +1,70 @@
+"use client";
+
 import MileageInput from "@/components/MileageInput";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { farsiToMileage, mileageToFarsi } from "@/lib/utils";
 import { ChevronRight, CircleCheck } from "lucide-react";
 import Link from "next/link";
+import { notFound, useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-type Props = {
-  params: Promise<{ id: string }>;
+type Inputs = {
+  title: string;
+  mileage: string;
+  details: string;
 };
 
-async function ServiceHistoryEditPage({ params }: Props) {
-  const { id } = await params;
-  console.log(id);
+function ServiceHistoryEditPage() {
+  const { id } = useParams();
+  if (!id) notFound();
+
+  const [pending, setPending] = useState<boolean>(false);
+  const { register, handleSubmit, reset } = useForm<Inputs>();
+
+  useEffect(() => {
+    setPending(true);
+    fetch(`/api/services?id=${id}`, { method: "GET" })
+      .then((res) => res.json())
+      .then((data) => {
+        reset({
+          title: data?.title,
+          details: data?.details,
+          mileage: mileageToFarsi(data?.mileage ?? 0),
+        });
+      })
+      .catch((err) => console.error("error fetching service data", err));
+    setPending(false);
+  }, [id, reset]);
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setPending(true);
+
+    fetch("/api/services", {
+      method: "PUT",
+      body: JSON.stringify({
+        ...data,
+        id,
+        mileage: farsiToMileage(data.mileage),
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("service updated", data);
+      })
+      .catch((err) => console.error(`Error while updating new service`, err));
+
+    setPending(false);
+  };
 
   return (
-    <form className="flex h-full w-full flex-col justify-between px-6">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex h-full w-full flex-col justify-between px-6"
+    >
       {/* navigation header */}
       <div>
         <header className="flex items-center justify-between py-2.5 text-sm font-medium text-slate-500">
@@ -34,12 +83,13 @@ async function ServiceHistoryEditPage({ params }: Props) {
             type="text"
             placeholder="مثال: تعویض سنسور استارت موتور"
             className="h-12 rounded-lg px-3 py-3.5 text-sm font-semibold text-slate-700"
+            {...register("title")}
           />
         </div>
 
         <div className="space-y-2 py-4">
           <Label htmlFor="mileage">کیلومتر سرویس</Label>
-          <MileageInput id="mileage" />
+          <MileageInput id="mileage" {...register("mileage")} />
         </div>
 
         <div className="space-y-2.5 py-4">
@@ -47,6 +97,7 @@ async function ServiceHistoryEditPage({ params }: Props) {
           <Textarea
             className="h-[200px] p-2.5 text-sm font-medium text-slate-800"
             placeholder="مثال: سنسور استارت ماشین به دلیل فرسودگی در گاراژ مسلمی تعویض شد"
+            {...register("details")}
           />
         </div>
       </div>
@@ -61,7 +112,11 @@ async function ServiceHistoryEditPage({ params }: Props) {
             <ChevronRight /> بازگشت
           </Link>
         </Button>
-        <Button className="h-14 rounded-2xl bg-blue-600 px-2.5 py-4 text-base font-medium text-slate-50">
+        <Button
+          type="submit"
+          disabled={pending}
+          className="h-14 rounded-2xl bg-blue-600 px-2.5 py-4 text-base font-medium text-slate-50"
+        >
           <CircleCheck />
           ذخیره تغییرات
         </Button>

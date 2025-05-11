@@ -11,9 +11,6 @@ export const POST = async (request: Request) => {
     ownerId,
   } = await request.json();
 
-  console.log({ carId, serviceType, title, details, mileage, mileageInterval });
-  console.log("ownerId", ownerId);
-
   if (!carId || !serviceType || !title || !details || !mileage || !ownerId) {
     return new Response("Missing carId or serviceType or title or ownerId", {
       status: 400,
@@ -39,5 +36,54 @@ export const POST = async (request: Request) => {
   } catch (error) {
     console.error(error);
     return new Response("Error creating service", { status: 500 });
+  }
+};
+
+export const PUT = async (request: Request) => {
+  const { id, title, details, mileage } = await request.json();
+
+  console.log({ id, title, details, mileage });
+
+  if (!id || !title || !details || !mileage) {
+    return new Response("Missing id or title or details or mileage", {
+      status: 400,
+    });
+  }
+
+  try {
+    const res = await prisma.service.update({
+      where: { id },
+      data: {
+        title,
+        details,
+        mileage,
+      },
+    });
+
+    return new Response(JSON.stringify(res), { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return new Response("Error updating service", { status: 500 });
+  }
+};
+
+export const GET = async (request: Request) => {
+  // get id of service from url
+  const url = new URL(request.url);
+  const id = url.searchParams.get("id");
+
+  if (!id) {
+    return new Response("Missing id", { status: 400 });
+  }
+
+  try {
+    const service = await prisma.service.findUniqueOrThrow({
+      where: { id },
+    });
+
+    return new Response(JSON.stringify(service), { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return new Response("Error getting service", { status: 500 });
   }
 };
