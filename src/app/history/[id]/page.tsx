@@ -1,9 +1,10 @@
 import RemoveServiceBtn from "@/components/RemoveServiceBtn";
 import { Button } from "@/components/ui/button";
 import { dateToShamsi, mileageToFarsi } from "@/lib/utils";
+import prisma from "@prisma";
 import { ChevronRight, PencilLine } from "lucide-react";
 import Link from "next/link";
-import { serviceDetail } from "../mock";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -12,7 +13,9 @@ type Props = {
 async function ServiceDetailsPage({ params }: Props) {
   const { id } = await params;
 
-  console.log(id);
+  const serviceDetail = await prisma.service.findUnique({ where: { id } });
+
+  if (!serviceDetail) notFound();
 
   return (
     <main className="flex h-full w-full flex-col justify-between px-6">
@@ -51,7 +54,7 @@ async function ServiceDetailsPage({ params }: Props) {
         >
           <h3 className="text-xs font-medium text-slate-500">جزئیات سرویس</h3>
           <p className="h-[200px] rounded-lg bg-slate-50 p-2.5 text-sm font-normal text-slate-600">
-            {serviceDetail.description}
+            {serviceDetail.details}
           </p>
         </div>
 
