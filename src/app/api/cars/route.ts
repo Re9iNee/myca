@@ -1,8 +1,6 @@
 import prisma from "@prisma";
-import { unstable_noStore as noStore } from "next/cache";
 
 export const POST = async (request: Request) => {
-  noStore();
   const { model, mileage, ownerId } = await request.json();
 
   if (!model || !mileage) {
@@ -23,12 +21,11 @@ export const POST = async (request: Request) => {
     return new Response(JSON.stringify(res), { status: 200 });
   } catch (error) {
     console.error(error);
-    return new Response("Error updating mileage", { status: 500 });
+    return new Response("Error creating car", { status: 500 });
   }
 };
 
 export const GET = async (request: Request) => {
-  noStore();
   const { searchParams } = new URL(request.url);
   const ownerId = searchParams.get("ownerId");
 
