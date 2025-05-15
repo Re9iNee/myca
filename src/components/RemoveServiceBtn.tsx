@@ -1,5 +1,5 @@
-import { ChevronRight, Trash } from "lucide-react";
-import { Button } from "./ui/button";
+"use client";
+
 import {
   Dialog,
   DialogClose,
@@ -10,8 +10,30 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { ChevronRight, Trash } from "lucide-react";
+import { redirect, usePathname } from "next/navigation";
+import { useCallback, useState } from "react";
+import { toast } from "sonner";
+import { Button } from "./ui/button";
 
 function RemoveServiceBtn() {
+  const pathname = usePathname();
+  const serviceId = pathname.split("/").pop();
+  const [isPending, setPending] = useState(false);
+
+  const removeService = useCallback(async () => {
+    setPending(true);
+    const response = await fetch("/api/services", {
+      method: "DELETE",
+      body: JSON.stringify({ id: serviceId }),
+    }).finally(() => setPending(false));
+
+    if (response.status === 200) {
+      toast.success(`سرویس با موفقیت حذف شد`);
+      redirect(`../`);
+    }
+  }, [serviceId]);
+
   return (
     <Dialog>
       <DialogTrigger className="mt-2 flex h-[52px] w-full cursor-pointer justify-center gap-2 rounded-lg border-[1px] border-slate-300 p-4 py-4 text-center text-sm font-medium text-slate-500">
@@ -30,9 +52,11 @@ function RemoveServiceBtn() {
         </DialogHeader>
         <DialogFooter className="px-4 py-3">
           <Button
+            disabled={isPending}
             type="submit"
             variant={"destructive"}
-            className="h-[52px] rounded-2xl bg-gradient-to-r from-red-700 to-red-600 py-4 text-sm font-medium text-white"
+            onClick={() => removeService()}
+            className="h-[52px] cursor-pointer rounded-2xl bg-gradient-to-r from-red-700 to-red-600 py-4 text-sm font-medium text-white disabled:grayscale-100"
           >
             <Trash />
             حذف سرویس

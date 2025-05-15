@@ -46,3 +46,24 @@ export const GET = async (request: Request) => {
     return new Response("Error fetching cars", { status: 500 });
   }
 };
+export const PATCH = async (request: Request) => {
+  const { id, mileage } = await request.json();
+
+  if (!id || !mileage) {
+    return new Response("Missing id or mileage", { status: 400 });
+  }
+
+  try {
+    const res = await prisma.car.update({
+      where: { id },
+      data: {
+        mileage,
+      },
+    });
+
+    return new Response(JSON.stringify(res), { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return new Response("Error updating car", { status: 500 });
+  }
+};

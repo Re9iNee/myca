@@ -87,3 +87,22 @@ export const GET = async (request: Request) => {
     return new Response("Error getting service", { status: 500 });
   }
 };
+
+export const DELETE = async (request: Request) => {
+  const { id } = await request.json();
+
+  if (!id) {
+    return new Response("Missing id", { status: 400 });
+  }
+
+  try {
+    const res = await prisma.service.delete({
+      where: { id },
+    });
+
+    return new Response(JSON.stringify(res), { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return new Response("Error deleting service", { status: 500 });
+  }
+};

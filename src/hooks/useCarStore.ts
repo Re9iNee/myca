@@ -12,6 +12,7 @@ type Action = {
   setCars: (cars: Car[]) => void;
   addAndSelectCar: (car: Car) => void;
   setSelectedCar: (carId: string) => void;
+  setSelectedCarMileage: (mileage: number) => void;
   // removeCar: (carId: string) => void;
   // updateCar: (carId: string, updatedCar: Cars) => void;
   // clearCars: () => void;
@@ -37,6 +38,13 @@ export const useCarStore = create<State & Action>()(
         set((state) => ({
           cars: [...state.cars, car],
           selectedCar: car,
+        }));
+      },
+      setSelectedCarMileage: (mileage: number) => {
+        set((state) => ({
+          selectedCar: state.selectedCar
+            ? { ...state.selectedCar, mileage }
+            : null,
         }));
       },
       // clearCars: () => set({ cars: [] }),

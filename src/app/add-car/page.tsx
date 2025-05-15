@@ -7,6 +7,8 @@ import useLocalStorage from "@/hooks/useLocalStorage";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Car } from "../../../generated/prisma";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 type Inputs = {
   model: string;
@@ -18,6 +20,7 @@ export default function AddNewCarForm() {
     "ownerId",
     null,
   );
+  const router = useRouter();
 
   const addAndSelectCar = useCarStore((state) => state.addAndSelectCar);
 
@@ -35,6 +38,9 @@ export default function AddNewCarForm() {
     const car: Car = await result.json();
     saveOwnerId(car.ownerId);
     addAndSelectCar(car);
+
+    router.push("/");
+    toast.success("ماشین با موفقیت اضافه شد");
 
     setPending(false);
   };

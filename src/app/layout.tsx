@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -18,6 +19,7 @@ export default function RootLayout({
     <html lang="fa" dir="rtl">
       <body className={`${portada.className} h-screen w-screen antialiased`}>
         {children}
+        <Toaster />
       </body>
     </html>
   );
