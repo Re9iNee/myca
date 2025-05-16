@@ -11,9 +11,11 @@ import useStore from "@/hooks/useStore";
 import { farsiToMileage } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ServiceType } from "../../../generated/prisma";
+import { toast } from "sonner";
+import { redirect, useRouter } from "next/navigation";
 
 type Inputs = {
   title: string;
@@ -26,29 +28,43 @@ function NewServicePage() {
   const [serviceType, setServiceType] = useState<ServiceType>("NonRecurrent");
   const selectedCar = useStore(useCarStore, (state) => state.selectedCar);
   const [pending, setPending] = useState<boolean>(false);
-  const { register, handleSubmit } = useForm<Inputs>();
+  const { register, handleSubmit, reset } = useForm<Inputs>();
+  const router = useRouter();
+
+  useLayoutEffect(() => {
+    if (selectedCar) {
+      reset({ mileage: selectedCar.mileage.toString() });
+    }
+  }, [selectedCar, reset]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    setPending(true);
+    console.log("handler running");
 
-    fetch("/api/services", {
-      method: "POST",
-      body: JSON.stringify({
-        ...data,
-        serviceType,
-        ownerId: selectedCar?.ownerId,
-        carId: selectedCar?.id,
-        mileage: farsiToMileage(data.mileage),
-        mileageInterval: farsiToMileage(data?.mileageInterval ?? "0"),
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("service created", data);
-      })
-      .catch((err) => console.error(`Error while creating new service`, err));
-
-    setPending(false);
+    try {
+      setPending(true);
+      const res = await fetch("/api/services", {
+        method: "POST",
+        body: JSON.stringify({
+          ...data,
+          serviceType,
+          ownerId: selectedCar?.ownerId,
+          carId: selectedCar?.id,
+          mileage: farsiToMileage(data.mileage),
+          mileageInterval: farsiToMileage(data?.mileageInterval ?? "0"),
+        }),
+      });
+      const result = await res.json();
+      if (res.status === 200) {
+        toast.success("سرویس با موفقیت ثبت شد");
+        router.push(`/history?carId=${selectedCar?.id}`);
+      }
+    } catch (error) {
+      console.error("Error while creating new service", error);
+      toast.error("خطا در ثبت سرویس");
+      return;
+    } finally {
+      setPending(false);
+    }
   };
 
   return (
@@ -122,7 +138,7 @@ function NewServicePage() {
 
       <Button
         disabled={pending}
-        className="h-[52px] cursor-pointer rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-bold"
+        className="h-[52px] cursor-pointer rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-bold disabled:grayscale-100"
       >
         ثبت سرویس
       </Button>
