@@ -101,7 +101,7 @@ function NewServicePage() {
             <Input
               id="title"
               placeholder="مثال تنظیم گاز کولر"
-              className="h-12 rounded-lg bg-slate-50 px-3 py-3.5 text-sm font-medium text-slate-800 placeholder:text-sm placeholder:text-slate-400"
+              className="h-12 rounded-lg bg-slate-50 px-3 py-3.5 font-medium text-slate-800 placeholder:text-sm placeholder:text-slate-400"
               {...register("title")}
             />
           </div>

@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "MYCA",
     short_name: "MYCA",
     description: "An app to manage your car services",
-    start_url: "/add-car",
+    start_url: "/",
     display: "standalone",
     background_color: "#ffffff",
     theme_color: "#000000",
