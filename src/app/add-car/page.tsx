@@ -64,6 +64,7 @@ export default function AddNewCarForm() {
             </h4>
             <div className="space-y-3 pt-6">
               <Input
+                required
                 type="text"
                 className="h-[52px]"
                 placeholder="پژو پارس"
@@ -71,6 +72,7 @@ export default function AddNewCarForm() {
               />
               <Input
                 min={0}
+                required
                 type="number"
                 className="h-[52px]"
                 placeholder="کیلومتر کارکرد"
