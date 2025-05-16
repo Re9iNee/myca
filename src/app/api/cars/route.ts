@@ -8,13 +8,16 @@ export const POST = async (request: Request) => {
   }
 
   try {
-    // TODO: check for existing car with the same model and mileage
+    // Attempt to connect to the provided ownerId or create a new one if it doesn't exist
+    const ownerData = ownerId
+      ? { connectOrCreate: { where: { id: ownerId }, create: {} } }
+      : { create: {} };
 
     const res = await prisma.car.create({
       data: {
         name: model,
+        owner: ownerData,
         mileage: Number(mileage),
-        owner: ownerId ? { connect: { id: ownerId } } : { create: {} },
       },
     });
 

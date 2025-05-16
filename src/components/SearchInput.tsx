@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { ClassValue } from "clsx";
 import { ComponentPropsWithoutRef } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 

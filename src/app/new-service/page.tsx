@@ -11,11 +11,11 @@ import useStore from "@/hooks/useStore";
 import { farsiToMileage } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useLayoutEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { ServiceType } from "../../../generated/prisma";
 import { toast } from "sonner";
-import { redirect, useRouter } from "next/navigation";
+import { ServiceType } from "../../../generated/prisma";
 
 type Inputs = {
   title: string;
@@ -53,7 +53,7 @@ function NewServicePage() {
           mileageInterval: farsiToMileage(data?.mileageInterval ?? "0"),
         }),
       });
-      const result = await res.json();
+
       if (res.status === 200) {
         toast.success("سرویس با موفقیت ثبت شد");
         router.push(`/history?carId=${selectedCar?.id}`);
