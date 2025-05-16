@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCarStore } from "@/hooks/useCarStore";
 import useLocalStorage from "@/hooks/useLocalStorage";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Car } from "../../../generated/prisma";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { Car } from "../../../generated/prisma";
 
 type Inputs = {
   model: string;
