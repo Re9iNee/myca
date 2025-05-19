@@ -64,7 +64,7 @@ export default function MileageSection() {
       </div>
       {/* Actions */}
       <div className="flex gap-2.5">
-        <Drawer open={isDrawerOpen}>
+        <Drawer open={isDrawerOpen} onOpenChange={setDrawerOpen}>
           <DrawerTrigger
             className="flex h-[54px] items-center gap-2 rounded-full border-[1.5px] border-slate-200 bg-white p-4 text-sm font-semibold text-slate-600"
             onClick={() => setDrawerOpen(true)}

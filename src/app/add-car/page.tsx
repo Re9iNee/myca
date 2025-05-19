@@ -9,6 +9,7 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Car } from "../../../generated/prisma";
+import { farsiToMileage, mileageToFarsi } from "@/lib/utils";
 
 type Inputs = {
   model: string;
@@ -26,14 +27,18 @@ export default function AddNewCarForm() {
 
   const [pending, setPending] = useState<boolean>(false);
 
-  const { register, handleSubmit } = useForm<Inputs>();
+  const { register, handleSubmit, setValue } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setPending(true);
 
     const result = await fetch("/api/cars/", {
       method: "POST",
-      body: JSON.stringify({ ...data, ownerId }),
+      body: JSON.stringify({
+        model: data.model,
+        mileage: farsiToMileage(data.mileage),
+        ownerId,
+      }),
     });
     const car: Car = await result.json();
     saveOwnerId(car.ownerId);
@@ -73,10 +78,30 @@ export default function AddNewCarForm() {
               <Input
                 min={0}
                 required
-                type="number"
+                inputMode="numeric"
                 className="h-[52px]"
                 placeholder="کیلومتر کارکرد"
-                {...register("mileage")}
+                {...register("mileage", {
+                  onChange: (e) => {
+                    const rawValue: string = e.target.value;
+                    if (rawValue === "") {
+                      setValue("mileage", "");
+                      return;
+                    }
+                    if (rawValue.match(/([۰۱۲۳۴۵۶۷۸۹]|[\d])+/g)) {
+                      const mileage = farsiToMileage(e.target.value);
+                      const parsedValue = mileageToFarsi(mileage);
+
+                      setValue("mileage", parsedValue);
+                    } else {
+                      const match = rawValue.match(/([۰۱۲۳۴۵۶۷۸۹]|[\d])+/g);
+
+                      setValue("mileage", match?.[0] ?? "");
+                      toast.error("فقط عدد مجاز است");
+                      return;
+                    }
+                  },
+                })}
               />
             </div>
           </div>
@@ -90,7 +115,7 @@ export default function AddNewCarForm() {
           >
             ورود
           </Button>
-          <footer className="px-8 pt-12 pb-3 text-center text-xs text-neutral-400 grayscale">
+          <footer className="mb-6 px-8 pt-12 text-center text-xs text-neutral-400 grayscale">
             Made with ♥️ by <span className="font-bold">Mora</span>
           </footer>
         </div>
