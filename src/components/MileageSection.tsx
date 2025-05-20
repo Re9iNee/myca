@@ -86,6 +86,7 @@ export default function MileageSection() {
             </DrawerHeader>
             <form className="px-4 py-2" onSubmit={handleSubmit(updateMileage)}>
               <MileageInput
+                selectOnLoad
                 id="mileage"
                 defaultValue={mileageToFarsi(selectedCar?.mileage ?? 0)}
                 {...register("mileage", {
