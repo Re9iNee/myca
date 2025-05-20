@@ -8,9 +8,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { farsiToMileage, mileageToFarsi } from "@/lib/utils";
 import { ChevronRight, CircleCheck } from "lucide-react";
 import Link from "next/link";
-import { notFound, useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { notFound, useParams, useRouter } from "next/navigation";
+import { useLayoutEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 type Inputs = {
   title: string;
@@ -23,9 +24,10 @@ function ServiceHistoryEditPage() {
   if (!id) notFound();
 
   const [pending, setPending] = useState<boolean>(false);
+  const router = useRouter();
   const { register, handleSubmit, reset } = useForm<Inputs>();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setPending(true);
     fetch(`/api/services?id=${id}`, { method: "GET" })
       .then((res) => res.json())
@@ -36,8 +38,8 @@ function ServiceHistoryEditPage() {
           mileage: mileageToFarsi(data?.mileage ?? 0),
         });
       })
-      .catch((err) => console.error("error fetching service data", err));
-    setPending(false);
+      .catch((err) => console.error("error fetching service data", err))
+      .finally(() => setPending(false));
   }, [id, reset]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -54,10 +56,11 @@ function ServiceHistoryEditPage() {
       .then((res) => res.json())
       .then((data) => {
         console.log("service updated", data);
+        toast.success("اطلاعات سرویس با موفقیت بارگذاری شد");
+        router.push(`/history/${id}`);
       })
-      .catch((err) => console.error(`Error while updating new service`, err));
-
-    setPending(false);
+      .catch((err) => console.error(`Error while updating new service`, err))
+      .finally(() => setPending(false));
   };
 
   return (
