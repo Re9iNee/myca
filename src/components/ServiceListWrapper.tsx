@@ -20,12 +20,12 @@ function ServiceListWrapper({ services }: { services: Service[] }) {
 
   return (
     <>
+      <SearchInput
+        className="mt-3.5"
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       {filteredServices.length > 0 ? (
         <>
-          <SearchInput
-            className="mt-3.5"
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
           <div className="scrollbar-hide mt-3.5 grow overflow-y-auto">
             {filteredServices.map((service) => (
               <Row key={service.id} {...service} />

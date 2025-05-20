@@ -11,7 +11,7 @@ export const POST = async (request: Request) => {
     ownerId,
   } = await request.json();
 
-  if (!carId || !serviceType || !title || !details || !mileage || !ownerId) {
+  if (!carId || !serviceType || !title || !mileage || !ownerId) {
     return new Response("Missing carId or serviceType or title or ownerId", {
       status: 400,
     });

@@ -46,7 +46,7 @@ model Service {
   id              String      @id @default(auto()) @map("_id") @db.ObjectId
   title           String
   date            DateTime
-  details         String
+  details         String?
   cost            Float
   type            ServiceType
   mileage         Int
