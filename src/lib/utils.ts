@@ -45,6 +45,7 @@ export function isJSON(str: string) {
 
 export function mileageInputChange(
   e: React.ChangeEvent<HTMLInputElement>,
+  /* eslint-disable */
   setValue: UseFormSetValue<any>,
   inputName: "mileage" | "mileageInterval",
 ) {

@@ -16,7 +16,7 @@ function MileageInput({
     if (inputRef.current && selectOnLoad) {
       inputRef.current.select();
     }
-  }, [inputRef, inputRef.current]);
+  }, [inputRef, inputRef.current, selectOnLoad]);
 
   return (
     <div className={cn("relative", className)}>

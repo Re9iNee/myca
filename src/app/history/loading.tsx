@@ -1,7 +1,7 @@
 import SearchInput from "@/components/SearchInput";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ChevronLeft, ChevronRight, Wrench } from "lucide-react";
+import { ChevronRight, Wrench } from "lucide-react";
 import Link from "next/link";
 import { useMemo } from "react";
 import { LuScrollText } from "react-icons/lu";
