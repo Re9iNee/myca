@@ -50,7 +50,7 @@ model Service {
   cost            Float
   type            ServiceType
   mileage         Int
-  mileageInterval Int
+  mileageInterval Int?
 
   owner   User   @relation(fields: [ownerId], references: [id])
   ownerId String @map("owner_id") @db.ObjectId

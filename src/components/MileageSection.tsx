@@ -15,7 +15,11 @@ import {
 } from "@/components/ui/drawer";
 import { useCarStore } from "@/hooks/useCarStore";
 import useStore from "@/hooks/useStore";
-import { farsiToMileage, mileageToFarsi } from "@/lib/utils";
+import {
+  farsiToMileage,
+  mileageInputChange,
+  mileageToFarsi,
+} from "@/lib/utils";
 import { Wrench } from "lucide-react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -35,7 +39,7 @@ export default function MileageSection() {
   );
   const [isDrawerOpen, setDrawerOpen] = useState(false);
 
-  const { register, handleSubmit } = useForm<Inputs>();
+  const { register, handleSubmit, setValue } = useForm<Inputs>();
 
   const updateMileage: SubmitHandler<Inputs> = async (data) => {
     setPending(true);
@@ -84,7 +88,9 @@ export default function MileageSection() {
               <MileageInput
                 id="mileage"
                 defaultValue={mileageToFarsi(selectedCar?.mileage ?? 0)}
-                {...register("mileage")}
+                {...register("mileage", {
+                  onChange: (e) => mileageInputChange(e, setValue, "mileage"),
+                })}
               />
               <DrawerFooter className="px-4 py-3">
                 <Button

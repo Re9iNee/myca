@@ -8,7 +8,11 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useCarStore } from "@/hooks/useCarStore";
 import useStore from "@/hooks/useStore";
-import { farsiToMileage } from "@/lib/utils";
+import {
+  farsiToMileage,
+  mileageInputChange,
+  mileageToFarsi,
+} from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -28,12 +32,12 @@ function NewServicePage() {
   const [serviceType, setServiceType] = useState<ServiceType>("NonRecurrent");
   const selectedCar = useStore(useCarStore, (state) => state.selectedCar);
   const [pending, setPending] = useState<boolean>(false);
-  const { register, handleSubmit, reset } = useForm<Inputs>();
+  const { register, handleSubmit, reset, setValue } = useForm<Inputs>();
   const router = useRouter();
 
   useLayoutEffect(() => {
     if (selectedCar) {
-      reset({ mileage: selectedCar.mileage.toString() });
+      reset({ mileage: mileageToFarsi(selectedCar.mileage) });
     }
   }, [selectedCar, reset]);
 
@@ -111,7 +115,10 @@ function NewServicePage() {
               <Label htmlFor="mileage-interval">کیلومتر تکرار</Label>
               <MileageInput
                 id="mileage-interval"
-                {...register("mileageInterval")}
+                {...register("mileageInterval", {
+                  onChange: (e) =>
+                    mileageInputChange(e, setValue, "mileageInterval"),
+                })}
               />
             </div>
           )}
@@ -131,7 +138,12 @@ function NewServicePage() {
                 ? "کیلومتر اولین سرویس"
                 : "کیلومتر سرویس"}
             </Label>
-            <MileageInput id="mileage" {...register("mileage")} />
+            <MileageInput
+              id="mileage"
+              {...register("mileage", {
+                onChange: (e) => mileageInputChange(e, setValue, "mileage"),
+              })}
+            />
           </div>
         </div>
       </div>

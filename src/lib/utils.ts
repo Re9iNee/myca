@@ -1,4 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
+import { UseFormSetValue } from "react-hook-form";
+import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -38,5 +40,29 @@ export function isJSON(str: string) {
   } catch (e) {
     console.log(e);
     return false;
+  }
+}
+
+export function mileageInputChange(
+  e: React.ChangeEvent<HTMLInputElement>,
+  setValue: UseFormSetValue<any>,
+  inputName: "mileage" | "mileageInterval",
+) {
+  const rawValue: string = e.target.value;
+  if (rawValue === "") {
+    setValue(inputName, "");
+    return;
+  }
+  if (rawValue.match(/([۰۱۲۳۴۵۶۷۸۹]|[\d])+/g)) {
+    const mileage = farsiToMileage(e.target.value);
+    const parsedValue = mileageToFarsi(mileage);
+
+    setValue(inputName, parsedValue);
+  } else {
+    const match = rawValue.match(/([۰۱۲۳۴۵۶۷۸۹]|[\d])+/g);
+
+    setValue(inputName, match?.[0] ?? "");
+    toast.error("فقط عدد مجاز است");
+    return;
   }
 }
