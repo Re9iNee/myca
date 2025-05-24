@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCarStore } from "@/hooks/useCarStore";
 import useLocalStorage from "@/hooks/useLocalStorage";
+import { farsiToMileage, mileageToFarsi } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Car } from "../../../generated/prisma";
-import { farsiToMileage, mileageToFarsi } from "@/lib/utils";
 
 type Inputs = {
   model: string;
@@ -71,15 +71,15 @@ export default function AddNewCarForm() {
               <Input
                 required
                 type="text"
-                className="h-[52px]"
                 placeholder="پژو پارس"
+                className="h-[52px] text-base font-semibold text-slate-800 placeholder:font-normal placeholder:text-slate-400"
                 {...register("model")}
               />
               <Input
                 min={0}
                 required
                 inputMode="numeric"
-                className="h-[52px]"
+                className="h-[52px] text-base font-semibold text-slate-800 placeholder:font-normal placeholder:text-slate-400"
                 placeholder="کیلومتر کارکرد"
                 {...register("mileage", {
                   onChange: (e) => {

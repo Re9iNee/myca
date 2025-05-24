@@ -23,9 +23,9 @@ import { useCarStore } from "@/hooks/useCarStore";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import useStore from "@/hooks/useStore";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { CiSquarePlus } from "react-icons/ci";
-import { redirect } from "next/navigation";
 import { toast } from "sonner";
 
 function navigateToAddCar() {
@@ -44,7 +44,7 @@ export default function CarPicker() {
   const [open, setOpen] = useState(false);
 
   useLayoutEffect(() => {
-    if (!ownerId) {
+    if (ownerId === null) {
       navigateToAddCar();
     }
   }, [ownerId]);

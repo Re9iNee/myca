@@ -7,12 +7,10 @@ export default function useLocalStorage(name: string, initialValue?: unknown) {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const data = window.localStorage.getItem(name);
-      if (data !== null) {
-        if (isJSON(data)) {
-          setValue(JSON.parse(data));
-        } else {
-          setValue(data);
-        }
+      if (data !== null && isJSON(data)) {
+        setValue(JSON.parse(data));
+      } else {
+        setValue(data);
       }
     }
   }, [name]);
