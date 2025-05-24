@@ -23,8 +23,15 @@ import { useCarStore } from "@/hooks/useCarStore";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import useStore from "@/hooks/useStore";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { CiSquarePlus } from "react-icons/ci";
+import { redirect } from "next/navigation";
+import { toast } from "sonner";
+
+function navigateToAddCar() {
+  toast.success("به صفحه اضافه کردن ماشین هدایت شدید");
+  redirect("/add-car");
+}
 
 export default function CarPicker() {
   const cars = useStore(useCarStore, (state) => state.cars);
@@ -36,6 +43,12 @@ export default function CarPicker() {
   const { value: ownerId } = useLocalStorage("ownerId");
   const [open, setOpen] = useState(false);
 
+  useLayoutEffect(() => {
+    if (!ownerId) {
+      navigateToAddCar();
+    }
+  }, [ownerId]);
+
   useEffect(() => {
     if (!ownerId) {
       return;
@@ -44,6 +57,10 @@ export default function CarPicker() {
     fetch(`/api/cars?ownerId=${ownerId}`)
       .then(async (res) => {
         const fetchedCars = await res.json();
+
+        if (fetchedCars.length === 0) {
+          navigateToAddCar();
+        }
 
         setCars(fetchedCars);
       })

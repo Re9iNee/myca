@@ -1,8 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Input } from "./ui/input";
 import { useEffect, useRef } from "react";
+import { Input } from "./ui/input";
 
 function MileageInput({
   className,
@@ -12,11 +12,10 @@ function MileageInput({
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    console.log(inputRef);
     if (inputRef.current && selectOnLoad) {
       inputRef.current.select();
     }
-  }, [inputRef, inputRef.current, selectOnLoad]);
+  }, [inputRef, selectOnLoad]);
 
   return (
     <div className={cn("relative", className)}>
