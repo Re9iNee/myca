@@ -30,7 +30,7 @@ function WelcomePage() {
 
 export default WelcomePage;
 
-export function InstallIcon() {
+function InstallIcon() {
   return (
     <svg
       width="20"
