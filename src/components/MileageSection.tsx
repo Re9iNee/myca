@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { CiCirclePlus } from "react-icons/ci";
 import { Button } from "./ui/button";
+import CalenderSettingIcon from "@public/calendar-setting.svg";
 
 import {
   Drawer,
@@ -26,6 +27,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import Mileage from "./Mileage";
 import MileageInput from "./MileageInput";
+import Image from "next/image";
 
 type Inputs = {
   mileage: string;
@@ -67,51 +69,66 @@ export default function MileageSection() {
         <Mileage />
       </div>
       {/* Actions */}
-      <div className="flex gap-2.5">
-        <Drawer open={isDrawerOpen} onOpenChange={setDrawerOpen}>
-          <DrawerTrigger
-            className="flex h-[54px] items-center gap-2 rounded-full border-[1.5px] border-slate-200 bg-white p-4 text-sm font-semibold text-slate-600"
-            onClick={() => setDrawerOpen(true)}
+      <div className="space-y-2.5">
+        <div className="flex gap-2.5">
+          <Drawer open={isDrawerOpen} onOpenChange={setDrawerOpen}>
+            <DrawerTrigger
+              className="flex h-[54px] items-center gap-2 rounded-full border-[1.5px] border-slate-200 bg-white p-4 text-sm font-semibold text-slate-600"
+              onClick={() => setDrawerOpen(true)}
+            >
+              <CiCirclePlus size={22} className="mt-0.5" /> آپدیت کیلومتر
+            </DrawerTrigger>
+            <DrawerContent>
+              <DrawerHeader className="space-x-1.5 px-8 pt-2 pb-3">
+                <DrawerTitle className="text-base font-bold text-slate-800">
+                  آپدیت کیلومتر
+                </DrawerTitle>
+                <DrawerDescription className="text-sm font-normal text-slate-500">
+                  عدد جدید کیلومتر را وارد کنید
+                </DrawerDescription>
+              </DrawerHeader>
+              <form
+                className="px-4 py-2"
+                onSubmit={handleSubmit(updateMileage)}
+              >
+                <MileageInput
+                  selectOnLoad
+                  id="mileage"
+                  defaultValue={mileageToFarsi(selectedCar?.mileage ?? 0)}
+                  {...register("mileage", {
+                    onChange: (e) => mileageInputChange(e, setValue, "mileage"),
+                  })}
+                />
+                <DrawerFooter className="px-4 py-3">
+                  <Button
+                    disabled={isPending}
+                    className="h-[52px] rounded-2xl border border-slate-300 bg-gradient-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-semibold text-white disabled:bg-none disabled:text-slate-300 disabled:opacity-100"
+                  >
+                    ذخیره کیلومتر
+                  </Button>
+                </DrawerFooter>
+              </form>
+            </DrawerContent>
+          </Drawer>
+          <Button
+            asChild
+            className="flex h-[54px] gap-2 rounded-full border-[1.5px] border-blue-100 bg-gradient-to-l from-blue-500 to-blue-600 p-4 text-sm font-semibold text-white [&_svg:not([class*='size-'])]:size-[22px]"
           >
-            <CiCirclePlus size={22} className="mt-0.5" /> آپدیت کیلومتر
-          </DrawerTrigger>
-          <DrawerContent>
-            <DrawerHeader className="space-x-1.5 px-8 pt-2 pb-3">
-              <DrawerTitle className="text-base font-bold text-slate-800">
-                آپدیت کیلومتر
-              </DrawerTitle>
-              <DrawerDescription className="text-sm font-normal text-slate-500">
-                عدد جدید کیلومتر را وارد کنید
-              </DrawerDescription>
-            </DrawerHeader>
-            <form className="px-4 py-2" onSubmit={handleSubmit(updateMileage)}>
-              <MileageInput
-                selectOnLoad
-                id="mileage"
-                defaultValue={mileageToFarsi(selectedCar?.mileage ?? 0)}
-                {...register("mileage", {
-                  onChange: (e) => mileageInputChange(e, setValue, "mileage"),
-                })}
-              />
-              <DrawerFooter className="px-4 py-3">
-                <Button
-                  disabled={isPending}
-                  className="h-[52px] rounded-2xl border border-slate-300 bg-gradient-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-semibold text-white disabled:bg-none disabled:text-slate-300 disabled:opacity-100"
-                >
-                  ذخیره کیلومتر
-                </Button>
-              </DrawerFooter>
-            </form>
-          </DrawerContent>
-        </Drawer>
-
+            <Link href={"/new-service"}>
+              <Wrench className="mt-0.5" />
+              سرویس جدید
+            </Link>
+          </Button>
+        </div>
         <Button
           asChild
-          className="flex h-[54px] gap-2 rounded-full border-[1.5px] border-blue-100 bg-gradient-to-l from-blue-500 to-blue-600 p-4 text-sm font-semibold text-white [&_svg:not([class*='size-'])]:size-[22px]"
+          variant={"outline"}
+          aria-label="upcoming services"
+          className="flex h-[52px] w-full items-center justify-center gap-2 rounded-full border-slate-200 p-4 text-sm font-semibold text-slate-600"
         >
-          <Link href={"/new-service"}>
-            <Wrench className="mt-0.5" />
-            سرویس جدید
+          <Link href={`/upcoming-services?carId=${selectedCar?.id}`}>
+            <Image src={CalenderSettingIcon} alt="calendar setting icon" />
+            <span>سرویس های آینده</span>
           </Link>
         </Button>
       </div>
