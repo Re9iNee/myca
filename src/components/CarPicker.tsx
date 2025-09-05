@@ -22,11 +22,10 @@ import {
 import { useCarStore } from "@/hooks/useCarStore";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import useStore from "@/hooks/useStore";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { CiSquarePlus } from "react-icons/ci";
 import { toast } from "sonner";
+import AddCarDrawer from "./AddCarDrawer";
 
 function navigateToAddCar() {
   toast.success("به صفحه اضافه کردن ماشین هدایت شدید");
@@ -117,16 +116,7 @@ export default function CarPicker() {
           </PopoverContent>
         </Popover>
 
-        <Button
-          size={"icon"}
-          variant={"outline"}
-          className="h-[50px] w-[50px] rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3"
-          asChild
-        >
-          <Link href={"/add-car"}>
-            <CiSquarePlus className="text-slate-500" />
-          </Link>
-        </Button>
+        <AddCarDrawer />
       </div>
     </section>
   );
