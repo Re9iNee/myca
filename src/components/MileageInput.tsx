@@ -20,7 +20,7 @@ function MileageInput({
   return (
     <div className={cn("relative", className)}>
       <Input
-        placeholder="کیلومتر کارکرد"
+        placeholder="مثال ۵,۰۰۰"
         inputMode="numeric"
         className="block h-12 w-full rounded-lg bg-slate-50 p-4 px-3 py-3.5 text-sm font-semibold text-slate-700 placeholder:text-sm placeholder:font-normal placeholder:text-slate-400 focus:border-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500"
         required

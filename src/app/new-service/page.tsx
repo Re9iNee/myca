@@ -104,7 +104,7 @@ function NewServicePage() {
             <Label htmlFor="title">عنوان سرویس</Label>
             <Input
               id="title"
-              placeholder="مثال تنظیم گاز کولر"
+              placeholder="مثال: تعویض روغن موتور"
               className="h-12 rounded-lg bg-slate-50 px-3 py-3.5 font-medium text-slate-800 placeholder:text-sm placeholder:text-slate-400"
               {...register("title")}
             />
@@ -127,7 +127,7 @@ function NewServicePage() {
             <Label htmlFor="detail">جزئیات سرویس</Label>
             <Textarea
               id="detail"
-              placeholder="مثال: گاز کولر ماشین بررسی و تعویض شد"
+              placeholder="روغن موتور بررسی و تعویض شد"
               {...register("details")}
             />
           </div>
