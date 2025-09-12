@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const portada = localFont({ src: "../../public/portada.ttf" });
+const portada = localFont({ src: "../../public/portada.woff2" });
 
 export const metadata: Metadata = {
   title: "مایکا",
@@ -17,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${portada.className} h-screen max-w-150 antialiased mx-auto`}>
+      <body
+        className={`${portada.className} mx-auto h-screen max-w-150 antialiased`}
+      >
         {children}
         <Toaster />
       </body>
