@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${portada.className} h-screen w-screen antialiased`}>
+      <body className={`${portada.className} h-screen max-w-150 antialiased mx-auto`}>
         {children}
         <Toaster />
       </body>
