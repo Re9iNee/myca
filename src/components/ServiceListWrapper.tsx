@@ -51,11 +51,11 @@ function Row({ id, title, mileage, date }: Partial<Service>) {
         <span className="text-sm font-semibold text-slate-600">{title}</span>
         <div className="flex items-center gap-2">
           <span className="text-xs font-medium text-slate-400">
-            {dateToShamsi(date ?? new Date())}
+            {/* {dateToShamsi(date ?? new Date())} */}
+            کیلومتر سرویس بعدی:
           </span>
           <div className="h-4 w-[1px] rounded-sm bg-slate-300" />
           <span className="text-xs font-medium text-slate-400">
-            کیلومتر:{" "}
             <span className="font-semibold text-blue-500">
               {mileageToFarsi(mileage ?? 0)}
             </span>
