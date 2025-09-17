@@ -1,7 +1,7 @@
 import RemoveServiceBtn from "@/components/RemoveServiceBtn";
 import { Button } from "@/components/ui/button";
+import { prisma } from "@/lib/prisma";
 import { dateToShamsi, mileageToFarsi } from "@/lib/utils";
-import prisma from "@prisma";
 import { ChevronRight, PencilLine } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";

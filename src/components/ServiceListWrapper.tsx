@@ -1,12 +1,12 @@
 "use client";
 
-import { dateToShamsi, mileageToFarsi } from "@/lib/utils";
-import Link from "next/link";
-import { Service } from "../../generated/prisma";
-import SearchInput from "./SearchInput";
+import { mileageToFarsi } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
-import EmptyServicesState from "./EmptyServicesState";
+import Link from "next/link";
 import { useMemo, useState } from "react";
+import { Service } from "../../generated/prisma";
+import EmptyServicesState from "./EmptyServicesState";
+import SearchInput from "./SearchInput";
 
 function ServiceListWrapper({ services }: { services: Service[] }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -41,7 +41,7 @@ function ServiceListWrapper({ services }: { services: Service[] }) {
 
 export default ServiceListWrapper;
 
-function Row({ id, title, mileage, date }: Partial<Service>) {
+function Row({ id, title, mileage }: Partial<Service>) {
   return (
     <Link
       href={`/history/${id}`}
@@ -51,7 +51,6 @@ function Row({ id, title, mileage, date }: Partial<Service>) {
         <span className="text-sm font-semibold text-slate-600">{title}</span>
         <div className="flex items-center gap-2">
           <span className="text-xs font-medium text-slate-400">
-            {/* {dateToShamsi(date ?? new Date())} */}
             کیلومتر سرویس بعدی:
           </span>
           <div className="h-4 w-[1px] rounded-sm bg-slate-300" />
