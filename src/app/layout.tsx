@@ -2,8 +2,12 @@ import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { NextFontWithVariable } from "next/dist/compiled/@next/font";
 
-const portada = localFont({ src: "../../public/portada.woff2" });
+const portada: NextFontWithVariable = localFont({
+  src: "../../public/portada.woff2",
+  variable: "--font-portada",
+});
 
 export const metadata: Metadata = {
   title: "مایکا",
@@ -18,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`${portada.className} mx-auto h-screen max-w-150 antialiased`}
+        className={`font-portada ${portada.variable} mx-auto h-screen max-w-150 antialiased`}
       >
         {children}
         <Toaster />

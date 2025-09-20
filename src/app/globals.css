@@ -11,6 +11,10 @@
   scrollbar-width: none; /* Firefox */
 }
 
+@theme {
+  --font-portada: var(--font-portada);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
