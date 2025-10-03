@@ -63,7 +63,7 @@ async function ServiceDetailsPage({ params }: Props) {
 
       <div className="py-3">
         <Button
-          className="text-slate-50[&_svg:not([class*='size-'])]:size-6 flex h-[56px] w-full cursor-pointer gap-2 rounded-2xl bg-slate-700 p-4 text-base font-medium"
+          className="text-slate-50[&_svg:not([class*='size-'])]:size-6 flex h-[56px] w-full gap-2 rounded-2xl bg-slate-700 p-4 text-base font-medium"
           asChild
         >
           <Link href={"/history"}>

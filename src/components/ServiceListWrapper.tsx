@@ -62,7 +62,7 @@ function Row({ id, title, mileage }: Partial<Service>) {
         </div>
       </div>
       <div className="ml-0.5 h-full text-slate-600">
-        <ChevronLeft className="stroke-[1.5px]" />
+        <ChevronLeft size={16} />
       </div>
     </Link>
   );

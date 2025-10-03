@@ -84,7 +84,7 @@ export default function CarPicker() {
           </PopoverTrigger>
           <PopoverContent className="max-w-screen p-0">
             <Command>
-              <CommandInput placeholder="جستجوی ماشین ..." />
+              <CommandInput placeholder="جست وجوی ماشین ..." />
               <CommandList>
                 <CommandEmpty>ماشینی پیدا نشد</CommandEmpty>
                 <CommandGroup>

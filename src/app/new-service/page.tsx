@@ -150,7 +150,7 @@ function NewServicePage() {
 
       <Button
         disabled={pending}
-        className="h-[52px] cursor-pointer rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-bold disabled:grayscale-100"
+        className="h-[52px] rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-bold disabled:grayscale-100"
       >
         ثبت سرویس
       </Button>

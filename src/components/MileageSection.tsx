@@ -99,7 +99,7 @@ export default function MileageSection() {
                     onChange: (e) => mileageInputChange(e, setValue, "mileage"),
                   })}
                 />
-                <DrawerFooter className="px-4 py-3">
+                <DrawerFooter className="px-0 py-3">
                   <Button
                     disabled={isPending}
                     className="h-[52px] rounded-2xl border border-slate-300 bg-gradient-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-semibold text-white disabled:bg-none disabled:text-slate-300 disabled:opacity-100"

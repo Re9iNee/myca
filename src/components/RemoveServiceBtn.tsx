@@ -36,7 +36,7 @@ function RemoveServiceBtn() {
 
   return (
     <Dialog>
-      <DialogTrigger className="mt-2 flex h-[52px] w-full cursor-pointer justify-center gap-2 rounded-lg border-[1px] border-slate-300 p-4 py-4 text-center text-sm font-medium text-slate-500">
+      <DialogTrigger className="mt-2 flex h-[52px] w-full justify-center gap-2 rounded-lg border-[1px] border-slate-300 p-4 py-4 text-center text-sm font-medium text-slate-500">
         <Trash size={20} />
         حذف سرویس
       </DialogTrigger>
@@ -56,7 +56,7 @@ function RemoveServiceBtn() {
             type="submit"
             variant={"destructive"}
             onClick={() => removeService()}
-            className="h-[52px] cursor-pointer rounded-2xl bg-gradient-to-r from-red-700 to-red-600 py-4 text-sm font-medium text-white disabled:grayscale-100"
+            className="h-[52px] rounded-2xl bg-gradient-to-r from-red-700 to-red-600 py-4 text-sm font-medium text-white disabled:grayscale-100"
           >
             <Trash />
             حذف سرویس
