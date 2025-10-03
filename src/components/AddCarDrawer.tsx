@@ -65,9 +65,9 @@ function AddCarDrawer() {
         <Button
           size={"icon"}
           variant={"outline"}
-          className="h-[50px] w-[50px] rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3"
+          className="size-[52px] rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3"
         >
-          <CiSquarePlus className="text-slate-500" />
+          <CiSquarePlus className="text-slate-500 size-[26px]"/>
         </Button>
       </DrawerTrigger>
       <DrawerContent>

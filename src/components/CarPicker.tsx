@@ -1,10 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Check, ChevronsUpDown } from "lucide-react";
-
+import { Check, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
-
 import {
   Command,
   CommandEmpty,
@@ -78,15 +76,15 @@ export default function CarPicker() {
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className="h-[52px] grow justify-between rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3 text-right text-lg font-semibold text-slate-600"
+              className="h-[52px] grow rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3 text-right text-lg font-semibold text-slate-600"
             >
               {selectedCar?.name}
-              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+              <ChevronDown className="text-slate-500 shrink-0 opacity-50 size-[26px] mr-auto" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="max-w-screen p-0">
             <Command>
-              <CommandInput placeholder="جستجو ماشین ..." />
+              <CommandInput placeholder="جستجوی ماشین ..." />
               <CommandList>
                 <CommandEmpty>ماشینی پیدا نشد</CommandEmpty>
                 <CommandGroup>

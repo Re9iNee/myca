@@ -30,7 +30,7 @@ export default function ServiceHistoryBtn() {
       <Button
         variant={"outline"}
         size={"icon"}
-        className="ml-4 rounded-lg border border-slate-200 stroke-2 p-2 text-slate-600"
+        className="rounded-lg border border-slate-200 stroke-2 p-2 text-slate-600"
       >
         <ChevronLeft />
       </Button>
