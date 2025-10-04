@@ -33,7 +33,7 @@ function Loading() {
       </div>
       <div className="pt-3 pb-3">
         <Button
-          className="flex w-full gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 p-8 text-base font-semibold [&_svg:not([class*='size-'])]:size-6"
+          className="h-[56px] w-full rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 px-8 text-base font-semibold [&_svg:not([class*='size-'])]:size-6"
           asChild
         >
           <Link href={"/new-service"}>
