@@ -58,8 +58,8 @@ function AddToHomeScreenPage() {
         >
           <Link href="../">بازگشت</Link>
         </Button>
-        <p className="text-xs font-normal text-neutral-400 grayscale-100">
-          Made with ♥️ by <span className="">Mora</span>
+        <p className="text-xs font-normal text-neutral-400">
+          Made with 🩶 by <span className="">Mora</span>
         </p>
       </div>
     </div>

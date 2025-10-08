@@ -41,8 +41,8 @@ function RemoveServiceBtn() {
         حذف سرویس
       </DialogTrigger>
       <DialogContent>
-        <DialogHeader className="space-y-1.5 px-4 py-2 text-right">
-          <DialogTitle className="text-slate800 text-base font-bold">
+        <DialogHeader className="space-y-0.5 px-4 py-2 !text-right">
+          <DialogTitle className="text-base font-bold text-slate-800">
             آیا این سرویس حذف شود؟
           </DialogTitle>
           <DialogDescription className="text-sm font-normal text-slate-500">
@@ -50,18 +50,7 @@ function RemoveServiceBtn() {
             حذف این سرویس اطمینان دارید؟
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="px-4 py-3">
-          <Button
-            disabled={isPending}
-            type="submit"
-            variant={"destructive"}
-            onClick={() => removeService()}
-            className="h-[52px] rounded-2xl bg-gradient-to-r from-red-700 to-red-600 py-4 text-sm font-medium text-white disabled:grayscale-100"
-          >
-            <Trash />
-            حذف سرویس
-          </Button>
-
+        <DialogFooter className="flex !flex-col gap-y-2.5 px-4 py-3">
           <DialogClose asChild>
             <Button
               type="button"
@@ -72,6 +61,16 @@ function RemoveServiceBtn() {
               بازگشت
             </Button>
           </DialogClose>
+          <Button
+            disabled={isPending}
+            type="submit"
+            variant={"destructive"}
+            onClick={() => removeService()}
+            className="h-[52px] rounded-2xl bg-gradient-to-r from-red-700 to-red-600 py-4 text-sm font-medium text-white disabled:grayscale-100"
+          >
+            <Trash />
+            حذف سرویس
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
