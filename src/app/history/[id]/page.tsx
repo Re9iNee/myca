@@ -8,10 +8,12 @@ import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ carId: string }>;
 };
 
-async function ServiceDetailsPage({ params }: Props) {
+async function ServiceDetailsPage({ params, searchParams }: Props) {
   const { id } = await params;
+  const { carId } = await searchParams;
 
   const serviceDetail = await prisma.service.findUnique({ where: { id } });
 
@@ -58,7 +60,7 @@ async function ServiceDetailsPage({ params }: Props) {
           </p>
         </div>
 
-        <RemoveServiceBtn />
+        <RemoveServiceBtn serviceId={id} />
       </div>
 
       <div className="py-3">
@@ -66,7 +68,7 @@ async function ServiceDetailsPage({ params }: Props) {
           className="text-slate-50[&_svg:not([class*='size-'])]:size-6 flex h-[56px] w-full gap-2 rounded-2xl bg-slate-700 p-4 text-base font-medium"
           asChild
         >
-          <Link href={"/history"}>
+          <Link href={`/history?carId=${carId}`}>
             <ChevronRight className="mt-1" />
             بازگشت
           </Link>

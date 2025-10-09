@@ -11,14 +11,12 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ChevronRight, Trash } from "lucide-react";
-import { redirect, usePathname } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useCallback, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "./ui/button";
 
-function RemoveServiceBtn() {
-  const pathname = usePathname();
-  const serviceId = pathname.split("/").pop();
+function RemoveServiceBtn({ serviceId }: { serviceId: string }) {
   const [isPending, setPending] = useState(false);
 
   const removeService = useCallback(async () => {

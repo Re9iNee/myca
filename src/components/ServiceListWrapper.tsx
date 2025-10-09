@@ -46,10 +46,15 @@ function ServiceListWrapper({ services }: { services: Service[] }) {
 
 export default ServiceListWrapper;
 
-function Row({ id, title, mileage }: Partial<Service>) {
+function Row({ id, title, mileage, carId }: Partial<Service>) {
   return (
     <Link
-      href={`/history/${id}`}
+      href={{
+        pathname: `/history/${id}`,
+        query: {
+          carId: carId,
+        },
+      }}
       className="flex items-center justify-between border-b-slate-200 px-0.5 py-4 not-last:border-b-2"
     >
       <div>
