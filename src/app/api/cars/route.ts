@@ -1,4 +1,4 @@
-import prisma from "@prisma";
+import { prisma } from "@/lib/prisma";
 
 export const POST = async (request: Request) => {
   const { model, mileage, ownerId } = await request.json();

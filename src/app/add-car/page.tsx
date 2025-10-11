@@ -27,7 +27,7 @@ export default function AddNewCarForm() {
 
   const [pending, setPending] = useState<boolean>(false);
 
-  const { register, handleSubmit, setValue } = useForm<Inputs>();
+  const { register, handleSubmit, setValue, formState } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setPending(true);
@@ -58,7 +58,9 @@ export default function AddNewCarForm() {
       >
         <div>
           <div className="space-y-2 text-center">
-            <h1 className="text-[56px] font-bold text-blue-500">مایکا</h1>
+            <h1 className="font-vazirmatn text-[56px] font-extrabold text-blue-700">
+              مایکا
+            </h1>
             <h3 className="text-sm text-slate-400">
               مدیریت سرویس دوره ای اتومبیل
             </h3>
@@ -110,13 +112,13 @@ export default function AddNewCarForm() {
         <div>
           <Button
             type="submit"
-            disabled={pending}
+            disabled={pending || !formState.isDirty}
             className="mt-20 h-[56px] w-full rounded-2xl px-3.5 py-2.5 text-lg font-semibold disabled:bg-slate-100 disabled:text-slate-300"
           >
             ورود
           </Button>
-          <footer className="mb-6 px-8 pt-12 text-center text-xs text-neutral-400 grayscale">
-            Made with ♥️ by <span className="font-bold">Mora</span>
+          <footer className="mb-6 px-8 pt-12 text-center text-xs text-neutral-400">
+            Made with 🩶 by <span className="font-bold">Mora</span>
           </footer>
         </div>
       </form>

@@ -14,7 +14,7 @@ export default function ServiceHistoryBtn() {
   return (
     <Link
       href={`/history?carId=${selectedCar?.id}`}
-      className="mb-5 flex cursor-pointer items-center justify-between gap-4 rounded-2xl border-2 border-slate-100 bg-white p-4 drop-shadow-xs"
+      className="mb-5 flex items-center justify-between gap-4 rounded-2xl border-2 border-slate-100 bg-white p-4 drop-shadow-xs"
     >
       <div className="flex gap-2">
         <LuScrollText className="mt-0.5 h-5 w-5 stroke-2 text-slate-700" />
@@ -30,7 +30,7 @@ export default function ServiceHistoryBtn() {
       <Button
         variant={"outline"}
         size={"icon"}
-        className="ml-4 rounded-lg border border-slate-200 stroke-2 p-2 text-slate-600"
+        className="rounded-lg border border-slate-200 stroke-2 p-2 text-slate-600"
       >
         <ChevronLeft />
       </Button>

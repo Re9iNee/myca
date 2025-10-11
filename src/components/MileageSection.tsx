@@ -73,7 +73,7 @@ export default function MileageSection() {
         <div className="flex gap-2.5">
           <Drawer open={isDrawerOpen} onOpenChange={setDrawerOpen}>
             <DrawerTrigger
-              className="flex h-[54px] items-center gap-2 rounded-full border-[1.5px] border-slate-200 bg-white p-4 text-sm font-semibold text-slate-600"
+              className="flex h-[54px] w-[167.5px] items-center justify-center gap-2 rounded-full border-[1.5px] border-slate-200 bg-white py-4 text-sm font-semibold text-slate-600"
               onClick={() => setDrawerOpen(true)}
             >
               <CiCirclePlus size={22} className="mt-0.5" /> آپدیت کیلومتر
@@ -99,7 +99,7 @@ export default function MileageSection() {
                     onChange: (e) => mileageInputChange(e, setValue, "mileage"),
                   })}
                 />
-                <DrawerFooter className="px-4 py-3">
+                <DrawerFooter className="px-0 py-3">
                   <Button
                     disabled={isPending}
                     className="h-[52px] rounded-2xl border border-slate-300 bg-gradient-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-semibold text-white disabled:bg-none disabled:text-slate-300 disabled:opacity-100"
@@ -112,7 +112,7 @@ export default function MileageSection() {
           </Drawer>
           <Button
             asChild
-            className="flex h-[54px] gap-2 rounded-full border-[1.5px] border-blue-100 bg-gradient-to-l from-blue-500 to-blue-600 p-4 text-sm font-semibold text-white [&_svg:not([class*='size-'])]:size-[22px]"
+            className="flex h-[54px] w-[167.5px] justify-center gap-2 rounded-full border-[1.5px] border-blue-100 bg-gradient-to-l from-blue-500 to-blue-600 py-4 text-sm font-semibold text-white [&_svg:not([class*='size-'])]:size-[22px]"
           >
             <Link href={"/new-service"}>
               <Wrench className="mt-0.5" />
@@ -124,7 +124,7 @@ export default function MileageSection() {
           asChild
           variant={"outline"}
           aria-label="upcoming services"
-          className="flex h-[52px] w-full items-center justify-center gap-2 rounded-full border-slate-200 p-4 text-sm font-semibold text-slate-600"
+          className="flex h-[54px] w-full items-center justify-center gap-2 rounded-full border-slate-200 p-4 text-sm font-semibold text-slate-600"
         >
           <Link href={`/upcoming-services?carId=${selectedCar?.id}`}>
             <Image src={CalenderSettingIcon} alt="calendar setting icon" />

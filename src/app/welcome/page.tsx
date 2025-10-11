@@ -3,26 +3,28 @@ import Image from "next/image";
 
 function WelcomePage() {
   return (
-    <div className="flex h-[75%] flex-col justify-end overflow-hidden bg-slate-900 bg-gradient-to-t text-center">
-      <div className="mx-4 mt-20 grow space-y-5">
-        <h1 className="text-6xl font-bold text-white">مایکا</h1>
-        <h3 className="text-xl font-medium text-white">
+    <div className="relative flex h-full flex-col overflow-hidden bg-slate-900 bg-gradient-to-t text-center">
+      <div className="mx-4 mt-20 space-y-5">
+        <h1 className="font-vazirmatn text-6xl font-extrabold text-white">
+          مایکا
+        </h1>
+        <h3 className="font-vazirmatn text-xl font-medium text-white">
           اپلیکیشن مدیریت سرویس های خودرو
         </h3>
       </div>
 
-      <div className="z-10 mx-4 grow space-y-3 px-8">
-        <h5 className="text-sm font-light text-white opacity-50">
+      <div className="z-10 mt-[25%] mx-4 space-y-3 px-8">
+        <h5 className="font-vazirmatn text-sm font-light text-white opacity-50">
           نصب نسخه بتا
         </h5>
-        <Button className="drop-shadow-[0px 0px 48px] w-full cursor-pointer gap-2 rounded-2xl border border-blue-800 bg-black/20 py-6 text-white">
+        <Button className="drop-shadow-[0px,0px,48px] h-[56px] w-full max-w-80 gap-2 rounded-2xl border-[1.2px] border-blue-800 bg-black/20 py-6.5 text-white">
           <InstallIcon />
-          <span className="font-semibold">نصب نرم افزار</span>
+          <span className="text-base font-medium">نصب نرم افزار</span>
         </Button>
       </div>
 
-      <div className="absolute bottom-0 aspect-square h-[800px] w-full">
-        <Image fill alt="car image" src={"/hero-image.png"} />
+      <div className="absolute bottom-0 h-full w-full">
+        <Image fill alt="car image" src={"/hero-image.png"} className="object-cover"/>
       </div>
     </div>
   );

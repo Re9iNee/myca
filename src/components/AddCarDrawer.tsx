@@ -51,7 +51,8 @@ function AddCarDrawer() {
 
     setPending(false);
   };
-  const { handleSubmit, register, setValue, reset } = useForm<Inputs>();
+  const { handleSubmit, register, setValue, reset, formState } =
+    useForm<Inputs>();
   const [isPending, setPending] = useState(false);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
 
@@ -65,9 +66,9 @@ function AddCarDrawer() {
         <Button
           size={"icon"}
           variant={"outline"}
-          className="h-[50px] w-[50px] rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3"
+          className="size-[52px] rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3"
         >
-          <CiSquarePlus className="text-slate-500" />
+          <CiSquarePlus className="size-[26px] text-slate-500" />
         </Button>
       </DrawerTrigger>
       <DrawerContent>
@@ -115,9 +116,9 @@ function AddCarDrawer() {
               },
             })}
           />
-          <DrawerFooter className="px-4 py-3">
+          <DrawerFooter className="px-0 py-3">
             <Button
-              disabled={isPending}
+              disabled={isPending || !formState.isDirty}
               className="h-[52px] rounded-2xl border border-slate-300 bg-gradient-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-semibold text-white disabled:bg-none disabled:text-slate-300 disabled:opacity-100"
             >
               ثبت ماشین جدید

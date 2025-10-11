@@ -1,6 +1,6 @@
 import ServiceListWrapper from "@/components/ServiceListWrapper";
 import { Button } from "@/components/ui/button";
-import prisma from "@prisma";
+import { prisma } from "@/lib/prisma";
 import { ChevronRight, Wrench } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -38,7 +38,7 @@ export default async function CarHistoryPage({ searchParams }: Props) {
       <ServiceListWrapper services={services} />
       <div className="pt-3 pb-3">
         <Button
-          className="flex w-full cursor-pointer gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 p-8 text-base font-semibold [&_svg:not([class*='size-'])]:size-6"
+          className="h-[56px] w-full rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 px-8 text-base font-semibold [&_svg:not([class*='size-'])]:size-6"
           asChild
         >
           <Link href={"/new-service"}>
