@@ -42,9 +42,7 @@ export default function LoginForm() {
         className="flex h-full flex-col px-6 pt-9"
       >
         <div className="flex flex-col gap-y-2 text-center">
-          <h1 className="text-[56px] font-bold text-blue-700">
-            مایکا
-          </h1>
+          <h1 className="text-[56px] font-bold text-blue-700">مایکا</h1>
           <h3 className="text-sm text-slate-400">
             مدیریت سرویس دوره ای اتومبیل
           </h3>
@@ -53,7 +51,7 @@ export default function LoginForm() {
           <div className="flex flex-col gap-y-1">
             <h4 className="text-lg font-bold text-slate-800">ورود به حساب</h4>
             <h6 className="text-sm text-slate-500">
-              شماره تماس و رمز عبور خود را وارد کنید
+              برای ورود ایمیل و رمز عبور خود را وارد کنید
             </h6>
           </div>
 
