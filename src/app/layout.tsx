@@ -5,7 +5,7 @@ import "./globals.css";
 import { NextFontWithVariable } from "next/dist/compiled/@next/font";
 
 const portada: NextFontWithVariable = localFont({
-  src: "../../public/portada.woff2",
+  src: "../../public/portada.ttf",
   variable: "--font-portada",
 });
 
@@ -27,9 +27,9 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`${portada.variable} ${vazirmatn.variable} font-portada flex justify-center w-full h-svh antialiased`}
+        className={`${portada.variable} ${vazirmatn.variable} font-portada flex h-svh w-full justify-center antialiased`}
       >
-        <span className="max-w-150 w-full">{children}</span>
+        <span className="w-full max-w-150">{children}</span>
         <Toaster />
       </body>
     </html>
