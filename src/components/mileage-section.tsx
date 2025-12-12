@@ -25,7 +25,7 @@ import { Wrench } from "lucide-react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import Mileage from "./mileage2";
+import Mileage from "./mileage";
 import MileageInput from "./mileage-input";
 import Image from "next/image";
 
