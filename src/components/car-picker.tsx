@@ -17,13 +17,13 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-import { useCarStore } from "@/hooks/useCarStore";
-import useLocalStorage from "@/hooks/useLocalStorage";
-import useStore from "@/hooks/useStore";
+import { useCarStore } from "@/hooks/use-car-store";
+import useLocalStorage from "@/hooks/use-local-storage";
+import useStore from "@/hooks/use-store";
 import { redirect } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { toast } from "sonner";
-import AddCarDrawer from "./AddCarDrawer";
+import AddCarDrawer from "./add-car-drawer";
 
 function navigateToAddCar() {
   toast.success("به صفحه اضافه کردن ماشین هدایت شدید");
@@ -79,7 +79,7 @@ export default function CarPicker() {
               className="h-[52px] grow rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3 text-right text-lg font-semibold text-slate-600"
             >
               {selectedCar?.name}
-              <ChevronDown className="text-slate-500 shrink-0 opacity-50 size-[26px] mr-auto" />
+              <ChevronDown className="mr-auto size-[26px] shrink-0 text-slate-500 opacity-50" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="max-w-screen p-0">

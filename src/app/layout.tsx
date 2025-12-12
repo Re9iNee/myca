@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import "../style/globals.css";
 import { NextFontWithVariable } from "next/dist/compiled/@next/font";
 
 const portada: NextFontWithVariable = localFont({

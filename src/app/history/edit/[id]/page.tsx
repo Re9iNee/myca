@@ -1,6 +1,6 @@
 "use client";
 
-import MileageInput from "@/components/MileageInput";
+import MileageInput from "@/components/mileage-input";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";

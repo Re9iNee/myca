@@ -1,7 +1,7 @@
 "use client";
 
-import { useCarStore } from "@/hooks/useCarStore";
-import useStore from "@/hooks/useStore";
+import { useCarStore } from "@/hooks/use-car-store";
+import useStore from "@/hooks/use-store";
 import { mileageToFarsi } from "@/lib/utils";
 
 function Mileage() {

@@ -1,4 +1,4 @@
-import SearchInput from "@/components/SearchInput";
+import SearchInput from "@/components/search-input";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronRight, Wrench } from "lucide-react";

@@ -5,8 +5,8 @@ import Link from "next/link";
 
 import { LuScrollText } from "react-icons/lu";
 import { Button } from "./ui/button";
-import useStore from "@/hooks/useStore";
-import { useCarStore } from "@/hooks/useCarStore";
+import useStore from "@/hooks/use-store";
+import { useCarStore } from "@/hooks/use-car-store";
 
 export default function ServiceHistoryBtn() {
   const selectedCar = useStore(useCarStore, (state) => state.selectedCar);

@@ -1,6 +1,6 @@
-import CarPicker from "@/components/CarPicker";
-import MileageSection from "@/components/MileageSection";
-import ServiceHistoryBtn from "@/components/ServiceHistoryBtn";
+import CarPicker from "@/components/car-picker";
+import MileageSection from "@/components/mileage-section";
+import ServiceHistoryBtn from "@/components/service-history-btn";
 
 export default function Home() {
   return (

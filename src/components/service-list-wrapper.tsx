@@ -5,8 +5,8 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Service } from "../../generated/prisma";
-import EmptyServicesState from "./EmptyServicesState";
-import SearchInput from "./SearchInput";
+import EmptyServicesState from "./empty-services-state";
+import SearchInput from "./search-input";
 
 function ServiceListWrapper({ services }: { services: Service[] }) {
   const [searchTerm, setSearchTerm] = useState("");

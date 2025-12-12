@@ -1,4 +1,4 @@
-import RemoveServiceBtn from "@/components/RemoveServiceBtn";
+import RemoveServiceBtn from "@/components/remove-service-btn";
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/prisma";
 import { dateToShamsi, mileageToFarsi } from "@/lib/utils";

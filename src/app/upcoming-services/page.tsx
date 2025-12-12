@@ -1,4 +1,4 @@
-import ServiceListWrapper from "@/components/ServiceListWrapper";
+import ServiceListWrapper from "@/components/service-list-wrapper";
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/prisma";
 import { ChevronRight, Wrench } from "lucide-react";

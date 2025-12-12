@@ -1,5 +1,5 @@
-import { useCarStore } from "@/hooks/useCarStore";
-import useLocalStorage from "@/hooks/useLocalStorage";
+import { useCarStore } from "@/hooks/use-car-store";
+import useLocalStorage from "@/hooks/use-local-storage";
 import { farsiToMileage, mileageToFarsi } from "@/lib/utils";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";

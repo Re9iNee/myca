@@ -14,8 +14,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { useCarStore } from "@/hooks/useCarStore";
-import useStore from "@/hooks/useStore";
+import { useCarStore } from "@/hooks/use-car-store";
+import useStore from "@/hooks/use-store";
 import {
   farsiToMileage,
   mileageInputChange,
@@ -25,8 +25,8 @@ import { Wrench } from "lucide-react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import Mileage from "./Mileage";
-import MileageInput from "./MileageInput";
+import Mileage from "./mileage";
+import MileageInput from "./mileage-input";
 import Image from "next/image";
 
 type Inputs = {

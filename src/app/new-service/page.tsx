@@ -1,13 +1,13 @@
 "use client";
 
-import MileageInput from "@/components/MileageInput";
-import ServiceTypePicker from "@/components/ServiceTypePicker";
+import MileageInput from "@/components/mileage-input";
+import ServiceTypePicker from "@/components/service-type-picker";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useCarStore } from "@/hooks/useCarStore";
-import useStore from "@/hooks/useStore";
+import { useCarStore } from "@/hooks/use-car-store";
+import useStore from "@/hooks/use-store";
 import {
   farsiToMileage,
   mileageInputChange,
