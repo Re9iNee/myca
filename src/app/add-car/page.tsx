@@ -58,7 +58,7 @@ export default function AddNewCarForm() {
       >
         <div>
           <div className="space-y-2 text-center">
-            <h1 className="font-vazirmatn text-[56px] font-extrabold text-blue-700">
+            <h1 className="text-[56px] font-extrabold text-blue-700">
               مایکا
             </h1>
             <h3 className="text-sm text-slate-400">

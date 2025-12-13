@@ -5,16 +5,16 @@ function WelcomePage() {
   return (
     <div className="relative flex h-full flex-col overflow-hidden bg-slate-900 bg-gradient-to-t text-center">
       <div className="mx-4 mt-20 space-y-5">
-        <h1 className="font-vazirmatn text-6xl font-extrabold text-white">
+        <h1 className="text-6xl font-extrabold text-white">
           مایکا
         </h1>
-        <h3 className="font-vazirmatn text-xl font-medium text-white">
+        <h3 className="text-xl font-medium text-white">
           اپلیکیشن مدیریت سرویس های خودرو
         </h3>
       </div>
 
       <div className="z-10 mt-[25%] mx-4 space-y-3 px-8">
-        <h5 className="font-vazirmatn text-sm font-light text-white opacity-50">
+        <h5 className="text-sm font-light text-white opacity-50">
           نصب نسخه بتا
         </h5>
         <Button className="drop-shadow-[0px,0px,48px] h-[56px] w-full max-w-80 gap-2 rounded-2xl border-[1.2px] border-blue-800 bg-black/20 py-6.5 text-white">
