@@ -50,7 +50,7 @@ function Row({ id, title, mileage, carId }: Partial<Service>) {
   return (
     <Link
       href={{
-        pathname: `/history/${id}`,
+        pathname: `/application/history/${id}`,
         query: {
           carId: carId,
         },

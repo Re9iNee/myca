@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { Car } from "../../../generated/prisma";
+import { Car } from "../../../../generated/prisma";
 
 type Inputs = {
   model: string;
@@ -44,7 +44,7 @@ export default function AddNewCarForm() {
     saveOwnerId(car.ownerId);
     addAndSelectCar(car);
 
-    router.push("/");
+    router.push("/application/");
     toast.success("ماشین با موفقیت اضافه شد");
 
     setPending(false);
@@ -58,9 +58,7 @@ export default function AddNewCarForm() {
       >
         <div>
           <div className="space-y-2 text-center">
-            <h1 className="text-[56px] font-extrabold text-blue-700">
-              مایکا
-            </h1>
+            <h1 className="text-[56px] font-extrabold text-blue-700">مایکا</h1>
             <h3 className="text-sm text-slate-400">
               مدیریت سرویس دوره ای اتومبیل
             </h3>

@@ -2,12 +2,19 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ChevronLeft, ChevronRight, EyeIcon, EyeOff, Lock, Mail } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  EyeIcon,
+  EyeOff,
+  Lock,
+  Mail,
+} from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Car } from "../../../generated/prisma";
+import { Car } from "../../../../generated/prisma";
 import MediumSizeLogo from "@/components/medium-size-logo";
 import { Mail02Icon, LockPasswordIcon } from "hugeicons-react";
 import { Spinner } from "@/components/ui/spinner";
@@ -33,7 +40,7 @@ export default function SignUpPage() {
       }),
     });
     const car: Car = await result.json();
-    router.push("/");
+    router.push("/application/");
     setPending(false);
   };
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -46,7 +53,7 @@ export default function SignUpPage() {
       >
         <div className="flex flex-col gap-y-2 text-center">
           <MediumSizeLogo />
-          <h3 className="text-sm text-slate-400 leading-5 font-medium">
+          <h3 className="text-sm leading-5 font-medium text-slate-400">
             مدیریت سرویس دوره ای اتومبیل
           </h3>
         </div>

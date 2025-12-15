@@ -57,7 +57,7 @@ function ServiceHistoryEditPage() {
       .then((data) => {
         console.log("service updated", data);
         toast.success("اطلاعات سرویس با موفقیت بارگذاری شد");
-        router.push(`/history/${id}`);
+        router.push(`/application/history/${id}`);
       })
       .catch((err) => console.error(`Error while updating new service`, err))
       .finally(() => setPending(false));
@@ -72,7 +72,7 @@ function ServiceHistoryEditPage() {
       <div>
         <header className="flex items-center justify-between py-2.5 text-sm font-medium text-slate-500">
           <Link
-            href={`/history/${id}`}
+            href={`/application/history/${id}`}
             className="inline-flex items-center gap-2"
           >
             <ChevronRight className="mt-0.5 h-5 w-5 stroke-2" />
@@ -111,7 +111,7 @@ function ServiceHistoryEditPage() {
           className="h-14 rounded-2xl border border-slate-300 bg-white px-2.5 py-4 text-base font-medium text-slate-400"
           asChild
         >
-          <Link href={`/history/${id}`}>
+          <Link href={`/application/history/${id}`}>
             <ChevronRight /> بازگشت
           </Link>
         </Button>

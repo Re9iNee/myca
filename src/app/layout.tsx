@@ -1,4 +1,3 @@
-import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "../style/globals.css";
@@ -71,8 +70,7 @@ export default function RootLayout({
       <body
         className={`${vazirmatn.variable} font-vazirmatn flex h-svh w-full justify-center antialiased`}
       >
-        <span className="w-full max-w-150">{children}</span>
-        <Toaster />
+        {children}
       </body>
     </html>
   );

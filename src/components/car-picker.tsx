@@ -27,7 +27,7 @@ import AddCarDrawer from "./add-car-drawer";
 
 function navigateToAddCar() {
   toast.success("به صفحه اضافه کردن ماشین هدایت شدید");
-  redirect("/add-car");
+  redirect("/application/add-car");
 }
 
 export default function CarPicker() {

@@ -68,7 +68,7 @@ async function ServiceDetailsPage({ params, searchParams }: Props) {
           className="text-slate-50[&_svg:not([class*='size-'])]:size-6 flex h-[56px] w-full gap-2 rounded-2xl bg-slate-700 p-4 text-base font-medium"
           asChild
         >
-          <Link href={`/history?carId=${carId}`}>
+          <Link href={`/application/history?carId=${carId}`}>
             <ChevronRight className="mt-1" />
             بازگشت
           </Link>

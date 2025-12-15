@@ -13,7 +13,7 @@ export default function ServiceHistoryBtn() {
 
   return (
     <Link
-      href={`/history?carId=${selectedCar?.id}`}
+      href={`/application/history?carId=${selectedCar?.id}`}
       className="mb-5 flex items-center justify-between gap-4 rounded-2xl border-2 border-slate-100 bg-white p-4 drop-shadow-xs"
     >
       <div className="flex gap-2">

@@ -15,7 +15,7 @@ function Loading() {
     <main className="flex h-full w-full flex-col px-6">
       {/* navigation header */}
       <header className="flex items-center gap-2 py-2.5 text-sm font-medium text-slate-500">
-        <Link href={"/"} className="flex items-center gap-2">
+        <Link href={"/application/"} className="flex items-center gap-2">
           <ChevronRight className="mt-0.5 h-5 w-5 stroke-2" />
           بازگشت
         </Link>
@@ -33,10 +33,10 @@ function Loading() {
       </div>
       <div className="pt-3 pb-3">
         <Button
-          className="h-[56px] w-full rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 px-8 text-base font-semibold [&_svg:not([class*='size-'])]:size-6"
+          className="h-[56px] w-full rounded-2xl bg-linear-to-r from-blue-600 to-blue-500 px-8 text-base font-semibold [&_svg:not([class*='size-'])]:size-6"
           asChild
         >
-          <Link href={"/new-service"}>
+          <Link href={"/application/new-service"}>
             <Wrench className="mt-1" />
             سرویس جدید
           </Link>

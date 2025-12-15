@@ -19,7 +19,7 @@ import { useRouter } from "next/navigation";
 import { useLayoutEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { ServiceType } from "../../../generated/prisma";
+import { ServiceType } from "../../../../generated/prisma";
 
 type Inputs = {
   title: string;
@@ -60,7 +60,7 @@ function NewServicePage() {
 
       if (res.status === 200) {
         toast.success("سرویس با موفقیت ثبت شد");
-        router.push(`/history?carId=${selectedCar?.id}`);
+        router.push(`/application/history?carId=${selectedCar?.id}`);
       }
     } catch (error) {
       console.error("Error while creating new service", error);

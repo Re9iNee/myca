@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Car } from "../../../generated/prisma";
+import { Car } from "../../../../generated/prisma";
 import MediumSizeLogo from "@/components/medium-size-logo";
 import { Mail02Icon, LockPasswordIcon } from "hugeicons-react";
 import { Spinner } from "@/components/ui/spinner";
@@ -33,7 +33,7 @@ export default function SignInPage() {
       }),
     });
     const car: Car = await result.json();
-    router.push("/");
+    router.push("/application/");
     setPending(false);
   };
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -110,7 +110,7 @@ export default function SignInPage() {
               )}
             </div>
             <div className="flex w-full items-center justify-end text-sm leading-5 font-medium text-blue-600">
-              <Link href={"/forgot-password"}>فراموشی رمز عبور</Link>
+              <Link href={"/application/forgot-password"}>فراموشی رمز عبور</Link>
             </div>
           </div>
         </div>
@@ -137,7 +137,7 @@ export default function SignInPage() {
               حساب کاربری ندارید؟
             </p>
             <Link
-              href={"/sign-up"}
+              href={"/application/sign-up"}
               className="text-sm leading-5 font-semibold text-blue-600"
             >
               ثبت نام

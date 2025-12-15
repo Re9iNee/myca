@@ -35,7 +35,7 @@ export default function ForgotPasswordPage() {
   const [pending, setPending] = useState<boolean>(false);
   const { register, handleSubmit, formState, control, watch } =
     useForm<Inputs>();
-  const [step, setStep] = useState<stepOptions>("success");
+  const [step, setStep] = useState<stepOptions>("email");
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setStep("otp");
     // setPending(true);
@@ -47,7 +47,7 @@ export default function ForgotPasswordPage() {
     //   }),
     // });
     // const car: Car = await result.json();
-    // router.push("/");
+    // router.push("/application/");
     // setPending(false);
   };
   const titleGenerator = () => {
@@ -229,7 +229,7 @@ export default function ForgotPasswordPage() {
           </>
         ) : (
           <div className="flex h-full items-center">
-            <div className="flex h-full max-h-65 w-full flex-col gap-y-1.5 justify-end items-center">
+            <div className="flex h-full max-h-65 w-full flex-col items-center justify-end gap-y-1.5">
               <h4 className="text-lg font-bold text-slate-700">
                 {titleGenerator()}
               </h4>
