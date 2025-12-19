@@ -1,7 +1,7 @@
 import { Mail02Icon } from "hugeicons-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
-import footerCar from "@public/footer/car.png";
+import footerCar from "@public/landing/footer/car.png";
 
 const Footer = () => {
   return (

@@ -6,7 +6,7 @@ export default function ApplicationLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="w-full max-w-150">
+    <main className="w-full max-w-150 h-svh">
       {children}
       <Toaster />
     </main>

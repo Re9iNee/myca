@@ -68,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`${vazirmatn.variable} font-vazirmatn flex h-svh w-full justify-center antialiased`}
+        className={`${vazirmatn.variable} font-vazirmatn flex w-full justify-center antialiased`}
       >
         {children}
       </body>

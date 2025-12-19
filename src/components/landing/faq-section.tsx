@@ -1,0 +1,113 @@
+import QuestionSquare from "@public/landing/faq-section/question-square.png";
+import Image from "next/image";
+import { Button } from "../ui/button";
+import { CheckmarkSquare02Icon } from "hugeicons-react";
+import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
+import {
+  LandingAccordion,
+  LandingAccordionContent,
+  LandingAccordionItem,
+  LandingAccordionTrigger,
+} from "./landing-accordion";
+
+const FaqSection = () => {
+  return (
+    <section className="flex w-full justify-center">
+      <div className="flex w-full max-w-360 flex-col items-center gap-y-10 px-27.5 py-22">
+        <div className="flex flex-col items-center gap-y-2">
+          <p className="text-3xl font-bold">سوالات پرتکرار درباره مایکا</p>
+          <p className="text-lg">هر چی باید بدونی، همین‌جاست</p>
+        </div>
+        <div className="flex justify-between gap-x-6 w-full">
+          <div className="relative h-116 w-98 shrink-0 px-6 py-10">
+            <img
+              src={"/landing/faq-section/asking-questions-vector.svg"}
+              alt="hero section"
+              className="absolute top-0 right-0 h-full w-full object-contain"
+            />
+            <div className="flex flex-col gap-y-8">
+              <div className="z-2 flex flex-col gap-y-2">
+                <div className="flex items-center gap-x-2">
+                  <div>
+                    <Image
+                      src={QuestionSquare}
+                      alt="question square"
+                      placeholder="blur"
+                      quality={100}
+                      className="size-9 h-full w-full"
+                    />
+                  </div>
+                  <p className="text-2xl font-bold text-neutral-950">
+                    جواب سوالت تو لیست نبود؟
+                  </p>
+                </div>
+                <p className="text-xl text-neutral-950">
+                  سریــع بپرس، ما در کنارتیم.
+                </p>
+              </div>
+              <div className="z-2 flex flex-col gap-y-4">
+                <Input
+                  required
+                  type="text"
+                  placeholder="ایمیل"
+                  className="h-13 border-slate-200 bg-white p-3.5 text-base text-slate-800 placeholder:text-base placeholder:text-slate-400"
+                />
+                <Textarea
+                  className="h-31 resize-none border border-slate-200 bg-white p-3.5 text-base text-slate-800 placeholder:text-base placeholder:text-slate-400"
+                  placeholder="سوالت رو اینجا بنویس..."
+                />
+              </div>
+              <Button
+                size="xl"
+                variant="primary"
+                className="z-2 w-full gap-x-3 text-lg font-semibold"
+              >
+                <CheckmarkSquare02Icon className="size-6" />
+                ارسال سوال
+              </Button>
+            </div>
+          </div>
+          <LandingAccordion
+            type="single"
+            collapsible
+            className="flex w-full flex-col gap-y-6"
+            defaultValue="item-1"
+          >
+            <LandingAccordionItem value="item-1">
+              <LandingAccordionTrigger>
+                این اپلیکیشن چه کاری انجام می‌دهد؟
+              </LandingAccordionTrigger>
+              <LandingAccordionContent>
+                این اپلیکیشن به شما کمک می‌کند سرویس‌های دوره‌ای خودروی خود را
+                به‌موقع انجام دهید. سرویس‌هایی مثل تعویض روغن، لاستیک، تمدید
+                بیمه و موارد مشابه را خودتان در اپلیکیشن تعریف می‌کنید و در زمان
+                مناسب اپلیکیشن با یک اعلان (نوتیفیکیشن) به شما یادآوری می‌کند.
+              </LandingAccordionContent>
+            </LandingAccordionItem>
+            <LandingAccordionItem value="item-2">
+              <LandingAccordionTrigger>
+                آیا می‌توانم چند خودروی مختلف را در برنامه اضافه کنم؟
+              </LandingAccordionTrigger>
+              <LandingAccordionContent></LandingAccordionContent>
+            </LandingAccordionItem>
+            <LandingAccordionItem value="item-3">
+              <LandingAccordionTrigger>
+                یادآوری سرویس‌ها چگونه تنظیم می‌شود؟
+              </LandingAccordionTrigger>
+              <LandingAccordionContent></LandingAccordionContent>
+            </LandingAccordionItem>
+            <LandingAccordionItem value="item-4">
+              <LandingAccordionTrigger>
+                آیا برای استفاده از برنامه نیاز به اینترنت دارم؟
+              </LandingAccordionTrigger>
+              <LandingAccordionContent></LandingAccordionContent>
+            </LandingAccordionItem>
+          </LandingAccordion>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default FaqSection;
