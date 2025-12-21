@@ -13,6 +13,8 @@
 
 @theme {
   --font-vazirmatn: var(--font-vazirmatn);
+  --font-poppins: var(--font-poppins);
+  --font-gilda: var(--font-gilda);
 }
 
 @theme inline {
@@ -144,7 +146,30 @@ select {
   font-size: 16px !important;
 }
 
+.super-button {
+  /* Background */
+  background:
+    linear-gradient(180deg, #0075ff 0%, #00a5ff 112.5%),
+    linear-gradient(
+      180deg,
+      color(display-p3 0 0.451 1) 0%,
+      color(display-p3 0.051 0.635 1) 112.5%
+    );
 
-.team-member-card {
-  clip-path: polygon(30px 0%, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0% 30px);
+  /* Border */
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.8);
+
+  /* Shadows - combined all shadows into one declaration */
+  box-shadow:
+    0px 3.71px 4.85px 0px rgba(87, 177, 255, 0.1533),
+    0px 10.27px 13.4px 0px rgba(87, 177, 255, 0.22),
+    0px 24.72px 32.26px 0px rgba(87, 177, 255, 0.1867),
+    0px 42px 107px 4px rgba(87, 177, 255, 0.34),
+    0px 0.5px 3px 1px rgba(210, 234, 255, 1) inset,
+    0px 0.5px 14px 1px rgba(210, 234, 255, 1) inset;
+
+  /* Cursor for better UX */
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
 }

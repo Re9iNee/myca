@@ -1,14 +1,13 @@
-import { Mail02Icon } from "hugeicons-react";
-import { Button } from "../ui/button";
 import Image from "next/image";
 import footerCar from "@public/landing/footer/car.png";
+import SuperButton from "./super-button";
 
 const Footer = () => {
   return (
-    <footer className="flex justify-center relative h-113.5 w-full bg-[#132350]">
+    <footer className="relative flex h-113.5 w-full justify-center bg-[#132350]">
       <div className="relative h-full w-full max-w-360 px-27 pt-14 pb-10">
         <div className="relative z-10 flex h-full w-full flex-col justify-between gap-y-10">
-          <div className="flex flex-col items-center gap-y-10 h-61.5 justify-center">
+          <div className="flex h-61.5 flex-col items-center justify-center gap-y-10">
             <div className="flex flex-col gap-y-7 text-center">
               <div className="flex flex-col gap-y-2.5">
                 <p className="text-base text-white">دوباره یادت رفت؟</p>
@@ -18,23 +17,30 @@ const Footer = () => {
                 یادآوری زمان سرویس، فقط با یه کلیک بدون دردسر
               </p>
             </div>
-            <Button
-              size="xl"
-              variant="primary"
-              className="w-72 text-lg font-medium"
-            >
-              شروع رایگان
-            </Button>
+            <SuperButton
+              icon={
+                <img
+                  src="/hugeicons/login-square-02.svg"
+                  alt="login square vector"
+                  className="size-6"
+                />
+              }
+              text="شروع رایگان"
+              className="z-2 h-14! w-55!"
+            />
           </div>
 
-          <div className="flex w-full items-center justify-between h-18">
+          <div className="flex h-18 w-full items-center justify-between">
             <div className="flex flex-col items-center gap-y-2">
               <p className="text-4xl font-bold text-white">مایکا</p>
               <p className="text-sm text-white">مدیریت سرویس دوره ای اتومبیل</p>
             </div>
             <div className="flex items-center gap-x-2">
-              <p className="text-base leading-4 text-white">myca@gmail.com</p>
-              <Mail02Icon className="size-6 text-white" />
+              <p className="text-base leading-4 text-white font-gilda">myca@gmail.com</p>
+              <img
+                src="/hugeicons/mail-02-white.svg"
+                alt="mail vector"
+              />
             </div>
           </div>
         </div>

@@ -1,8 +1,6 @@
 import Image from "next/image";
 import mobileView from "@public/landing/steps/mobile-view.png";
-import timelineFirst from "@public/landing/steps/timeline-first.png";
-import timelineSecond from "@public/landing/steps/timeline-second.png";
-import timelineThird from "@public/landing/steps/timeline-third.png";
+import superButtonBg from "@public/landing/super-button-pattern.png";
 
 const StepsToUseSection = () => {
   return (
@@ -17,59 +15,69 @@ const StepsToUseSection = () => {
         />
       </div>
       <div className="flex flex-col gap-y-10">
-        <p className="text-3xl font-bold">
+        <p className="text-3xl leading-9 font-black text-slate-900">
           3 مرحله سریع برای استفاده از خدمات ما
         </p>
         <div className="flex flex-col gap-y-4">
           <div className="flex gap-x-4">
-            <div className="h-30 w-10">
-              <Image
-                src={timelineFirst}
-                alt="timeline first"
-                placeholder="blur"
-                quality={100}
-                className="object-cover"
+            <div className="flex flex-col items-center gap-y-4">
+              <button className="super-button pointer-events-none relative z-2 inline-flex size-13 items-center justify-center overflow-hidden rounded-[100px] bg-linear-to-b! from-blue-700! to-sky-600! text-white">
+                <img src="/hugeicons/car-signal.svg" alt="car signal vector" />
+                <div>
+                  <Image
+                    src={superButtonBg}
+                    alt="button background pattern"
+                    placeholder="blur"
+                    className="absolute top-0 right-0 opacity-40 mix-blend-plus-lighter"
+                  />
+                </div>
+              </button>
+              <img
+                src="/landing/steps/line.svg"
+                alt="line vector"
+                className="h-16"
               />
             </div>
-            <div className="flex flex-col gap-y-3">
-              <p className="text-xl font-semibold">ثبت خودرو</p>
-              <p className="text-base">
-                برند، مدل و کیلومتر فعلی خودروت رو وارد کن تا سرویس‌ها دقیق
+            <div className="flex flex-col gap-y-2.5">
+              <p className="text-xl leading-7 font-black text-blue-600">
+                ثبت خودرو
+              </p>
+              <p className="text-base leading-6 text-slate-600">
+                مدل و کیلومتر فعلی خودروت رو وارد کن تا سرویس‌ها دقیق
                 برنامه‌ریزی بشن.
               </p>
             </div>
           </div>
           <div className="flex gap-x-4">
-            <div className="h-30 w-10">
-              <Image
-                src={timelineSecond}
-                alt="timeline second"
-                placeholder="blur"
-                quality={100}
-                className="object-cover"
+            <div className="flex flex-col items-center gap-y-4">
+              <div className="relative flex size-13 items-center justify-center rounded-full border border-slate-200 bg-slate-100 text-slate-800">
+                <img src="/hugeicons/wrench-01.svg" alt="wrench vector" />
+              </div>
+              <img
+                src="/landing/steps/line.svg"
+                alt="line vector"
+                className="h-16"
               />
             </div>
             <div className="flex flex-col gap-y-3">
-              <p className="text-xl font-semibold">تنظیم سرویس‌ها</p>
-              <p className="text-base">
+              <p className="text-xl leading-7 font-black text-slate-800">
+                تنظیم سرویس‌ها
+              </p>
+              <p className="text-base leading-6 text-slate-600">
                 سرویس‌های دوره‌ای موردنظرت رو تعریف کن و برای هر کدوم یادآور
                 بساز.
               </p>
             </div>
           </div>
           <div className="flex gap-x-4">
-            <div className="size-10">
-              <Image
-                src={timelineThird}
-                alt="timeline third"
-                placeholder="blur"
-                quality={100}
-                className="object-cover"
-              />
+            <div className="relative flex size-13 items-center justify-center rounded-full border border-slate-200 bg-slate-100 text-slate-800">
+              <img src="/hugeicons/notification-01.svg" alt="notification vector" />
             </div>
             <div className="flex flex-col gap-y-3">
-              <p className="text-xl font-semibold">دریافت یادآوری به‌موقع</p>
-              <p className="text-base">
+              <p className="text-xl leading-7 font-black text-slate-800">
+                دریافت یادآوری به‌موقع
+              </p>
+              <p className="text-base leading-6 text-slate-600">
                 زمان سرویس‌ها رو بهت یادآوری می‌کنیم تا هیچ چیز رو فراموش نکنی.
               </p>
             </div>

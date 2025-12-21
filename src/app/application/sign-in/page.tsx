@@ -9,7 +9,6 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Car } from "../../../../generated/prisma";
 import MediumSizeLogo from "@/components/medium-size-logo";
-import { Mail02Icon, LockPasswordIcon } from "hugeicons-react";
 import { Spinner } from "@/components/ui/spinner";
 
 type Inputs = {
@@ -68,7 +67,11 @@ export default function SignInPage() {
                 {...register("email")}
               />
               <div className="absolute inset-y-0 start-4 flex size-6 h-full items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50">
-                <Mail02Icon size={24} className="text-slate-500" />
+                <img
+                  src="/hugeicons/mail-02.svg"
+                  alt="mail vector"
+                  className="size-6 text-slate-500"
+                />
               </div>
             </div>
             <div className="relative">
@@ -80,7 +83,11 @@ export default function SignInPage() {
                 {...register("password")}
               />
               <div className="absolute inset-y-0 start-4 flex size-6 h-full items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50">
-                <LockPasswordIcon size={24} className="text-slate-500" />
+                <img
+                  src="/hugeicons/lock-password.svg"
+                  alt="lock password vector"
+                  className="size-6 text-slate-500"
+                />
               </div>
               {watch("password") ? (
                 <button
@@ -110,7 +117,9 @@ export default function SignInPage() {
               )}
             </div>
             <div className="flex w-full items-center justify-end text-sm leading-5 font-medium text-blue-600">
-              <Link href={"/application/forgot-password"}>فراموشی رمز عبور</Link>
+              <Link href={"/application/forgot-password"}>
+                فراموشی رمز عبور
+              </Link>
             </div>
           </div>
         </div>

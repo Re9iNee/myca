@@ -3,8 +3,12 @@
 import MediumSizeLogo from "@/components/medium-size-logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@/components/ui/input-otp";
 import { Spinner } from "@/components/ui/spinner";
-import { LockPasswordIcon, Mail02Icon } from "hugeicons-react";
 import {
   Check,
   ChevronLeft,
@@ -16,11 +20,6 @@ import {
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
 
 type Inputs = {
   password: string;
@@ -114,7 +113,11 @@ export default function ForgotPasswordPage() {
                       {...register("email")}
                     />
                     <div className="absolute inset-y-0 start-4 flex size-6 h-full items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50">
-                      <Mail02Icon size={24} className="text-slate-500" />
+                      <img
+                        src="/hugeicons/mail-02.svg"
+                        alt="mail vector"
+                        className="size-6 text-slate-500"
+                      />
                     </div>
                   </div>
                 ) : step === "otp" ? (

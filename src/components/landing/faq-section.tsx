@@ -1,7 +1,6 @@
 import QuestionSquare from "@public/landing/faq-section/question-square.png";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import { CheckmarkSquare02Icon } from "hugeicons-react";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import {
@@ -15,19 +14,23 @@ const FaqSection = () => {
   return (
     <section className="flex w-full justify-center">
       <div className="flex w-full max-w-360 flex-col items-center gap-y-10 px-27.5 py-22">
-        <div className="flex flex-col items-center gap-y-2">
-          <p className="text-3xl font-bold">سوالات پرتکرار درباره مایکا</p>
-          <p className="text-lg">هر چی باید بدونی، همین‌جاست</p>
+        <div className="flex flex-col items-center gap-y-2.5">
+          <p className="text-3xl leading-9 font-black">
+            سوالات پرتکرار درباره مایکا
+          </p>
+          <p className="text-xl leading-7 text-slate-500">
+            هر چی باید بدونی، همین‌جاست
+          </p>
         </div>
-        <div className="flex justify-between gap-x-6 w-full">
-          <div className="relative h-116 w-98 shrink-0 px-6 py-10">
+        <div className="flex w-full justify-between gap-x-6">
+          <div className="relative h-117.5 w-98 shrink-0 px-6 py-10">
             <img
               src={"/landing/faq-section/asking-questions-vector.svg"}
               alt="hero section"
               className="absolute top-0 right-0 h-full w-full object-contain"
             />
             <div className="flex flex-col gap-y-8">
-              <div className="z-2 flex flex-col gap-y-2">
+              <div className="z-2 flex flex-col gap-y-3.5">
                 <div className="flex items-center gap-x-2">
                   <div>
                     <Image
@@ -38,11 +41,11 @@ const FaqSection = () => {
                       className="size-9 h-full w-full"
                     />
                   </div>
-                  <p className="text-2xl font-bold text-neutral-950">
+                  <p className="text-2xl font-bold text-slate-900">
                     جواب سوالت تو لیست نبود؟
                   </p>
                 </div>
-                <p className="text-xl text-neutral-950">
+                <p className="text-xl leading-7 text-slate-500">
                   سریــع بپرس، ما در کنارتیم.
                 </p>
               </div>
@@ -63,7 +66,11 @@ const FaqSection = () => {
                 variant="primary"
                 className="z-2 w-full gap-x-3 text-lg font-semibold"
               >
-                <CheckmarkSquare02Icon className="size-6" />
+                <img
+                  src="/hugeicons/check-square.svg"
+                  alt="check square vector"
+                  className="size-6"
+                />
                 ارسال سوال
               </Button>
             </div>
@@ -89,19 +96,34 @@ const FaqSection = () => {
               <LandingAccordionTrigger>
                 آیا می‌توانم چند خودروی مختلف را در برنامه اضافه کنم؟
               </LandingAccordionTrigger>
-              <LandingAccordionContent></LandingAccordionContent>
+              <LandingAccordionContent>
+                بله. شما می‌توانید بیش از یک خودرو را در برنامه اضافه و مدیریت
+                کنید. برای هر خودرو سرویس‌ها، یادآوری‌ها و اطلاعات جداگانه ثبت
+                می‌شود تا بدون سردرگمی بتوانید وضعیت هر خودرو را به‌صورت مستقل
+                دنبال کنید.
+              </LandingAccordionContent>
             </LandingAccordionItem>
             <LandingAccordionItem value="item-3">
               <LandingAccordionTrigger>
                 یادآوری سرویس‌ها چگونه تنظیم می‌شود؟
               </LandingAccordionTrigger>
-              <LandingAccordionContent></LandingAccordionContent>
+              <LandingAccordionContent>
+                پس از ثبت هر سرویس، کیلومتر تکرار آن را مشخص می‌کنید. هر بار که
+                کیلومتر خودرو را در برنامه به‌روزرسانی می‌کنید، اپلیکیشن بررسی
+                می‌کند کدام سرویس‌ها زمان انجامشان رسیده است و در صورت نیاز با
+                اعلان به شما یادآوری می‌کند.
+              </LandingAccordionContent>
             </LandingAccordionItem>
             <LandingAccordionItem value="item-4">
               <LandingAccordionTrigger>
                 آیا برای استفاده از برنامه نیاز به اینترنت دارم؟
               </LandingAccordionTrigger>
-              <LandingAccordionContent></LandingAccordionContent>
+              <LandingAccordionContent>
+                برای عملکرد بهتر و جلوگیری از بروز هرگونه مشکل، پیشنهاد می‌شود
+                هنگام استفاده از برنامه به اینترنت متصل باشید. اتصال به اینترنت
+                باعث می‌شود اطلاعات به‌درستی به‌روزرسانی شوند و یادآوری‌ها بدون
+                اختلال انجام شوند.
+              </LandingAccordionContent>
             </LandingAccordionItem>
           </LandingAccordion>
         </div>

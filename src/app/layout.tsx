@@ -55,6 +55,70 @@ const vazirmatn: NextFontWithVariable = localFont({
   display: "swap",
 });
 
+const poppins: NextFontWithVariable = localFont({
+  src: [
+    {
+      path: "../../public/fonts/poppins/PoppinsLatin-Thin.woff2",
+      weight: "100",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/poppins/PoppinsLatin-ExtraLight.woff2",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/poppins/PoppinsLatin-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/poppins/PoppinsLatin-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/poppins/PoppinsLatin-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/poppins/PoppinsLatin-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/poppins/PoppinsLatin-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/poppins/PoppinsLatin-ExtraBold.woff2",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/poppins/PoppinsLatin-Black.woff2",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-poppins",
+  display: "swap",
+});
+
+const gilda: NextFontWithVariable = localFont({
+  src: [
+    {
+      path: "../../public/fonts/gilda-display/GildaDisplay-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-gilda",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "مایکا",
   description: "سرویس خدمات دوره ای ماشین",
@@ -68,7 +132,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`${vazirmatn.variable} font-vazirmatn flex w-full justify-center antialiased`}
+        className={`${vazirmatn.variable} ${poppins.variable} ${gilda.variable} font-vazirmatn flex w-full justify-center antialiased`}
       >
         {children}
       </body>

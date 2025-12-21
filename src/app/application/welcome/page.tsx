@@ -17,7 +17,7 @@ function WelcomePage() {
         <h5 className="text-sm font-light text-white opacity-50">
           نصب نسخه بتا
         </h5>
-        <Button className="drop-shadow-[0px,0px,48px] h-[56px] w-full max-w-80 gap-2 rounded-2xl border-[1.2px] border-blue-800 bg-black/20 py-6.5 text-white">
+        <Button className="drop-shadow-[0px,0px,48px] h-14 w-full max-w-80 gap-2 rounded-2xl border-[1.2px] border-blue-800 bg-black/20 py-6.5 text-white">
           <InstallIcon />
           <span className="text-base font-medium">نصب نرم افزار</span>
         </Button>
