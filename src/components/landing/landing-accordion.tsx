@@ -28,13 +28,13 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "flex h-12 xl:h-17 flex-1 items-center justify-between gap-4 rounded-3xl bg-slate-100/80 px-6 py-4 text-left text-base xl:text-xl font-semibold xl:font-bold transition-all outline-none disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>div]:-rotate-90",
+          "text-right flex h-12 xl:h-17 flex-1 items-center justify-between gap-3 sm:gap-4 rounded-3xl bg-slate-100/80 px-3 sm:px-6 py-2 sm:py-4 text-sm sm:text-base xl:text-xl font-semibold xl:font-bold transition-all outline-none disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>div]:-rotate-90",
           className,
         )}
         {...props}
       >
         {children}
-        <div className="size-6">
+        <div className="size-5 sm:size-6">
           <img src={"/landing/faq-section/alt-arrow.svg"} alt="alt arrow"/>
         </div>
       </AccordionPrimitive.Trigger>

@@ -34,34 +34,40 @@ const TeamMembersSection = () => {
   ];
   return (
     <section className="flex w-full justify-center overflow-hidden bg-slate-50">
-      <div className="relative flex w-full max-w-360 flex-col items-center justify-center gap-y-10 md:px-10 md:py-16 xl:px-23 xl:py-22">
-        <div className="z-2 flex flex-col items-center md:gap-y-1.5 xl:gap-y-2.5">
-          <p className="leading-9 font-black text-slate-900 md:text-2xl xl:text-3xl">
+      <div className="relative flex w-full max-w-360 flex-col items-center justify-center gap-y-10 px-6 py-20 sm:px-10 sm:py-16 xl:px-23 xl:py-22">
+        <div className="z-2 flex flex-col items-center gap-y-1.5 xl:gap-y-2.5">
+          <p className="text-2xl leading-9 font-black text-slate-900 xl:text-3xl">
             تیم مایکا
           </p>
-          <p className="leading-7 text-slate-500 md:text-lg xl:text-xl">
+          <p className="text-lg leading-7 text-slate-500 xl:text-xl">
             با تیم سازنده مایکا آشنا بشید
           </p>
         </div>
-        <div className="flex w-full md:gap-x-3 lg:gap-x-6">
+        <div className="grid w-full max-w-64 grid-cols-1 gap-y-6 sm:max-w-none sm:grid-cols-4 sm:gap-x-3 xl:gap-x-6">
           {teamMembers.map((member, i) => {
+            const orderClass = [
+              "order-4 sm:order-1",
+              "order-3 sm:order-2",
+              "order-2 s,:order-3",
+              "order-1 sm:order-4",
+            ][i];
             return (
               <div
                 key={i}
-                className="relative z-2 flex w-full flex-col gap-y-2 overflow-hidden rounded-4xl bg-linear-to-b from-black to-[#666666] py-4 md:h-86 lg:h-112"
+                className={`aspect-2/3 relative ${orderClass} z-2 flex h-94 w-full flex-col gap-y-2 overflow-hidden rounded-4xl bg-linear-to-b from-black to-[#666666] py-4 sm:h-86 xl:h-112`}
               >
                 <div className="flex h-full flex-col items-center justify-between">
                   <div className="flex w-full flex-col items-center justify-between gap-y-1.5 xl:gap-y-2">
-                    <p className="font-poppins text-center font-semibold whitespace-pre-line text-white md:text-xl md:leading-6 xl:text-3xl xl:leading-8">
+                    <p className="font-poppins text-center font-semibold whitespace-pre-line text-white sm:text-xl sm:leading-6 xl:text-3xl xl:leading-8">
                       {member.firstName}
                       <br />
                       {member.lastName}
                     </p>
-                    <p className="text-center font-gilda leading-5 xl:leading-8 text-white/80 md:text-sm xl:text-base">
+                    <p className="font-gilda text-center leading-5 text-white/80 sm:text-sm xl:text-base xl:leading-8">
                       {member.jobTitle}
                     </p>
                   </div>
-                  <button className="super-button relative z-2 inline-flex md:size-9 items-center justify-center overflow-hidden rounded-[100px] bg-linear-to-b! from-blue-700! to-sky-600! text-white xl:size-10.5">
+                  <button className="super-button relative z-2 inline-flex size-9 items-center justify-center overflow-hidden rounded-[100px] bg-linear-to-b! from-blue-700! to-sky-600! text-white xl:size-10.5">
                     <img
                       src="/hugeicons/linkedin-02.svg"
                       alt="linkedin vector"

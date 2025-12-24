@@ -5,7 +5,7 @@ import SuperButton from "./super-button";
 const InstallAppSection = () => {
   return (
     <section className="flex w-full items-center justify-center">
-      <div className="h-full w-full max-w-360 items-center md:px-10 md:py-20 xl:px-27 xl:py-22">
+      <div className="h-full w-full max-w-360 items-center sm:px-10 sm:py-20 xl:px-27 xl:py-22">
         <div className="relative flex aspect-[2.7] h-full w-full items-center">
           <div className="absolute top-0 right-0 -z-10 h-full w-full">
             <Image
@@ -16,19 +16,19 @@ const InstallAppSection = () => {
               className="h-full w-full overflow-visible object-cover"
             />
           </div>
-          <div className="flex items-center absolute right-0 bottom-0 h-[91%] w-full pr-6 xl:pr-9">
-            <div className="flex flex-col md:w-105 md:gap-y-5 xl:w-170 xl:gap-y-9">
+          <div className="absolute right-0 bottom-0 flex h-[91%] w-full items-center pr-6 xl:pr-9">
+            <div className="flex flex-col sm:w-105 sm:gap-y-5 xl:w-170 xl:gap-y-9">
               <div className="flex flex-col justify-center gap-y-2.5 xl:gap-y-4">
                 <div className="flex flex-col gap-y-2.5 xl:gap-y-4">
-                  <p className="leading-7 font-light text-slate-500 md:text-base xl:text-xl">
+                  <p className="leading-7 font-light text-slate-500 sm:text-base xl:text-xl">
                     بدون نیاز به حساب کاربری
                   </p>
-                  <p className="font-black text-balance md:text-lg md:leading-7 xl:text-4xl xl:leading-14">
+                  <p className="font-black text-balance sm:text-lg sm:leading-7 xl:text-4xl xl:leading-14">
                     اپلیکیشن <span className="text-blue-600">مایکا</span> رو نصب
                     کن و از ماشینت بهتر مراقبت کن!
                   </p>
                 </div>
-                <p className="leading-7 text-slate-500 md:text-base xl:text-xl">
+                <p className="leading-7 text-slate-500 sm:text-base xl:text-xl">
                   فقط کافیه خودروتو ثبت کنی، ما سرویس‌هاشو بهت یادآوری می‌کنیم
                 </p>
               </div>

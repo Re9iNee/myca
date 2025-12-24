@@ -4,19 +4,21 @@ import superButtonBg from "@public/landing/super-button-pattern.png";
 
 const StepsToUseSection = () => {
   return (
-    <section className="flex w-full justify-center max-w-360 items-center md:gap-x-9 md:px-10 md:py-25 xl:gap-x-30 xl:px-32 xl:py-22">
-      <div className="shrink-0 md:h-87.5 md:w-82.5 xl:h-134 xl:w-126">
+    <section className="flex w-full max-w-360 flex-col-reverse items-center justify-center gap-y-10 px-6 py-31 sm:flex-row sm:gap-x-9 sm:gap-y-0 sm:px-10 sm:py-25 xl:gap-x-30 xl:px-32 xl:py-22">
+      <div className="w-full shrink-0 sm:h-87.5 sm:w-82.5 xl:h-134 xl:w-126">
         <Image
           src={mobileView}
           alt="mobile view"
           placeholder="blur"
           quality={100}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain sm:object-cover"
         />
       </div>
       <div className="flex flex-col gap-y-10">
-        <p className="leading-9 font-black text-slate-900 md:text-xl xl:text-3xl">
-          3 مرحله سریع برای استفاده از خدمات ما
+        <p className="text-2xl leading-9 font-black text-slate-900 sm:text-xl xl:text-3xl">
+          3 <span className="hidden sm:inline-flex">مرحله سریع</span>
+          <span className="inline-flex sm:hidden">قدم</span> برای استفاده از
+          خدمات ما
         </p>
         <div className="flex flex-col gap-y-4">
           <div className="flex gap-x-4">
@@ -39,7 +41,7 @@ const StepsToUseSection = () => {
               />
             </div>
             <div className="flex flex-col gap-y-2.5">
-              <p className="leading-7 font-black text-blue-600 md:text-lg xl:text-xl">
+              <p className="text-xl leading-7 font-black text-blue-600 sm:text-lg xl:text-xl">
                 ثبت خودرو
               </p>
               <p className="text-base leading-6 text-slate-600">
@@ -60,7 +62,7 @@ const StepsToUseSection = () => {
               />
             </div>
             <div className="flex flex-col gap-y-3">
-              <p className="leading-7 font-black text-slate-800 md:text-lg xl:text-xl">
+              <p className="text-xl leading-7 font-black text-slate-800 sm:text-lg xl:text-xl">
                 تنظیم سرویس‌ها
               </p>
               <p className="text-base leading-6 text-slate-600">
@@ -77,7 +79,7 @@ const StepsToUseSection = () => {
               />
             </div>
             <div className="flex flex-col gap-y-3">
-              <p className="leading-7 font-black text-slate-800 md:text-lg xl:text-xl">
+              <p className="text-xl leading-7 font-black text-slate-800 sm:text-lg xl:text-xl">
                 دریافت یادآوری به‌موقع
               </p>
               <p className="text-base leading-6 text-slate-600">
