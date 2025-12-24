@@ -13,63 +13,61 @@ import {
 const FaqSection = () => {
   return (
     <section className="flex w-full justify-center">
-      <div className="flex w-full max-w-360 flex-col items-center gap-y-10 px-27.5 py-22">
-        <div className="flex flex-col items-center gap-y-2.5">
-          <p className="text-3xl leading-9 font-black">
+      <div className="flex w-full max-w-360 flex-col items-center gap-y-10 md:px-10 md:py-16 xl:px-27.5 xl:py-22">
+        <div className="flex flex-col items-center md:gap-y-1.5 xl:gap-y-2.5">
+          <p className="text-2xl leading-9 font-black xl:text-3xl">
             سوالات پرتکرار درباره مایکا
           </p>
-          <p className="text-xl leading-7 text-slate-500">
+          <p className="leading-7 text-slate-500 md:text-lg xl:text-xl">
             هر چی باید بدونی، همین‌جاست
           </p>
         </div>
-        <div className="flex w-full justify-between gap-x-6">
-          <div className="relative h-117.5 w-98 shrink-0 px-6 py-10">
+        <div className="flex w-full justify-between md:gap-x-4 xl:gap-x-6">
+          <div className="aspect-49/58 relative w-fit shrink-0 md:px-5 xl:px-6 md:py-6 xl:py-10 h-full">
             <img
               src={"/landing/faq-section/asking-questions-vector.svg"}
               alt="hero section"
               className="absolute top-0 right-0 h-full w-full object-contain"
             />
-            <div className="flex flex-col gap-y-8">
-              <div className="z-2 flex flex-col gap-y-3.5">
+            <div className="flex flex-col md:gap-y-5.5 xl:gap-y-8">
+              <div className="z-2 flex flex-col md:gap-y-1 xl:gap-y-3.5">
                 <div className="flex items-center gap-x-2">
-                  <div>
-                    <Image
-                      src={QuestionSquare}
-                      alt="question square"
-                      placeholder="blur"
-                      quality={100}
-                      className="size-9 h-full w-full"
-                    />
-                  </div>
-                  <p className="text-2xl font-bold text-slate-900">
+                  <Image
+                    src={QuestionSquare}
+                    alt="question square"
+                    placeholder="blur"
+                    quality={100}
+                    className="h-full w-full md:size-6 xl:size-9"
+                  />
+                  <p className="md:text-lg font-bold text-slate-900 xl:text-2xl">
                     جواب سوالت تو لیست نبود؟
                   </p>
                 </div>
-                <p className="text-xl leading-7 text-slate-500">
+                <p className="leading-7 text-slate-500 md:text-base xl:text-xl">
                   سریــع بپرس، ما در کنارتیم.
                 </p>
               </div>
-              <div className="z-2 flex flex-col gap-y-4">
+              <div className="z-2 flex flex-col md:gap-y-3 xl:gap-y-4">
                 <Input
                   required
                   type="text"
                   placeholder="ایمیل"
-                  className="h-13 border-slate-200 bg-white p-3.5 text-base text-slate-800 placeholder:text-base placeholder:text-slate-400"
+                  className="md:h-10 xl:h-13 border-slate-200 bg-white p-3.5 text-xs xl:text-base text-slate-800 placeholder:text-base placeholder:text-slate-400"
                 />
                 <Textarea
-                  className="h-31 resize-none border border-slate-200 bg-white p-3.5 text-base text-slate-800 placeholder:text-base placeholder:text-slate-400"
+                  className="md:h-19 xl:h-31 resize-none border border-slate-200 bg-white p-3.5 text-xs xl:text-base text-slate-800 placeholder:text-base placeholder:text-slate-400"
                   placeholder="سوالت رو اینجا بنویس..."
                 />
               </div>
               <Button
                 size="xl"
                 variant="primary"
-                className="z-2 w-full gap-x-3 text-lg font-semibold"
+                className="z-2 w-full gap-x-2 xl:gap-x-3 text-base xl:text-lg font-semibold md:h-12 xl:h-14"
               >
                 <img
                   src="/hugeicons/check-square.svg"
                   alt="check square vector"
-                  className="size-6"
+                  className="size-5 xl:size-6"
                 />
                 ارسال سوال
               </Button>
@@ -78,7 +76,7 @@ const FaqSection = () => {
           <LandingAccordion
             type="single"
             collapsible
-            className="flex w-full flex-col gap-y-6"
+            className="flex w-full flex-col gap-y-3 xl:gap-y-6"
             defaultValue="item-1"
           >
             <LandingAccordionItem value="item-1">

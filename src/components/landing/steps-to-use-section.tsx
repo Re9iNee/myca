@@ -4,8 +4,8 @@ import superButtonBg from "@public/landing/super-button-pattern.png";
 
 const StepsToUseSection = () => {
   return (
-    <section className="flex w-full max-w-360 items-center gap-x-30 px-32 py-22">
-      <div className="h-134 w-126 shrink-0">
+    <section className="flex w-full justify-center max-w-360 items-center md:gap-x-9 md:px-10 md:py-25 xl:gap-x-30 xl:px-32 xl:py-22">
+      <div className="shrink-0 md:h-87.5 md:w-82.5 xl:h-134 xl:w-126">
         <Image
           src={mobileView}
           alt="mobile view"
@@ -15,13 +15,13 @@ const StepsToUseSection = () => {
         />
       </div>
       <div className="flex flex-col gap-y-10">
-        <p className="text-3xl leading-9 font-black text-slate-900">
+        <p className="leading-9 font-black text-slate-900 md:text-xl xl:text-3xl">
           3 مرحله سریع برای استفاده از خدمات ما
         </p>
         <div className="flex flex-col gap-y-4">
           <div className="flex gap-x-4">
             <div className="flex flex-col items-center gap-y-4">
-              <button className="super-button pointer-events-none relative z-2 inline-flex size-13 items-center justify-center overflow-hidden rounded-[100px] bg-linear-to-b! from-blue-700! to-sky-600! text-white">
+              <button className="super-button inline-shrink-0 pointer-events-none relative z-2 flex size-13 items-center justify-center overflow-hidden rounded-[100px] bg-linear-to-b! from-blue-700! to-sky-600! text-white">
                 <img src="/hugeicons/car-signal.svg" alt="car signal vector" />
                 <div>
                   <Image
@@ -39,7 +39,7 @@ const StepsToUseSection = () => {
               />
             </div>
             <div className="flex flex-col gap-y-2.5">
-              <p className="text-xl leading-7 font-black text-blue-600">
+              <p className="leading-7 font-black text-blue-600 md:text-lg xl:text-xl">
                 ثبت خودرو
               </p>
               <p className="text-base leading-6 text-slate-600">
@@ -50,7 +50,7 @@ const StepsToUseSection = () => {
           </div>
           <div className="flex gap-x-4">
             <div className="flex flex-col items-center gap-y-4">
-              <div className="relative flex size-13 items-center justify-center rounded-full border border-slate-200 bg-slate-100 text-slate-800">
+              <div className="relative flex size-13 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-slate-100 text-slate-800">
                 <img src="/hugeicons/wrench-01.svg" alt="wrench vector" />
               </div>
               <img
@@ -60,7 +60,7 @@ const StepsToUseSection = () => {
               />
             </div>
             <div className="flex flex-col gap-y-3">
-              <p className="text-xl leading-7 font-black text-slate-800">
+              <p className="leading-7 font-black text-slate-800 md:text-lg xl:text-xl">
                 تنظیم سرویس‌ها
               </p>
               <p className="text-base leading-6 text-slate-600">
@@ -70,11 +70,14 @@ const StepsToUseSection = () => {
             </div>
           </div>
           <div className="flex gap-x-4">
-            <div className="relative flex size-13 items-center justify-center rounded-full border border-slate-200 bg-slate-100 text-slate-800">
-              <img src="/hugeicons/notification-01.svg" alt="notification vector" />
+            <div className="relative flex size-13 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-slate-100 text-slate-800">
+              <img
+                src="/hugeicons/notification-01.svg"
+                alt="notification vector"
+              />
             </div>
             <div className="flex flex-col gap-y-3">
-              <p className="text-xl leading-7 font-black text-slate-800">
+              <p className="leading-7 font-black text-slate-800 md:text-lg xl:text-xl">
                 دریافت یادآوری به‌موقع
               </p>
               <p className="text-base leading-6 text-slate-600">
