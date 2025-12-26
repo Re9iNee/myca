@@ -26,7 +26,7 @@ const TeamMembersSection = () => {
           trigger: sectionRef.current,
           start: "top 60%",
           toggleActions: "play none none none",
-          markers: true,
+          // markers: true,
         },
       });
     },
@@ -39,7 +39,7 @@ const TeamMembersSection = () => {
       lastName: "Barkhordar",
       jobTitle: "UI/UX Designer",
       image: kowsarBarkhordar,
-      profile_url: "",
+      profile_url: "https://www.linkedin.com/in/kosar-barkhordar-713597202/",
     },
     {
       firstName: "Morteza",
