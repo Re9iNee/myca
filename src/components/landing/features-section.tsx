@@ -42,7 +42,7 @@ const FeaturesSection = () => {
           trigger: sectionRef.current,
           start: "top 65%",
           toggleActions: "play none none none",
-          markers: true,
+          // markers: true,
         },
       });
     },
