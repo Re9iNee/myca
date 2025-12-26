@@ -49,12 +49,6 @@ const FeaturesSection = () => {
     { scope: sectionRef },
   );
 
-  const addToRefs = (el: HTMLDivElement | null, index: number) => {
-    if (el && !featureCards.current.includes(el)) {
-      featureCards.current[index] = el;
-    }
-  };
-
   return (
     <section
       ref={sectionRef}
@@ -65,7 +59,9 @@ const FeaturesSection = () => {
           return (
             <div
               key={i}
-              ref={(el) => addToRefs(el, i)}
+              ref={(el) => {
+                featureCards.current[i] = el;
+              }}
               className="flex h-full w-full translate-y-30 flex-col overflow-hidden rounded-3xl bg-white opacity-0 shadow-[0_12px_60px_0_rgba(0,0,0,0.06)]"
             >
               <div className="w-full sm:h-61.5 xl:h-90.5">

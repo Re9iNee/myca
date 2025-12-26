@@ -1,12 +1,45 @@
+"use client";
+
 import Image from "next/image";
 import ctaBanner from "@public/landing/install-application/cta-banner.png";
 import SuperButton from "./super-button";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const InstallAppSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const installMycaCard = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.to(installMycaCard.current, {
+        y: 0,
+        opacity: 1,
+        duration: 1.25,
+        ease: "power4.out",
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 60%",
+          toggleActions: "play none none none",
+          markers: true,
+        },
+      });
+    },
+    { scope: sectionRef },
+  );
+
   return (
-    <section className="flex w-full items-center justify-center">
+    <section
+      className="flex w-full items-center justify-center"
+      ref={sectionRef}
+    >
       <div className="h-full w-full max-w-360 items-center sm:px-10 sm:py-20 xl:px-27 xl:py-22">
-        <div className="relative flex aspect-[2.7] h-full w-full items-center">
+        <div
+          className="relative flex aspect-[2.7] h-full w-full translate-y-30 items-center opacity-0"
+          ref={installMycaCard}
+        >
           <div className="absolute top-0 right-0 -z-10 h-full w-full">
             <Image
               src={ctaBanner}

@@ -1,39 +1,73 @@
+"use client";
+
 import mortezaAjidanpour from "@public/landing/team-members-section/morteza-ajidanpour.png";
 import mortezaHasanpour from "@public/landing/team-members-section/morteza-hasanpour.png";
 import kowsarBarkhordar from "@public/landing/team-members-section/kowsar-barkhordar.png";
 import rezaAttarzadeh from "@public/landing/team-members-section/reza-attarzadeh.png";
 import Image from "next/image";
 import superButtonBg from "@public/landing/super-button-pattern.png";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const TeamMembersSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const memberCards = useRef<(HTMLDivElement | null)[]>([]);
+
+  useGSAP(
+    () => {
+      gsap.to(memberCards.current, {
+        y: 0,
+        opacity: 1,
+        duration: 1.25,
+        ease: "power4.out",
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 60%",
+          toggleActions: "play none none none",
+          markers: true,
+        },
+      });
+    },
+    { scope: sectionRef },
+  );
+
   const teamMembers = [
     {
-      firstName: "Kowsar",
+      firstName: "Kosar",
       lastName: "Barkhordar",
       jobTitle: "UI/UX Designer",
       image: kowsarBarkhordar,
+      profile_url: "",
     },
     {
       firstName: "Morteza",
       lastName: "Hasanpour",
       jobTitle: "Front-end Developer",
       image: mortezaHasanpour,
+      profile_url: "https://www.linkedin.com/in/morteza-hasanpour-183847397/",
     },
     {
       firstName: "Reza",
       lastName: "Attarzadeh",
       jobTitle: "Co-Founder & Full-Stack Developer",
       image: rezaAttarzadeh,
+      profile_url: "https://www.linkedin.com/in/rezaattarzadeh/",
     },
     {
       firstName: "Morteza",
       lastName: "Ajidanpour",
       jobTitle: "Co-Founder & Product Designer",
       image: mortezaAjidanpour,
+      profile_url: "https://www.linkedin.com/in/morteza-ajidanpour-30a647103/",
     },
   ];
   return (
-    <section className="flex w-full justify-center overflow-hidden bg-slate-50">
+    <section
+      className="flex w-full justify-center overflow-hidden bg-slate-50"
+      ref={sectionRef}
+    >
       <div className="relative flex w-full max-w-360 flex-col items-center justify-center gap-y-10 px-6 py-20 sm:px-10 sm:py-16 xl:px-23 xl:py-22">
         <div className="z-2 flex flex-col items-center gap-y-1.5 xl:gap-y-2.5">
           <p className="text-2xl leading-9 font-black text-slate-900 xl:text-3xl">
@@ -54,7 +88,10 @@ const TeamMembersSection = () => {
             return (
               <div
                 key={i}
-                className={`aspect-2/3 relative ${orderClass} z-2 flex h-94 w-full flex-col gap-y-2 overflow-hidden rounded-4xl bg-linear-to-b from-black to-[#666666] py-4 sm:h-86 xl:h-112`}
+                ref={(el) => {
+                  memberCards.current[i] = el;
+                }}
+                className={`relative aspect-2/3 translate-y-20 opacity-0 ${orderClass} z-2 flex h-94 w-full flex-col gap-y-2 overflow-hidden rounded-4xl bg-linear-to-b from-black to-[#666666] py-4 sm:h-86 xl:h-112`}
               >
                 <div className="flex h-full flex-col items-center justify-between">
                   <div className="flex w-full flex-col items-center justify-between gap-y-1.5 xl:gap-y-2">
@@ -67,7 +104,11 @@ const TeamMembersSection = () => {
                       {member.jobTitle}
                     </p>
                   </div>
-                  <button className="super-button relative z-2 inline-flex size-9 items-center justify-center overflow-hidden rounded-[100px] bg-linear-to-b! from-blue-700! to-sky-600! text-white xl:size-10.5">
+                  <a
+                    href={member.profile_url}
+                    target="_blank"
+                    className="super-button relative z-2 inline-flex size-9 items-center justify-center overflow-hidden rounded-[100px] bg-linear-to-b! from-blue-700! to-sky-600! text-white xl:size-10.5"
+                  >
                     <img
                       src="/hugeicons/linkedin-02.svg"
                       alt="linkedin vector"
@@ -81,7 +122,7 @@ const TeamMembersSection = () => {
                         className="absolute top-0 right-0 opacity-40 mix-blend-plus-lighter"
                       />
                     </div>
-                  </button>
+                  </a>
                 </div>
 
                 <Image
