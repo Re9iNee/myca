@@ -17,9 +17,9 @@ const Header = () => {
           />
         }
         text={
-          <>
+          <span>
             ورود <span className="font-normal!">/</span> ثبت نام
-          </>
+          </span>
         }
         className="z-2 h-12! w-53! text-base! sm:h-13! sm:w-59! sm:text-lg xl:h-14!"
       />

@@ -1,13 +1,14 @@
 import heroSection from "@public/landing/hero/hero-section.png";
+import heroSectionMobile from "@public/landing/hero/hero-section-mobile.png";
 import Image from "next/image";
 import SuperButton from "./super-button";
 
 const HeroSection = () => {
   return (
-    <section className="relative flex max-h-svh min-h-svh w-full max-w-360 items-center justify-between px-6 py-20 sm:px-10 sm:py-0 xl:px-27">
-      <div className="mx-auto flex flex-col items-center gap-y-12 py-6 text-center sm:mx-0 sm:items-start sm:text-right">
+    <section className="relative flex max-h-svh min-h-svh w-full max-w-360 sm:items-center justify-between px-6 py-20 pt-44 sm:px-10 sm:py-0 xl:px-27">
+      <div className="mx-auto flex flex-col items-center gap-y-8 sm:gap-y-12 py-6 text-center sm:mx-0 sm:items-start sm:text-right">
         <div className="flex flex-col gap-y-5">
-          <div className="flex flex-col gap-y-3">
+          <div className="flex flex-col gap-y-2 sm:gap-y-3">
             <p className="text-lg leading-7 font-light text-slate-600 xl:text-xl">
               دیگه نگران سرویس‌های دوره‌ای ماشین نباش
             </p>
@@ -32,13 +33,21 @@ const HeroSection = () => {
           className="h-14! xl:h-15"
         />
       </div>
-      <div className="absolute right-0 bottom-1/8 -z-10 w-full sm:top-0">
+      <div className="absolute top-0 right-0 -z-10 hidden w-full sm:flex">
         <Image
           src={heroSection}
           alt="hero section"
           placeholder="blur"
           quality={100}
-          priority={true}
+          className="h-full w-full object-contain"
+        />
+      </div>
+      <div className="absolute flex bottom-0 right-0 -z-10 w-full sm:hidden">
+        <Image
+          src={heroSectionMobile}
+          alt="hero section mobile"
+          placeholder="blur"
+          quality={100}
           className="h-full w-full object-contain"
         />
       </div>

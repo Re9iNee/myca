@@ -23,7 +23,7 @@ const FaqSection = () => {
           </p>
         </div>
         <div className="sm:items-start flex h-full w-full flex-col-reverse gap-y-10 sm:flex-row sm:justify-between sm:gap-x-4 sm:gap-y-0 xl:gap-x-6">
-          <div className="relative h-full w-full px-5 py-6 sm:aspect-49/58 sm:w-fit sm:shrink-0 xl:px-6 xl:py-10">
+          {/* <div className="relative h-full w-full px-5 py-6 sm:aspect-49/58 sm:w-fit sm:shrink-0 xl:px-6 xl:py-10">
             <img
               src={"/landing/faq-section/asking-questions-vector.svg"}
               alt="asking questions vector"
@@ -36,7 +36,6 @@ const FaqSection = () => {
                     <Image
                       src={QuestionSquare}
                       alt="question square"
-                      placeholder="blur"
                       quality={100}
                       className="h-full w-full"
                     />
@@ -75,12 +74,11 @@ const FaqSection = () => {
                 ارسال سوال
               </Button>
             </div>
-          </div>
+          </div> */}
           <LandingAccordion
             type="single"
             collapsible
             className="flex sm:h-89 lg:h-116 h-full w-full flex-col gap-y-3 xl:gap-y-6"
-            defaultValue="item-1"
           >
             <LandingAccordionItem value="item-1">
               <LandingAccordionTrigger>
