@@ -33,7 +33,7 @@ function Loading() {
       </div>
       <div className="pt-3 pb-3">
         <Button
-          className="h-[56px] w-full rounded-2xl bg-linear-to-r from-blue-600 to-blue-500 px-8 text-base font-semibold [&_svg:not([class*='size-'])]:size-6"
+          className="h-14 w-full rounded-2xl bg-linear-to-r from-blue-600 to-blue-500 px-8 text-base font-semibold [&_svg:not([class*='size-'])]:size-6"
           asChild
         >
           <Link href={"/application/new-service"}>

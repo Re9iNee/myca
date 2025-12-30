@@ -102,7 +102,7 @@ export default function MileageSection() {
                 <DrawerFooter className="px-0 py-3">
                   <Button
                     disabled={isPending}
-                    className="h-[52px] rounded-2xl border border-slate-300 bg-linear-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-semibold text-white disabled:bg-none disabled:text-slate-300 disabled:opacity-100"
+                    className="h-13 rounded-2xl border border-slate-300 bg-linear-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-semibold text-white disabled:bg-none disabled:text-slate-300 disabled:opacity-100"
                   >
                     ذخیره کیلومتر
                   </Button>
@@ -112,7 +112,7 @@ export default function MileageSection() {
           </Drawer>
           <Button
             asChild
-            className="flex h-[54px] w-[167.5px] justify-center gap-2 rounded-full border-[1.5px] border-blue-100 bg-linear-to-l from-blue-500 to-blue-600 py-4 text-sm font-semibold text-white [&_svg:not([class*='size-'])]:size-[22px]"
+            className="flex h-13.5 w-[167.5px] justify-center gap-2 rounded-full border-[1.5px] border-blue-100 bg-linear-to-l from-blue-500 to-blue-600 py-4 text-sm font-semibold text-white [&_svg:not([class*='size-'])]:size-[22px]"
           >
             <Link href={"/application/new-service"}>
               <Wrench className="mt-0.5" />

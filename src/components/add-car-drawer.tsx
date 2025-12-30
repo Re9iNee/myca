@@ -85,14 +85,14 @@ function AddCarDrawer() {
             required
             type="text"
             placeholder="نام ماشین"
-            className="h-[52px] text-base font-semibold text-slate-800 placeholder:font-normal placeholder:text-slate-400"
+            className="h-13 text-base font-semibold text-slate-800 placeholder:font-normal placeholder:text-slate-400"
             {...register("model")}
           />
           <Input
             min={0}
             required
             inputMode="numeric"
-            className="h-[52px] text-base font-semibold text-slate-800 placeholder:font-normal placeholder:text-slate-400"
+            className="h-13 text-base font-semibold text-slate-800 placeholder:font-normal placeholder:text-slate-400"
             placeholder="کیلومتر کارکرد"
             {...register("mileage", {
               onChange: (e) => {
@@ -119,7 +119,7 @@ function AddCarDrawer() {
           <DrawerFooter className="px-0 py-3">
             <Button
               disabled={isPending || !formState.isDirty}
-              className="h-[52px] rounded-2xl border border-slate-300 bg-gradient-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-semibold text-white disabled:bg-none disabled:text-slate-300 disabled:opacity-100"
+              className="h-13 rounded-2xl border border-slate-300 bg-linear-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-semibold text-white disabled:bg-none disabled:text-slate-300 disabled:opacity-100"
             >
               ثبت ماشین جدید
             </Button>

@@ -34,12 +34,12 @@ function RemoveServiceBtn({ serviceId }: { serviceId: string }) {
 
   return (
     <Dialog>
-      <DialogTrigger className="mt-2 flex h-[52px] w-full justify-center gap-2 rounded-lg border-[1px] border-slate-300 p-4 py-4 text-center text-sm font-medium text-slate-500">
+      <DialogTrigger className="mt-2 flex h-13 w-full justify-center gap-2 rounded-lg border-[1px] border-slate-300 p-4 py-4 text-center text-sm font-medium text-slate-500">
         <Trash size={20} />
         حذف سرویس
       </DialogTrigger>
       <DialogContent>
-        <DialogHeader className="space-y-0.5 px-4 py-2 !text-right">
+        <DialogHeader className="space-y-0.5 px-4 py-2 text-right!">
           <DialogTitle className="text-base font-bold text-slate-800">
             آیا این سرویس حذف شود؟
           </DialogTitle>
@@ -48,12 +48,12 @@ function RemoveServiceBtn({ serviceId }: { serviceId: string }) {
             حذف این سرویس اطمینان دارید؟
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="flex !flex-col gap-y-2.5 px-4 py-3">
+        <DialogFooter className="flex flex-col! gap-y-2.5 px-4 py-3">
           <DialogClose asChild>
             <Button
               type="button"
               variant="secondary"
-              className="h-[52px] rounded-2xl border border-slate-300 bg-transparent py-4 text-sm font-medium text-slate-500"
+              className="h-13 rounded-2xl border border-slate-300 bg-transparent py-4 text-sm font-medium text-slate-500"
             >
               <ChevronRight />
               بازگشت
@@ -64,7 +64,7 @@ function RemoveServiceBtn({ serviceId }: { serviceId: string }) {
             type="submit"
             variant={"destructive"}
             onClick={() => removeService()}
-            className="h-[52px] rounded-2xl bg-gradient-to-r from-red-700 to-red-600 py-4 text-sm font-medium text-white disabled:grayscale-100"
+            className="h-13 rounded-2xl bg-linear-to-r from-red-700 to-red-600 py-4 text-sm font-medium text-white disabled:grayscale-100"
           >
             <Trash />
             حذف سرویس

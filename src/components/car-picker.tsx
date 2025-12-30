@@ -76,10 +76,10 @@ export default function CarPicker() {
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className="h-[52px] grow rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3 text-right text-lg font-semibold text-slate-600"
+              className="h-13 grow rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3 text-right text-lg font-semibold text-slate-600"
             >
               {selectedCar?.name}
-              <ChevronDown className="mr-auto size-[26px] shrink-0 text-slate-500 opacity-50" />
+              <ChevronDown className="mr-auto size-6.5 shrink-0 text-slate-500 opacity-50" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="max-w-screen p-0">
