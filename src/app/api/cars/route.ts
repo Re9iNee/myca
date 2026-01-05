@@ -12,6 +12,7 @@ export const POST = async (request: Request) => {
     const ownerData = ownerId
       ? { connectOrCreate: { where: { id: ownerId }, create: {} } }
       : { create: {} };
+    console.log("ownerData: ",ownerData)
 
     const res = await prisma.car.create({
       data: {
@@ -20,7 +21,7 @@ export const POST = async (request: Request) => {
         mileage: Number(mileage),
       },
     });
-
+    console.log("res: ",res)
     return new Response(JSON.stringify(res), { status: 200 });
   } catch (error) {
     console.error(error);
