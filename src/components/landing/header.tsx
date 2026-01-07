@@ -1,4 +1,4 @@
-import SuperButton from "./super-button";
+import { SuperButtonLink } from "./super-button";
 
 const Header = () => {
   return (
@@ -8,7 +8,8 @@ const Header = () => {
         alt="medium size logo"
         className="z-2 h-10 xl:h-13"
       />
-      <SuperButton
+      <SuperButtonLink
+        href="/application/sign-in"
         icon={
           <img
             src="/hugeicons/login-square-02.svg"
