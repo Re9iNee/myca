@@ -1,6 +1,6 @@
 import Image from "next/image";
 import footerCar from "@public/landing/footer/car.png";
-import SuperButton from "./super-button";
+import { SuperButtonLink } from "./super-button";
 
 const Footer = () => {
   return (
@@ -19,7 +19,8 @@ const Footer = () => {
                 یادآوری زمان سرویس، فقط با یه کلیک بدون دردسر
               </p>
             </div>
-            <SuperButton
+            <SuperButtonLink
+              href="/application/sign-in"
               icon={
                 <img
                   src="/hugeicons/login-square-02.svg"

@@ -107,7 +107,7 @@ const TeamMembersSection = () => {
                   <a
                     href={member.profile_url}
                     target="_blank"
-                    className="super-button relative z-2 inline-flex size-9 items-center justify-center overflow-hidden rounded-[100px] bg-linear-to-b! from-blue-700! to-sky-600! text-white xl:size-10.5"
+                    className="super-button transition duration-300 hover:scale-110 relative z-2 inline-flex size-9 items-center justify-center overflow-hidden rounded-[100px] bg-linear-to-b! from-blue-700! to-sky-600! text-white xl:size-10.5"
                   >
                     <img
                       src="/hugeicons/linkedin-02.svg"
@@ -130,7 +130,7 @@ const TeamMembersSection = () => {
                   alt={member.jobTitle}
                   placeholder="blur"
                   quality={100}
-                  className="absolute right-0 bottom-0 object-contain grayscale"
+                  className="absolute transition duration-300 hover:scale-105 right-0 bottom-0 object-contain grayscale"
                 />
               </div>
             );
