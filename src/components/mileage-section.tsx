@@ -59,22 +59,29 @@ export default function MileageSection() {
   };
 
   return (
-    <section className="grid min-h-135.25 grow place-items-center content-center gap-6">
+    <section className="grid h-full grow place-items-center content-center gap-6">
       {/* Mileage section */}
       <div className="flex flex-col gap-y-2.5 text-center">
         <h2 className="text-lg font-medium text-slate-500">کیلومتر کارکرد</h2>
         <Mileage />
       </div>
       {/* Actions */}
-      <div className="space-y-2.5">
-        <div className="flex gap-2.5">
+      <div className="flex flex-col gap-y-2.5 w-full">
+        <div className="flex w-full gap-x-2.5">
           <Drawer open={isDrawerOpen} onOpenChange={setDrawerOpen}>
             <DrawerTrigger
-              className="flex h-13.5 w-[167.5px] items-center justify-center gap-2 rounded-full border-[1.5px] border-slate-200 bg-white py-4 text-sm font-semibold text-slate-600"
+              className="flex w-full"
               onClick={() => setDrawerOpen(true)}
+              asChild
             >
-              <CiCirclePlus size={22} className="mt-0.5 stroke-1" /> آپدیت
-              کیلومتر
+              <Button
+                variant="outline"
+                aria-label="update mileage"
+                className="flex h-13.5 flex-1 items-center justify-center gap-2 rounded-full border-slate-200 p-4 text-sm font-semibold text-slate-600"
+              >
+                <CiCirclePlus size={22} className="mt-0.5 stroke-1" /> آپدیت
+                کیلومتر
+              </Button>
             </DrawerTrigger>
             <DrawerContent>
               <DrawerHeader className="space-x-1.5 px-8 pt-2 pb-3">
@@ -110,7 +117,7 @@ export default function MileageSection() {
           </Drawer>
           <Button
             asChild
-            className="flex h-13.5 w-[167.5px] justify-center gap-2 rounded-full border-[1.5px] border-blue-100 bg-linear-to-l from-blue-500 to-blue-600 py-4 text-sm font-semibold text-white [&_svg:not([class*='size-'])]:size-[22px]"
+            className="flex h-13.5 flex-1 justify-center gap-2 rounded-full border-[1.5px] border-blue-100 bg-linear-to-l from-blue-500 to-blue-600 py-4 text-sm font-semibold text-white [&_svg:not([class*='size-'])]:size-[22px]"
           >
             <Link href={"/application/new-service"}>
               <Wrench className="mt-0.5" />
@@ -127,7 +134,7 @@ export default function MileageSection() {
           <Link
             href={`/application/upcoming-services?carId=${selectedCar?.id}`}
           >
-            <CalendarDays />
+            <CalendarDays className="text-slate-700 stoke-0.5"/>
             <span>سرویس های آینده</span>
           </Link>
         </Button>
