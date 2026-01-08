@@ -76,7 +76,7 @@ function NewServicePage() {
       onSubmit={handleSubmit(onSubmit)}
       className="flex h-full flex-col p-4"
     >
-      <Link href={"../"} className="flex items-center gap-2">
+      <Link href="/application" className="flex items-center gap-2">
         <ChevronRight className="mt-0.5 h-5 w-5 stroke-2" />
         بازگشت
       </Link>
@@ -150,6 +150,7 @@ function NewServicePage() {
 
       <Button
         disabled={pending}
+        type="submit"
         className="h-13 rounded-2xl bg-linear-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-bold disabled:grayscale-100"
       >
         ثبت سرویس

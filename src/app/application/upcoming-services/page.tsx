@@ -1,10 +1,9 @@
 import ServiceListWrapper from "@/components/service-list-wrapper";
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/prisma";
-import { ChevronRight, Wrench } from "lucide-react";
+import { ChevronRight, ScrollText, Wrench } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { LuScrollText } from "react-icons/lu";
 
 type Props = {
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -24,17 +23,21 @@ export default async function CarHistoryPage({ searchParams }: Props) {
   return (
     <main className="flex h-full w-full flex-col px-6">
       {/* navigation header */}
-      <header className="flex items-center gap-2 py-2.5 text-sm font-medium text-slate-500">
-        <Link href={"/application/"} className="flex items-center gap-2">
-          <ChevronRight className="mt-0.5 h-5 w-5 stroke-2" />
-          بازگشت
-        </Link>
-      </header>
-
-      <h1 className="flex gap-3 py-2.5 text-lg font-bold text-slate-700">
-        <LuScrollText className="mt-0.5 h-7 w-7 stroke-2 text-slate-700" />
-        سرویس های آینده
-      </h1>
+      <div className="flex flex-col pt-4">
+        <div className="py-2.5 pl-4">
+          <Link
+            href={"/application"}
+            className="items- center flex gap-2 text-sm font-medium text-slate-500"
+          >
+            <ChevronRight className="size-5 stroke-2" />
+            بازگشت
+          </Link>
+        </div>
+        <h1 className="flex gap-x-3 py-2.5 text-lg font-bold text-slate-700">
+          <ScrollText className="size-7 stroke-2" />
+          سرویس های آینده
+        </h1>
+      </div>
       <ServiceListWrapper services={services} />
       <div className="pt-3 pb-3">
         <Button

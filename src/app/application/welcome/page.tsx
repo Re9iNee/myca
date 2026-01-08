@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function WelcomePage() {
   return (
-    <div className="relative flex h-full flex-col overflow-hidden bg-slate-900 bg-gradient-to-t text-center">
+    <div className="relative flex h-full flex-col overflow-hidden bg-slate-900 bg-linear-to-t text-center">
       <div className="mx-4 mt-20 space-y-5">
         <h1 className="text-6xl font-extrabold text-white">
           مایکا

@@ -1,6 +1,6 @@
 "use client";
 
-import { mileageToFarsi } from "@/lib/utils";
+import { dateToShamsi, mileageToFarsi } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -8,7 +8,7 @@ import { Service } from "../../generated/prisma";
 import EmptyServicesState from "./empty-services-state";
 import SearchInput from "./search-input";
 
-function ServiceListWrapper({ services }: { services: Service[] }) {
+function HistoryList({ services }: { services: Service[] }) {
   const [searchTerm, setSearchTerm] = useState("");
   const filteredServices = useMemo(() => {
     return services.filter((service) =>
@@ -22,7 +22,10 @@ function ServiceListWrapper({ services }: { services: Service[] }) {
     <>
       {filteredServices.length > 0 ? (
         <div className="pt-3.5">
-          <SearchInput onChange={(e) => setSearchTerm(e.target.value)} />
+          <SearchInput
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="جستجو"
+          />
         </div>
       ) : (
         <></>
@@ -30,7 +33,7 @@ function ServiceListWrapper({ services }: { services: Service[] }) {
 
       {filteredServices.length > 0 ? (
         <>
-          <div className="scrollbar-hide mt-3.5 grow overflow-y-auto">
+          <div className="scrollbar-hide py-3.5 grow overflow-y-auto">
             {filteredServices.map((service) => (
               <Row key={service.id} {...service} />
             ))}
@@ -43,9 +46,9 @@ function ServiceListWrapper({ services }: { services: Service[] }) {
   );
 }
 
-export default ServiceListWrapper;
+export default HistoryList;
 
-function Row({ id, title, mileage, carId }: Partial<Service>) {
+function Row({ id, title, mileage, date, carId }: Partial<Service>) {
   return (
     <Link
       href={{
@@ -60,10 +63,14 @@ function Row({ id, title, mileage, carId }: Partial<Service>) {
         <span className="text-sm font-semibold text-slate-600">{title}</span>
         <div className="flex items-center gap-2">
           <span className="text-xs font-medium text-slate-400">
-            کیلومتر سرویس بعدی:
+            {dateToShamsi(date!)}
           </span>
-          <span className="text-xs font-semibold text-blue-500">
-            {mileageToFarsi(mileage ?? 0)}
+          <div className="h-4 w-px rounded-sm bg-slate-300" />
+          <span className="flex gap-x-1.5 text-xs font-medium text-slate-400">
+            کیلومتر:
+            <span className="font-semibold text-blue-500">
+              {mileageToFarsi(mileage ?? 0)}
+            </span>
           </span>
         </div>
       </div>
