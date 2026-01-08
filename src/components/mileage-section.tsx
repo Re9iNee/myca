@@ -3,8 +3,6 @@
 import Link from "next/link";
 import { CiCirclePlus } from "react-icons/ci";
 import { Button } from "./ui/button";
-import CalenderSettingIcon from "@public/calendar-setting.svg";
-
 import {
   Drawer,
   DrawerContent,
@@ -21,13 +19,12 @@ import {
   mileageInputChange,
   mileageToFarsi,
 } from "@/lib/utils";
-import { Wrench } from "lucide-react";
+import { CalendarDays, Wrench } from "lucide-react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import Mileage from "./mileage";
 import MileageInput from "./mileage-input";
-import Image from "next/image";
 
 type Inputs = {
   mileage: string;
@@ -62,9 +59,9 @@ export default function MileageSection() {
   };
 
   return (
-    <section className="grid min-h-[541px] grow place-items-center content-center gap-6">
+    <section className="grid min-h-135.25 grow place-items-center content-center gap-6">
       {/* Mileage section */}
-      <div className="space-y-2.5 text-center">
+      <div className="flex flex-col gap-y-2.5 text-center">
         <h2 className="text-lg font-medium text-slate-500">کیلومتر کارکرد</h2>
         <Mileage />
       </div>
@@ -73,10 +70,11 @@ export default function MileageSection() {
         <div className="flex gap-2.5">
           <Drawer open={isDrawerOpen} onOpenChange={setDrawerOpen}>
             <DrawerTrigger
-              className="flex h-[54px] w-[167.5px] items-center justify-center gap-2 rounded-full border-[1.5px] border-slate-200 bg-white py-4 text-sm font-semibold text-slate-600"
+              className="flex h-13.5 w-[167.5px] items-center justify-center gap-2 rounded-full border-[1.5px] border-slate-200 bg-white py-4 text-sm font-semibold text-slate-600"
               onClick={() => setDrawerOpen(true)}
             >
-              <CiCirclePlus size={22} className="mt-0.5" /> آپدیت کیلومتر
+              <CiCirclePlus size={22} className="mt-0.5 stroke-1" /> آپدیت
+              کیلومتر
             </DrawerTrigger>
             <DrawerContent>
               <DrawerHeader className="space-x-1.5 px-8 pt-2 pb-3">
@@ -124,10 +122,12 @@ export default function MileageSection() {
           asChild
           variant={"outline"}
           aria-label="upcoming services"
-          className="flex h-[54px] w-full items-center justify-center gap-2 rounded-full border-slate-200 p-4 text-sm font-semibold text-slate-600"
+          className="flex h-13.5 w-full items-center justify-center gap-2 rounded-full border-slate-200 p-4 text-sm font-semibold text-slate-600"
         >
-          <Link href={`/application/upcoming-services?carId=${selectedCar?.id}`}>
-            <Image src={CalenderSettingIcon} alt="calendar setting icon" />
+          <Link
+            href={`/application/upcoming-services?carId=${selectedCar?.id}`}
+          >
+            <CalendarDays />
             <span>سرویس های آینده</span>
           </Link>
         </Button>

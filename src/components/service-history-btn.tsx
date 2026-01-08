@@ -2,7 +2,6 @@
 
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
-
 import { LuScrollText } from "react-icons/lu";
 import { Button } from "./ui/button";
 import useStore from "@/hooks/use-store";
@@ -14,7 +13,7 @@ export default function ServiceHistoryBtn() {
   return (
     <Link
       href={`/application/history?carId=${selectedCar?.id}`}
-      className="mb-5 flex items-center justify-between gap-4 rounded-2xl border-2 border-slate-100 bg-white p-4 drop-shadow-xs"
+      className="mb-5 flex items-center justify-between gap-4 rounded-2xl border-2 border-slate-100 bg-white p-4 shadow-[0_12px_60px_0_rgba(0,0,70,0.08)]"
     >
       <div className="flex gap-2">
         <LuScrollText className="mt-0.5 h-5 w-5 stroke-2 text-slate-700" />

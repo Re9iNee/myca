@@ -67,8 +67,8 @@ export default function CarPicker() {
   }, [ownerId, setCars]);
 
   return (
-    <section className="space-y-2.5 pt-3">
-      <h2 className="font-semibold text-slate-500">انتخاب ماشین</h2>
+    <section className="flex flex-col gap-y-2.5 pt-3">
+      <h2 className="font-medium text-sm text-slate-600">انتخاب ماشین</h2>
       <div className="flex items-center justify-between gap-3">
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
@@ -76,15 +76,15 @@ export default function CarPicker() {
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className="h-13 grow rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3 text-right text-lg font-semibold text-slate-600"
+              className="h-12 grow rounded-full border border-slate-200 bg-slate-50 p-3 pr-4! text-right text-base font-semibold text-slate-700"
             >
               {selectedCar?.name}
-              <ChevronDown className="mr-auto size-6.5 shrink-0 text-slate-500 opacity-50" />
+              <ChevronDown className="mr-auto size-5.5 shrink-0 text-slate-500" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="max-w-screen p-0">
             <Command>
-              <CommandInput placeholder="جست وجوی ماشین ..." />
+              <CommandInput placeholder="جستجوی ماشین ..." />
               <CommandList>
                 <CommandEmpty>ماشینی پیدا نشد</CommandEmpty>
                 <CommandGroup>
