@@ -17,6 +17,7 @@ import {
   DrawerTrigger,
 } from "./ui/drawer";
 import { Input } from "./ui/input";
+import { Plus } from "lucide-react";
 
 type Inputs = {
   model: string;
@@ -59,16 +60,16 @@ function AddCarDrawer() {
   return (
     <Drawer open={isDrawerOpen} onOpenChange={setDrawerOpen}>
       <DrawerTrigger
-        className="flex h-[54px] items-center gap-2 rounded-full border-[1.5px] border-slate-200 bg-white p-4 text-sm font-semibold text-slate-600"
+        className="flex h-13.5 items-center gap-2 rounded-full border-[1.5px] border-slate-200 bg-white p-4 text-sm font-semibold text-slate-600"
         onClick={() => setDrawerOpen(true)}
         asChild
       >
         <Button
           size={"icon"}
           variant={"outline"}
-          className="size-[52px] rounded-lg border border-[#E2E8F080]/50 bg-slate-50 p-3"
+          className="size-12 rounded-full border border-slate-200 bg-slate-50 p-3"
         >
-          <CiSquarePlus className="size-[26px] text-slate-500" />
+          <Plus className="size-5.5 text-slate-500" />
         </Button>
       </DrawerTrigger>
       <DrawerContent>

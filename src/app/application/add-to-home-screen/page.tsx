@@ -26,7 +26,7 @@ function AddToHomeScreenPage() {
     <div className="flex h-full flex-col p-6 text-center">
       <div className="mt-8">
         <div className="mb-10">
-          <h1 className="inline-block bg-gradient-to-l from-[#1B80E5] to-[#392DDE] bg-clip-text text-[56px] font-bold text-transparent">
+          <h1 className="inline-block bg-linear-to-l from-[#1B80E5] to-[#392DDE] bg-clip-text text-[56px] font-bold text-transparent">
             مایکا
           </h1>
           <p className="text-sm font-normal text-slate-400">
@@ -38,7 +38,7 @@ function AddToHomeScreenPage() {
         </p>
       </div>
 
-      <ol className="flex-grow pt-12 text-right">
+      <ol className="grow pt-12 text-right">
         {steps.map((step, index) => (
           <li key={index}>
             <Step
@@ -76,7 +76,7 @@ type StepProps = {
 function Step({ title, icon, description }: StepProps) {
   return (
     <div className="flex items-center gap-2.5 py-3.5">
-      <div className="grid h-[60px] w-[60px] place-items-center rounded-full border border-black/5 bg-[#F4F7FA80] stroke-2 text-[#1962F4]">
+      <div className="grid size-15 place-items-center rounded-full border border-black/5 bg-[#F4F7FA80] stroke-2 text-[#1962F4]">
         {icon}
       </div>
       <div className="flex flex-col gap-1.5">

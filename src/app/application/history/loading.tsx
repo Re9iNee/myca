@@ -1,10 +1,9 @@
 import SearchInput from "@/components/search-input";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ChevronRight, Wrench } from "lucide-react";
+import { ChevronRight, ScrollText, Wrench } from "lucide-react";
 import Link from "next/link";
 import { useMemo } from "react";
-import { LuScrollText } from "react-icons/lu";
 
 function Loading() {
   const filteredServices = useMemo(() => {
@@ -22,7 +21,7 @@ function Loading() {
       </header>
 
       <h1 className="flex gap-3 py-2.5 text-lg font-bold text-slate-700">
-        <LuScrollText className="mt-0.5 h-7 w-7 stroke-2 text-slate-700" />
+        <ScrollText className="mt-0.5 h-7 w-7 stroke-2 text-slate-700" />
         تاریخچه سرویس ها
       </h1>
       <SearchInput className="mt-3.5" />
