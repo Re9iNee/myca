@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "module": "ESNext",
+    "target": "ES2023",
     "lib": [
       "dom",
       "dom.iterable",
@@ -10,9 +11,8 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
-    "esModuleInterop": true,
     "noImplicitAny": true,
-    "module": "esnext",
+    "esModuleInterop": true,
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -30,18 +30,18 @@
       "@public/*": [
         "./public/*"
       ],
-      "@prisma": [
-        "./prisma/index.ts"
-      ]
+      "@prisma/generated/*": ["./prisma/generated/prisma/*"] 
     }
   },
   "include": [
+    "prisma/schema.prisma",
+    "prisma.config.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
-  ],
+, "prisma/seed.ts"  ],
   "exclude": [
     "node_modules"
   ]

@@ -18,7 +18,7 @@ import {
   X,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
 type Inputs = {
@@ -35,19 +35,121 @@ export default function ForgotPasswordPage() {
   const { register, handleSubmit, formState, control, watch } =
     useForm<Inputs>();
   const [step, setStep] = useState<stepOptions>("email");
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    setStep("otp");
-    // setPending(true);
+  const [resendCooldown, setResendCooldown] = useState<number>(0);
+  const [resendAttempts, setResendAttempts] = useState<number>(0);
+  const [otpError, setOtpError] = useState<string | null>(null);
+  const [generalError, setGeneralError] = useState<string | null>(null);
 
-    // const result = await fetch("/api/login/", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     email: data.email,
-    //   }),
-    // });
-    // const car: Car = await result.json();
-    // router.push("/application/");
-    // setPending(false);
+  useEffect(() => {
+    if (resendCooldown <= 0) return;
+
+    const timer = setInterval(() => {
+      setResendCooldown((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [resendCooldown]);
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setGeneralError(null);
+    setOtpError(null);
+
+    try {
+      if (step === "email") {
+        setPending(true);
+
+        const response = await fetch("/api/auth/forgot-password/start", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: data.email,
+          }),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          setGeneralError(result.message || "ارسال کد با خطا مواجه شد.");
+          return;
+        }
+
+        setStep("otp");
+        setResendCooldown(60);
+        setResendAttempts(1);
+        return;
+      }
+
+      if (step === "otp") {
+        setPending(true);
+
+        const response = await fetch("/api/auth/otp/verify", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: data.email,
+            purpose: "forgot_password",
+            code: data.otp,
+          }),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          setOtpError(result.message || "کد وارد شده نامعتبر است.");
+          return;
+        }
+
+        setStep("new-password");
+        return;
+      }
+
+      if (step === "new-password") {
+        if (data.password !== data.confirm_password) {
+          setGeneralError("رمز عبور و تکرار آن یکسان نیستند.");
+          return;
+        }
+
+        setPending(true);
+
+        const response = await fetch("/api/auth/forgot-password/complete", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: data.email,
+            code: data.otp,
+            newPassword: data.password,
+          }),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          setGeneralError(result.message || "ذخیره رمز عبور با خطا مواجه شد.");
+          return;
+        }
+
+        setStep("success");
+        return;
+      }
+
+      if (step === "success") {
+        router.push("/application/sign-in");
+      }
+    } finally {
+      setPending(false);
+    }
   };
   const titleGenerator = () => {
     if (step === "email") {
@@ -121,31 +223,81 @@ export default function ForgotPasswordPage() {
                     </div>
                   </div>
                 ) : step === "otp" ? (
-                  <div dir="ltr" className="flex justify-end">
-                    <Controller
-                      name="otp"
-                      control={control}
-                      defaultValue=""
-                      render={({ field }) => (
-                        <InputOTP maxLength={5} {...field}>
-                          <InputOTPGroup>
-                            <InputOTPSlot index={0} />
-                          </InputOTPGroup>
-                          <InputOTPGroup>
-                            <InputOTPSlot index={1} />
-                          </InputOTPGroup>
-                          <InputOTPGroup>
-                            <InputOTPSlot index={2} />
-                          </InputOTPGroup>
-                          <InputOTPGroup>
-                            <InputOTPSlot index={3} />
-                          </InputOTPGroup>
-                          <InputOTPGroup>
-                            <InputOTPSlot index={4} />
-                          </InputOTPGroup>
-                        </InputOTP>
-                      )}
-                    />
+                  <div className="flex flex-col gap-y-3">
+                    <div dir="ltr" className="flex justify-end">
+                      <Controller
+                        name="otp"
+                        control={control}
+                        defaultValue=""
+                        render={({ field }) => (
+                          <InputOTP maxLength={5} {...field}>
+                            <InputOTPGroup>
+                              <InputOTPSlot index={0} />
+                            </InputOTPGroup>
+                            <InputOTPGroup>
+                              <InputOTPSlot index={1} />
+                            </InputOTPGroup>
+                            <InputOTPGroup>
+                              <InputOTPSlot index={2} />
+                            </InputOTPGroup>
+                            <InputOTPGroup>
+                              <InputOTPSlot index={3} />
+                            </InputOTPGroup>
+                            <InputOTPGroup>
+                              <InputOTPSlot index={4} />
+                            </InputOTPGroup>
+                          </InputOTP>
+                        )}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between text-xs text-slate-400">
+                      <span>
+                        {resendCooldown > 0
+                          ? `امکان ارسال مجدد کد تا ${resendCooldown} ثانیه دیگر`
+                          : "در صورت عدم دریافت، می‌توانید کد را مجدداً ارسال کنید."}
+                      </span>
+                      <button
+                        type="button"
+                        className="text-blue-600 disabled:text-slate-300"
+                        disabled={pending || resendCooldown > 0}
+                        onClick={async () => {
+                          setOtpError(null);
+                          setGeneralError(null);
+
+                          const email = watch("email");
+                          if (!email) return;
+
+                          const response = await fetch("/api/auth/otp/send", {
+                            method: "POST",
+                            headers: {
+                              "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                              email,
+                              purpose: "forgot_password",
+                            }),
+                          });
+
+                          const result = await response.json();
+
+                          if (!response.ok) {
+                            setOtpError(
+                              result.message ||
+                                "ارسال مجدد کد با خطا مواجه شد.",
+                            );
+                            return;
+                          }
+
+                          setResendAttempts((prev) => prev + 1);
+                          setResendCooldown(60);
+                        }}
+                      >
+                        ارسال مجدد کد
+                      </button>
+                    </div>
+                    {otpError ? (
+                      <p className="text-xs text-red-500">{otpError}</p>
+                    ) : null}
                   </div>
                 ) : step === "new-password" ? (
                   <>
@@ -244,6 +396,9 @@ export default function ForgotPasswordPage() {
         )}
 
         <div className="mt-auto flex flex-col gap-y-2">
+          {generalError ? (
+            <p className="text-xs text-red-500 text-center">{generalError}</p>
+          ) : null}
           {step === "new-password" ? (
             <>
               <Button
@@ -292,10 +447,11 @@ export default function ForgotPasswordPage() {
             </>
           ) : (
             <Button
-              type="submit"
+              type="button"
               size="xl"
               variant="primary"
               className="mt-20 w-full"
+              onClick={() => router.push("/application/sign-in")}
             >
               ورود به سیستم
               <ChevronLeft className="size-5.5" />

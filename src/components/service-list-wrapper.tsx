@@ -4,7 +4,7 @@ import { mileageToFarsi } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { Service } from "../../generated/prisma";
+import { Service } from "../../.remove.generated/prisma";
 import EmptyServicesState from "./empty-services-state";
 import SearchInput from "./search-input";
 

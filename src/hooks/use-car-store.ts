@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { Car } from "../../generated/prisma";
+import { Car } from "../../.remove.generated/prisma";
 
 interface State {
   cars: Car[];

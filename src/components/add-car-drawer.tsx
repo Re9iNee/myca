@@ -5,7 +5,7 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CiSquarePlus } from "react-icons/ci";
 import { toast } from "sonner";
-import { Car } from "../../generated/prisma";
+import { Car } from "../../.remove.generated/prisma";
 import { Button } from "./ui/button";
 import {
   Drawer,

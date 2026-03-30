@@ -4,7 +4,7 @@ import { dateToShamsi, mileageToFarsi } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { Service } from "../../generated/prisma";
+import { Service } from "../../.remove.generated/prisma";
 import EmptyServicesState from "./empty-services-state";
 import SearchInput from "./search-input";
 
@@ -33,7 +33,7 @@ function HistoryList({ services }: { services: Service[] }) {
 
       {filteredServices.length > 0 ? (
         <>
-          <div className="scrollbar-hide py-3.5 grow overflow-y-auto">
+          <div className="scrollbar-hide grow overflow-y-auto py-3.5">
             {filteredServices.map((service) => (
               <Row key={service.id} {...service} />
             ))}

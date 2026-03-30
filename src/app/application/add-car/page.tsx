@@ -5,11 +5,11 @@ import { Input } from "@/components/ui/input";
 import { useCarStore } from "@/hooks/use-car-store";
 import useLocalStorage from "@/hooks/use-local-storage";
 import { farsiToMileage, mileageToFarsi } from "@/lib/utils";
+import { Car } from "@prisma/generated/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { Car } from "../../../../generated/prisma";
 
 type Inputs = {
   model: string;

@@ -1,6 +1,6 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dispatch, SetStateAction } from "react";
-import { ServiceType } from "../../generated/prisma";
+import { ServiceType } from "../../.remove.generated/prisma";
 
 export default function ServiceTypePicker({
   serviceType,

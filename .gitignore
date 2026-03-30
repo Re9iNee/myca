@@ -41,5 +41,6 @@ yarn-error.log*
 next-env.d.ts
 
 
+.remove.generated/
 generated/prisma/
 certificates

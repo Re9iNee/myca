@@ -1,9 +1,10 @@
-import { PrismaClient } from "../generated/prisma";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 async function main() {
   // await clearDatabase();
+  const users = await prisma.user.findMany();
+
+  console.log(users);
 }
 
 async function clearDatabase() {
@@ -12,6 +13,7 @@ async function clearDatabase() {
   await prisma.car.deleteMany();
   console.log(`🌱 Deleted all cars`);
   await prisma.user.deleteMany();
+
   console.log(`🌱 Deleted all users`);
 }
 
