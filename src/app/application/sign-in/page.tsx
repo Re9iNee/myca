@@ -4,12 +4,12 @@ import MediumSizeLogo from "@/components/medium-size-logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
-import { Car } from "../../../../.remove.generated/prisma/index";
 import { ChevronLeft, EyeIcon, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 type Inputs = {
   email: string;
@@ -24,13 +24,23 @@ export default function SignInPage() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setPending(true);
 
-    const result = await fetch("/api/login", {
+    const response = await fetch("/api/auth/login", {
       method: "POST",
       body: JSON.stringify({
         email: data.email,
         password: data.password,
       }),
     });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      console.error(result);
+      toast.error(JSON.stringify(result));
+
+      setPending(false);
+    }
+
     // TODO: implement login feature
     // const car: Car = await result.json();
 
