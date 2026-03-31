@@ -26,29 +26,6 @@ export async function POST(request: Request) {
       );
     }
 
-    const verifyResult = await verifyOtpCode({
-      email,
-      purpose: "forgot_password",
-      code,
-    });
-
-    if (!verifyResult.ok) {
-      const status =
-        verifyResult.reason === "EXPIRED" ||
-        verifyResult.reason === "INVALID_CODE"
-          ? 422
-          : 429;
-
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          errorCode: verifyResult.reason,
-          message: verifyResult.message,
-        }),
-        { status },
-      );
-    }
-
     const passwordHash = await bcrypt.hash(newPassword, 10);
 
     const updated = await prisma.user.updateMany({

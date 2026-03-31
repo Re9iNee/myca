@@ -41,12 +41,9 @@ export default function SignInPage() {
       setPending(false);
     }
 
-    // TODO: implement login feature
-    // const car: Car = await result.json();
+    router.push("/application/");
 
-    // router.push("/application/");
-
-    // setPending(false);
+    setPending(false);
   };
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const toggleVisibility = () => setIsVisible((prevState) => !prevState);

@@ -40,8 +40,7 @@ export async function POST(request: Request) {
     const otpResult = await createOrUpdateActiveOtp(email, "forgot_password");
 
     if (!otpResult.ok) {
-      const status =
-        otpResult.errorCode === "TOO_MANY_REQUESTS" ? 429 : 429;
+      const status = otpResult.errorCode === "TOO_MANY_REQUESTS" ? 429 : 429;
 
       return new Response(
         JSON.stringify({
@@ -93,4 +92,3 @@ export async function POST(request: Request) {
     );
   }
 }
-
