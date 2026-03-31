@@ -96,9 +96,9 @@ export default function ForgotPasswordPage() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            code: data.otp,
             email: data.email,
             purpose: "forgot_password",
-            code: data.otp,
           }),
         });
 
@@ -397,7 +397,7 @@ export default function ForgotPasswordPage() {
 
         <div className="mt-auto flex flex-col gap-y-2">
           {generalError ? (
-            <p className="text-xs text-red-500 text-center">{generalError}</p>
+            <p className="text-center text-xs text-red-500">{generalError}</p>
           ) : null}
           {step === "new-password" ? (
             <>

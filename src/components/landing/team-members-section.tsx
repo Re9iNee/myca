@@ -1,14 +1,14 @@
 "use client";
 
+import { useGSAP } from "@gsap/react";
+import superButtonBg from "@public/landing/super-button-pattern.png";
+import kowsarBarkhordar from "@public/landing/team-members-section/kowsar-barkhordar.png";
 import mortezaAjidanpour from "@public/landing/team-members-section/morteza-ajidanpour.png";
 import mortezaHasanpour from "@public/landing/team-members-section/morteza-hasanpour.png";
-import kowsarBarkhordar from "@public/landing/team-members-section/kowsar-barkhordar.png";
 import rezaAttarzadeh from "@public/landing/team-members-section/reza-attarzadeh.png";
-import Image from "next/image";
-import superButtonBg from "@public/landing/super-button-pattern.png";
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import Image from "next/image";
+import { useRef } from "react";
 
 const TeamMembersSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -107,7 +107,7 @@ const TeamMembersSection = () => {
                   <a
                     href={member.profile_url}
                     target="_blank"
-                    className="super-button transition duration-300 hover:scale-110 relative z-2 inline-flex size-9 items-center justify-center overflow-hidden rounded-[100px] bg-linear-to-b! from-blue-700! to-sky-600! text-white xl:size-10.5"
+                    className="super-button relative z-2 inline-flex size-9 items-center justify-center overflow-hidden rounded-[100px] bg-linear-to-b! from-blue-700! to-sky-600! text-white transition duration-300 hover:scale-110 xl:size-10.5"
                   >
                     <img
                       src="/hugeicons/linkedin-02.svg"
@@ -130,7 +130,7 @@ const TeamMembersSection = () => {
                   alt={member.jobTitle}
                   placeholder="blur"
                   quality={100}
-                  className="absolute transition duration-300 hover:scale-105 right-0 bottom-0 object-contain grayscale"
+                  className="absolute right-0 bottom-0 object-contain grayscale transition duration-300 hover:scale-105"
                 />
               </div>
             );

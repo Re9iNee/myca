@@ -1,5 +1,5 @@
-import Image from "next/image";
 import footerCar from "@public/landing/footer/car.png";
+import Image from "next/image";
 import { SuperButtonLink } from "./super-button";
 
 const Footer = () => {

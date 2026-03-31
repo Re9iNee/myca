@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import ctaBanner from "@public/landing/install-application/cta-banner.png";
-import ctaBannerMobile from "@public/landing/install-application/cta-banner-mobile.png";
-import { SuperButtonLink } from "./super-button";
-import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
+import ctaBannerMobile from "@public/landing/install-application/cta-banner-mobile.png";
+import ctaBanner from "@public/landing/install-application/cta-banner.png";
 import gsap from "gsap";
+import Image from "next/image";
+import { useRef } from "react";
+import { SuperButtonLink } from "./super-button";
 
 const InstallAppSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);

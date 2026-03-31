@@ -1,5 +1,5 @@
-import heroSection from "@public/landing/hero/hero-section.png";
 import heroSectionMobile from "@public/landing/hero/hero-section-mobile.png";
+import heroSection from "@public/landing/hero/hero-section.png";
 import Image from "next/image";
 import { SuperButtonLink } from "./super-button";
 

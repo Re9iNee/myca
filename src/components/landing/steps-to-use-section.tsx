@@ -1,6 +1,6 @@
-import Image from "next/image";
 import mobileView from "@public/landing/steps/mobile-view.png";
 import superButtonBg from "@public/landing/super-button-pattern.png";
+import Image from "next/image";
 
 const StepsToUseSection = () => {
   return (

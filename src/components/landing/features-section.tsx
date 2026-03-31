@@ -1,12 +1,12 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import customized from "@public/landing/features/customized-features.png";
+import smartReminder from "@public/landing/features/myca-notification.png";
+import multipleCars from "@public/landing/features/select-car.png";
 import gsap from "gsap";
 import Image from "next/image";
-import smartReminder from "@public/landing/features/myca-notification.png";
-import customized from "@public/landing/features/customized-features.png";
-import multipleCars from "@public/landing/features/select-car.png";
+import { useRef } from "react";
 
 const features = [
   {

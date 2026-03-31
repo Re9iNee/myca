@@ -36,9 +36,9 @@ export default function AddNewCarForm() {
       const result = await fetch("/api/cars/", {
         method: "POST",
         body: JSON.stringify({
+          ownerId,
           model: data.model,
           mileage: farsiToMileage(data.mileage),
-          ownerId,
         }),
       });
 

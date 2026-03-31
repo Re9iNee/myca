@@ -1,8 +1,3 @@
-import QuestionSquare from "@public/landing/faq-section/question-square.png";
-import Image from "next/image";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
 import {
   LandingAccordion,
   LandingAccordionContent,
@@ -22,63 +17,11 @@ const FaqSection = () => {
             هر چی باید بدونی، همین‌جاست
           </p>
         </div>
-        <div className="sm:items-start flex h-full w-full flex-col-reverse gap-y-10 sm:flex-row sm:justify-between sm:gap-x-4 sm:gap-y-0 xl:gap-x-6">
-          {/* <div className="relative h-full w-full px-5 py-6 sm:aspect-49/58 sm:w-fit sm:shrink-0 xl:px-6 xl:py-10">
-            <img
-              src={"/landing/faq-section/asking-questions-vector.svg"}
-              alt="asking questions vector"
-              className="absolute top-0 right-0 h-full w-full rounded-xl border border-blue-100 object-cover sm:rounded-none sm:border-none sm:object-contain"
-            />
-            <div className="flex h-full flex-col justify-end gap-y-7 sm:gap-y-5.5 xl:gap-y-8">
-              <div className="z-2 flex flex-col gap-y-2 sm:gap-y-1 xl:gap-y-3.5">
-                <div className="flex items-center gap-x-2">
-                  <div className="size-8 sm:size-6 xl:size-9">
-                    <Image
-                      src={QuestionSquare}
-                      alt="question square"
-                      quality={100}
-                      className="h-full w-full"
-                    />
-                  </div>
-
-                  <p className="text-xl font-bold text-slate-900 sm:text-lg xl:text-2xl">
-                    جواب سوالت تو لیست نبود؟
-                  </p>
-                </div>
-                <p className="text-lg leading-7 text-slate-500 sm:text-base xl:text-xl">
-                  سریــع بپرس، ما در کنارتیم.
-                </p>
-              </div>
-              <div className="z-2 flex flex-col gap-y-3 xl:gap-y-4">
-                <Input
-                  required
-                  type="text"
-                  placeholder="ایمیل"
-                  className="h-1۳ border-slate-200 bg-white p-3.5 text-xs text-slate-800 placeholder:text-base placeholder:text-slate-400 sm:h-10 xl:h-13 xl:text-base"
-                />
-                <Textarea
-                  className="h-31 resize-none border border-slate-200 bg-white p-3.5 text-xs text-slate-800 placeholder:text-base placeholder:text-slate-400 sm:h-19 xl:h-31 xl:text-base"
-                  placeholder="سوالت رو اینجا بنویس..."
-                />
-              </div>
-              <Button
-                size="xl"
-                variant="primary"
-                className="z-2 h-14 w-full gap-x-3 text-lg font-semibold sm:h-12 sm:gap-x-2 sm:text-base xl:h-14 xl:gap-x-3 xl:text-lg"
-              >
-                <img
-                  src="/hugeicons/check-square.svg"
-                  alt="check square vector"
-                  className="size-6 sm:size-5 xl:size-6"
-                />
-                ارسال سوال
-              </Button>
-            </div>
-          </div> */}
+        <div className="flex h-full w-full flex-col-reverse gap-y-10 sm:flex-row sm:items-start sm:justify-between sm:gap-x-4 sm:gap-y-0 xl:gap-x-6">
           <LandingAccordion
             type="single"
             collapsible
-            className="flex sm:h-89 lg:h-116 h-full w-full flex-col gap-y-3 xl:gap-y-6"
+            className="flex h-full w-full flex-col gap-y-3 sm:h-89 lg:h-116 xl:gap-y-6"
           >
             <LandingAccordionItem value="item-1">
               <LandingAccordionTrigger>

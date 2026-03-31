@@ -1,13 +1,14 @@
-import FaqSection from "@/components/landing/faq-section";
-import FeaturesSection from "@/components/landing/features-section";
-import Footer from "@/components/landing/footer";
-import Header from "@/components/landing/header";
-import HeroSection from "@/components/landing/hero-section";
-import InstallAppSection from "@/components/landing/install-myca-section";
-import StepsToUseSection from "@/components/landing/steps-to-use-section";
-import TeamMembersSection from "@/components/landing/team-members-section";
-import AnimationProvider from "../providers/animation-provider";
-import LenisProvider from "../providers/lenis-provider";
+import {
+  FaqSection,
+  FeaturesSection,
+  Footer,
+  Header,
+  HeroSection,
+  InstallAppSection,
+  StepsToUseSection,
+  TeamMembersSection,
+} from "@/components/landing";
+import { AnimationProvider, LenisProvider } from "@/providers";
 
 export default function HomePage() {
   return (
