@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
 import { ChevronLeft, EyeIcon, EyeOff } from "lucide-react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -23,27 +24,22 @@ export default function SignInPage() {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setPending(true);
-
-    const response = await fetch("/api/auth/login", {
-      method: "POST",
-      body: JSON.stringify({
+    try {
+      const res = await signIn("credentials", {
+        redirect: false,
         email: data.email,
         password: data.password,
-      }),
-    });
+      });
 
-    const result = await response.json();
+      if (!res?.ok) {
+        toast.error(res?.error ?? "Login failed");
+        return;
+      }
 
-    if (!response.ok) {
-      console.error(result);
-      toast.error(JSON.stringify(result));
-
+      router.push("/application/");
+    } finally {
       setPending(false);
     }
-
-    router.push("/application/");
-
-    setPending(false);
   };
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const toggleVisibility = () => setIsVisible((prevState) => !prevState);

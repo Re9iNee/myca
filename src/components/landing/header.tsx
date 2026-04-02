@@ -9,7 +9,7 @@ const Header = () => {
         className="z-2 h-10 xl:h-13"
       />
       <SuperButtonLink
-        href="/application/sign-in"
+        href="/application"
         icon={
           <img
             src="/hugeicons/login-square-02.svg"

@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/input-otp";
 import { Spinner } from "@/components/ui/spinner";
 import { ChevronLeft, ChevronRight, EyeIcon, EyeOff } from "lucide-react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
@@ -100,6 +101,22 @@ export default function SignUpPage() {
 
         if (!response.ok) {
           setOtpError(result.message || "کد وارد شده نامعتبر است.");
+          return;
+        }
+
+        // Auto-login right after OTP verification.
+        const loginRes = await signIn("credentials", {
+          redirect: false,
+          email: data.email,
+          password: data.password,
+        });
+
+        if (!loginRes?.ok) {
+          setGeneralError(
+            loginRes?.error
+              ? `ورود پس از ثبت‌نام با خطا مواجه شد: ${loginRes.error}`
+              : "ورود پس از ثبت‌نام با خطا مواجه شد.",
+          );
           return;
         }
 

@@ -3,25 +3,23 @@ import { prisma } from "@/lib/prisma";
 export const POST = async (request: Request) => {
   const { model, mileage, ownerId } = await request.json();
 
+  if (!ownerId) {
+    return new Response("Missing ownerId", { status: 400 });
+  }
+
   if (!model || !mileage) {
     return new Response("Missing model or mileage", { status: 400 });
   }
 
   try {
-    // Attempt to connect to the provided ownerId or create a new one if it doesn't exist
-    const ownerData = ownerId
-      ? { connectOrCreate: { where: { id: ownerId }, create: {} } }
-      : { create: {} };
-    console.log("ownerData: ",ownerData)
-
     const res = await prisma.car.create({
       data: {
         name: model,
-        owner: ownerData,
         mileage: Number(mileage),
+        owner: { connect: { id: ownerId } },
       },
     });
-    console.log("res: ",res)
+
     return new Response(JSON.stringify(res), { status: 200 });
   } catch (error) {
     console.error(error);

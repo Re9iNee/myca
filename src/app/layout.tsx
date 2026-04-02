@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "../style/globals.css";
 import { NextFontWithVariable } from "next/dist/compiled/@next/font";
+import Providers from "./providers";
 
 const vazirmatn: NextFontWithVariable = localFont({
   src: [
@@ -134,7 +135,7 @@ export default function RootLayout({
       <body
         className={`${vazirmatn.variable} ${poppins.variable} ${gilda.variable} font-vazirmatn flex w-full justify-center antialiased`}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
