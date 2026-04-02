@@ -3,9 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCarStore } from "@/hooks/use-car-store";
-import useLocalStorage from "@/hooks/use-local-storage";
 import { farsiToMileage, mileageToFarsi } from "@/lib/utils";
 import { Car } from "@prisma/generated/client";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -17,10 +17,8 @@ type Inputs = {
 };
 
 export default function AddNewCarForm() {
-  const { save: saveOwnerId, value: ownerId } = useLocalStorage(
-    "ownerId",
-    null,
-  );
+  const { data, status } = useSession();
+  const ownerId = data?.user?.id;
   const router = useRouter();
 
   const addAndSelectCar = useCarStore((state) => state.addAndSelectCar);
@@ -33,10 +31,15 @@ export default function AddNewCarForm() {
     setPending(true);
 
     try {
+      if (status !== "authenticated" || !ownerId) {
+        router.push("/application/sign-in");
+        toast.error("برای افزودن ماشین ابتدا وارد حساب شوید.");
+        return;
+      }
+
       const result = await fetch("/api/cars/", {
         method: "POST",
         body: JSON.stringify({
-          ownerId,
           model: data.model,
           mileage: farsiToMileage(data.mileage),
         }),
@@ -47,7 +50,6 @@ export default function AddNewCarForm() {
       }
 
       const car: Car = await result.json();
-      saveOwnerId(car.ownerId);
       addAndSelectCar(car);
 
       router.push("/application/");
@@ -121,7 +123,7 @@ export default function AddNewCarForm() {
         <div>
           <Button
             type="submit"
-            disabled={pending || !formState.isDirty}
+            disabled={pending || !formState.isDirty || status !== "authenticated" || !ownerId}
             className="mt-20 h-14 w-full rounded-2xl bg-linear-to-r from-blue-500 to-blue-600 px-2.5 py-3.5 text-lg font-semibold disabled:bg-slate-100 disabled:bg-none disabled:text-slate-300"
           >
             ورود

@@ -1,13 +1,16 @@
 import { getSelectedCarMileage } from "../cars.service";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export const GET = async (req: Request) => {
   const { searchParams } = new URL(req.url);
   const carName = searchParams.get("carName");
-  const ownerId = searchParams.get("ownerId");
 
-  if (!carName || !ownerId) {
-    return new Response("Missing carName or ownerId", { status: 400 });
-  }
+  if (!carName) return new Response("Missing carName", { status: 400 });
+
+  const session = await getServerSession(authOptions);
+  const ownerId = session?.user?.id;
+  if (!ownerId) return new Response("Unauthorized", { status: 401 });
 
   try {
     const mileage = await getSelectedCarMileage(carName, ownerId);

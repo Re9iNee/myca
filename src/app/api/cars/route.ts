@@ -1,11 +1,16 @@
 import { prisma } from "@/lib/prisma";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export const POST = async (request: Request) => {
-  const { model, mileage, ownerId } = await request.json();
+  const session = await getServerSession(authOptions);
+  const ownerId = session?.user?.id;
 
   if (!ownerId) {
-    return new Response("Missing ownerId", { status: 400 });
+    return new Response("Unauthorized", { status: 401 });
   }
+
+  const { model, mileage } = await request.json();
 
   if (!model || !mileage) {
     return new Response("Missing model or mileage", { status: 400 });
@@ -14,9 +19,9 @@ export const POST = async (request: Request) => {
   try {
     const res = await prisma.car.create({
       data: {
+        ownerId,
         name: model,
         mileage: Number(mileage),
-        owner: { connect: { id: ownerId } },
       },
     });
 
@@ -28,12 +33,10 @@ export const POST = async (request: Request) => {
 };
 
 export const GET = async (request: Request) => {
-  const { searchParams } = new URL(request.url);
-  const ownerId = searchParams.get("ownerId");
+  const session = await getServerSession(authOptions);
+  const ownerId = session?.user?.id;
 
-  if (!ownerId) {
-    return new Response("Missing ownerId", { status: 400 });
-  }
+  if (!ownerId) return new Response("Unauthorized", { status: 401 });
 
   try {
     const cars = await prisma.car.findMany({
@@ -49,6 +52,11 @@ export const GET = async (request: Request) => {
   }
 };
 export const PATCH = async (request: Request) => {
+  const session = await getServerSession(authOptions);
+  const ownerId = session?.user?.id;
+
+  if (!ownerId) return new Response("Unauthorized", { status: 401 });
+
   const { id, mileage } = await request.json();
 
   if (!id || !mileage) {
@@ -56,14 +64,18 @@ export const PATCH = async (request: Request) => {
   }
 
   try {
-    const res = await prisma.car.update({
-      where: { id },
+    const updated = await prisma.car.updateMany({
+      where: { id, ownerId },
       data: {
-        mileage,
+        mileage: Number(mileage),
       },
     });
 
-    return new Response(JSON.stringify(res), { status: 200 });
+    if (updated.count === 0) {
+      return new Response("Car not found", { status: 404 });
+    }
+
+    return new Response(JSON.stringify({ ok: true }), { status: 200 });
   } catch (error) {
     console.error(error);
     return new Response("Error updating car", { status: 500 });

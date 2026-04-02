@@ -1,11 +1,10 @@
 import { useCarStore } from "@/hooks/use-car-store";
-import useLocalStorage from "@/hooks/use-local-storage";
 import { farsiToMileage, mileageToFarsi } from "@/lib/utils";
+import { Plus } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { CiSquarePlus } from "react-icons/ci";
 import { toast } from "sonner";
-import { Car } from "../../.remove.generated/prisma";
 import { Button } from "./ui/button";
 import {
   Drawer,
@@ -17,7 +16,7 @@ import {
   DrawerTrigger,
 } from "./ui/drawer";
 import { Input } from "./ui/input";
-import { Plus } from "lucide-react";
+import { Car } from "@prisma/generated/client";
 
 type Inputs = {
   model: string;
@@ -26,24 +25,26 @@ type Inputs = {
 
 function AddCarDrawer() {
   const addAndSelectCar = useCarStore((state) => state.addAndSelectCar);
-  const { save: saveOwnerId, value: ownerId } = useLocalStorage(
-    "ownerId",
-    null,
-  );
+  const { status } = useSession();
 
   const addCar: SubmitHandler<Inputs> = async (data) => {
     setPending(true);
+    console.log("This runs");
+
+    if (status !== "authenticated") {
+      setPending(false);
+      toast.error("برای افزودن ماشین ابتدا وارد حساب شوید.");
+      return;
+    }
 
     const result = await fetch("/api/cars/", {
       method: "POST",
       body: JSON.stringify({
         model: data.model,
         mileage: farsiToMileage(data.mileage),
-        ownerId,
       }),
     });
     const car: Car = await result.json();
-    saveOwnerId(car.ownerId);
     addAndSelectCar(car);
 
     toast.success("ماشین با موفقیت اضافه شد");

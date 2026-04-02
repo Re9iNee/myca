@@ -18,12 +18,12 @@ import {
 } from "@/components/ui/popover";
 
 import { useCarStore } from "@/hooks/use-car-store";
-import useLocalStorage from "@/hooks/use-local-storage";
 import useStore from "@/hooks/use-store";
 import { redirect } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { toast } from "sonner";
 import AddCarDrawer from "./add-car-drawer";
+import { useSession } from "next-auth/react";
 
 function navigateToAddCar() {
   toast.success("به صفحه اضافه کردن ماشین هدایت شدید");
@@ -37,21 +37,22 @@ export default function CarPicker() {
   const selectedCar = useStore(useCarStore, (state) => state.selectedCar);
   const setSelectedCar = useCarStore((state) => state.setSelectedCar);
 
-  const { value: ownerId } = useLocalStorage("ownerId");
+  const { data, status } = useSession();
+  const ownerId = data?.user?.id;
   const [open, setOpen] = useState(false);
 
   useLayoutEffect(() => {
-    if (ownerId === null) {
-      navigateToAddCar();
+    if (status === "unauthenticated") {
+      redirect("/application/sign-in");
     }
-  }, [ownerId]);
+  }, [status]);
 
   useEffect(() => {
-    if (!ownerId) {
+    if (status !== "authenticated" || !ownerId) {
       return;
     }
 
-    fetch(`/api/cars?ownerId=${ownerId}`)
+    fetch(`/api/cars`)
       .then(async (res) => {
         const fetchedCars = await res.json();
 
@@ -64,11 +65,11 @@ export default function CarPicker() {
       .catch((err) => {
         console.error(err);
       });
-  }, [ownerId, setCars]);
+  }, [ownerId, setCars, status]);
 
   return (
     <section className="flex flex-col gap-y-2.5 pt-3">
-      <h2 className="font-medium text-sm text-slate-600">انتخاب ماشین</h2>
+      <h2 className="text-sm font-medium text-slate-600">انتخاب ماشین</h2>
       <div className="flex items-center justify-between gap-3">
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>

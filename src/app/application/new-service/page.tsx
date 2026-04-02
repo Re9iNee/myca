@@ -51,7 +51,6 @@ function NewServicePage() {
         body: JSON.stringify({
           ...data,
           serviceType,
-          ownerId: selectedCar?.ownerId,
           carId: selectedCar?.id,
           mileage: farsiToMileage(data.mileage),
           mileageInterval: farsiToMileage(data?.mileageInterval ?? "0"),
