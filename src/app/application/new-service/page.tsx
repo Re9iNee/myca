@@ -13,13 +13,13 @@ import {
   mileageInputChange,
   mileageToFarsi,
 } from "@/lib/utils";
+import { ServiceType } from "@prisma/generated/enums";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLayoutEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { ServiceType } from "../../../../.remove.generated/prisma";
 
 type Inputs = {
   title: string;

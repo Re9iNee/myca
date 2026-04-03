@@ -30,7 +30,7 @@ type Inputs = {
   mileage: string;
 };
 
-export default function MileageSection() {
+export default function UpdateMilageDrawer() {
   const [isPending, setPending] = useState(false);
   const selectedCar = useStore(useCarStore, (state) => state.selectedCar);
   const setSelectedCarMileage = useCarStore(
@@ -66,7 +66,7 @@ export default function MileageSection() {
         <Mileage />
       </div>
       {/* Actions */}
-      <div className="flex flex-col gap-y-2.5 w-full">
+      <div className="flex w-full flex-col gap-y-2.5">
         <div className="flex w-full gap-x-2.5">
           <Drawer open={isDrawerOpen} onOpenChange={setDrawerOpen}>
             <DrawerTrigger
@@ -106,6 +106,7 @@ export default function MileageSection() {
                 />
                 <DrawerFooter className="px-0 py-3">
                   <Button
+                    type="submit"
                     disabled={isPending}
                     className="h-13 rounded-2xl border border-slate-300 bg-linear-to-r from-blue-500 to-blue-600 px-2.5 py-4 text-sm font-semibold text-white disabled:bg-none disabled:text-slate-300 disabled:opacity-100"
                   >
@@ -134,7 +135,7 @@ export default function MileageSection() {
           <Link
             href={`/application/upcoming-services?carId=${selectedCar?.id}`}
           >
-            <CalendarDays className="text-slate-700 stoke-0.5"/>
+            <CalendarDays className="stoke-0.5 text-slate-700" />
             <span>سرویس های آینده</span>
           </Link>
         </Button>
